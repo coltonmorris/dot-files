@@ -9,16 +9,20 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
+" ~~~~~~~~ MY BUNDLES HERE ~~~~~~~~~
+"       
 " Note: You don't set neobundle setting in .gvimrc!
 "
-NeoBundle 'flazz/vim-colorschemes' "color schemes
 
-NeoBundle 'Yggdroot/indentLine' "indents visualized
+" extra color schemes
+NeoBundle 'flazz/vim-colorschemes'
+
+" indents visualized
+NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_color_gui = '#BDBDBD' "Gvim
 
-NeoBundle 'scrooloose/syntastic' "syntax checker
+" syntax checker
+NeoBundle 'scrooloose/syntastic' 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -30,16 +34,23 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_error_symbol = '❌ '
+let g:syntastic_style_error_symbol = '⁉️ '
+let g:syntastic_warning_symbol = '⚠️ '
+let g:syntastic_style_warning_symbol = '💩 '
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+" used to align text      
+NeoBundle 'godlygeek/tabular'
+let g:tabular_loaded = 1      
+
+
+" ~~~~~~~~~~~ END ~~~~~~~~~~~~~
+       
 " Required:
 filetype plugin indent on
 
@@ -65,10 +76,10 @@ set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 set shiftwidth=2    " changes the amount of spaces << and >> move the text
-set ignorecase      "ignore case on search
+set ignorecase      " ignore case on search
 
 set number              " show line numbers
-set relativenumber  "show line numbers relative to your current line
+set relativenumber      " show line numbers relative to your current line
 set cursorline          " highlight current line
 
 set showcmd             " show command in bottom bar
@@ -80,11 +91,15 @@ set hlsearch            " highlight all search pattern matches
 " map enter and shift enter to insert a new line while staying in insert mode
 nmap <S-Enter> O<Esc>  
 nmap <CR> o<Esc>       
+       
+" map space to insert a single space ahead of the cursor
+nmap <Space> a<Space><Esc>
 
-" Press Space to turn off highlighting and clear any message already displayed.
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" map Shift-Space to turn off highlighting and clear any message already displayed.
+:nnoremap <silent> <S-Space> :nohlsearch<Bar>:echo<CR>
 
 filetype indent on      " load filetype-specific indent files
-"set lazyredraw          " redraw only when we need to.
 
 set clipboard=unnamed   " yanking adds to clipboard
+
+set shell=/bin/bash
