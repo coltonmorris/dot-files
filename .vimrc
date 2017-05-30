@@ -44,10 +44,11 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" used to align text      
-NeoBundle 'godlygeek/tabular'
-let g:tabular_loaded = 1      
+" Used for commenting! Type gcc for one line, or gc* (example: gcap --comment around paragraph)
+NeoBundle 'tpope/vim-commentary'
 
+" Plugin that other plugins use. Makes the repeat command '.' work
+NeoBundle 'tpope/vim-repeat'
 
 " ~~~~~~~~~~~ END ~~~~~~~~~~~~~
        
@@ -63,6 +64,8 @@ call neobundle#end() "neobundle end
 
 "PERSONAL SECTION
 
+filetype indent on      " load filetype-specific indent files
+filetype plugin on      " load native plugins
 
 colorscheme solarized   " awesome colorscheme
 set background=light
@@ -98,8 +101,27 @@ nmap <Space> a<Space><Esc>
 " map Shift-Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <S-Space> :nohlsearch<Bar>:echo<CR>
 
-filetype indent on      " load filetype-specific indent files
 
 set clipboard=unnamed   " yanking adds to clipboard
 
-set shell=/bin/bash
+set shell=/bin/bash " so that fish doesn't interfere
+
+" Only for MacVim. Bind cmd+num to switch through tabs
+map <silent> <D-1> :tabn 1<cr>
+map <silent> <D-2> :tabn 2<cr>
+map <silent> <D-3> :tabn 3<cr>
+map <silent> <D-4> :tabn 4<cr>
+map <silent> <D-5> :tabn 5<cr>
+map <silent> <D-6> :tabn 6<cr>
+
+" Use correct language for spellcheck (cos to toggle; z= for corrections).
+set spelllang=en_gb 
+
+" augroup is used to prevent a buildup of autocmd's whenever .vimrc is sourced
+augroup autocmds
+  "autocmd! " clear the augroup. if this isn't done often vim will be slowed down
+  " spell check for text files
+  autocmd BufNewFile,BufRead *.txt,*.md,*.markdown,*.rst setlocal spell
+  autocmd FileType gitcommit setlocal spell
+
+augroup END
