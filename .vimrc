@@ -18,8 +18,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'flazz/vim-colorschemes'
 
 " indents visualized
-NeoBundle 'Yggdroot/indentLine'
-let g:indentLine_color_gui = '#BDBDBD' "Gvim
+" NeoBundle 'Yggdroot/indentLine'
+" let g:indentLine_color_gui = '#BDBDBD' "Gvim
+
+" indents visualized
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1 " enable on startup
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic' 
@@ -50,6 +54,13 @@ NeoBundle 'tpope/vim-commentary'
 " Plugin that other plugins use. Makes the repeat command '.' work
 NeoBundle 'tpope/vim-repeat'
 
+" Git wrapper. 
+NeoBundle 'tpope/vim-fugitive'
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}  "show file name and git branch at bottom
+NeoBundle 'shumphrey/fugitive-gitlab.vim' " gitlab plugin for vim-fugitive
+let g:fugitive_gitlab_domains = ['http://git', 'http://git.tcncloud.net'] " for private gitlab domains
+
+
 " ~~~~~~~~~~~ END ~~~~~~~~~~~~~
        
 " Required:
@@ -63,23 +74,21 @@ NeoBundleCheck
 call neobundle#end() "neobundle end
 
 "PERSONAL SECTION
+colorscheme solarized   " awesome colorscheme. Do this first so that later commands aren't overwritten
+set background=light
 
 filetype indent on      " load filetype-specific indent files
 filetype plugin on      " load native plugins
-
-colorscheme solarized   " awesome colorscheme
-set background=light
 
 set term=xterm-256color 
 set t_Co=256        " use 256 colors
 syntax on           " enable syntax processing
 
-
 set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 set shiftwidth=2    " changes the amount of spaces << and >> move the text
-set ignorecase      " ignore case on search
+set ignorecase      " ignorecase or infercase? The question of the century.
 
 set number              " show line numbers
 set relativenumber      " show line numbers relative to your current line
@@ -91,16 +100,27 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all search pattern matches
 
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+set synmaxcol=300 "only syntax higlight first 200 columns, increases performance on weird files
+set scrolloff=5 "keep the cursor vertically centered
+
+set laststatus=2 " always draw statusline
+set statusline+=%#constant#%-14.(\ \ col:\ %c%) " Show the column at the bottom in the statusline.
+set titlestring=\  " empty the title string
+
 " map enter and shift enter to insert a new line while staying in insert mode
 nmap <S-Enter> O<Esc>  
 nmap <CR> o<Esc>       
-       
+
 " map space to insert a single space ahead of the cursor
 nmap <Space> a<Space><Esc>
 
 " map Shift-Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <S-Space> :nohlsearch<Bar>:echo<CR>
-
 
 set clipboard=unnamed   " yanking adds to clipboard
 
@@ -117,11 +137,32 @@ map <silent> <D-6> :tabn 6<cr>
 " Use correct language for spellcheck (cos to toggle; z= for corrections).
 set spelllang=en_gb 
 
+" Allow <C-n> and <C-p> to use the dictionary for recommended words. 
+set spell
+set complete+=kspell
+" Only spell check SpellLocal and SpellBad (use :h hl-SpellBad)
+hi clear SpellCap
+hi clear SpellRare
+
+
 " augroup is used to prevent a buildup of autocmd's whenever .vimrc is sourced
 augroup autocmds
   "autocmd! " clear the augroup. if this isn't done often vim will be slowed down
   " spell check for text files
   autocmd BufNewFile,BufRead *.txt,*.md,*.markdown,*.rst setlocal spell
+
+  " press f5 and open a markdown file into google chrome.
+  " Requires: https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl
+  " Check "Allow access to file URLs in chrome://extensions
+  autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome" %:p:.<CR>'
+
   autocmd FileType gitcommit setlocal spell
+  " automatically resize splits when vim is resized
+  autocmd VimResized * wincmd =
+
+  " Set conceallevel=0 for every filetype. Conceallevel really is dumb, I hate that ishhhhh
+  set cole=0
+  autocmd FileType * setl cole=0
 
 augroup END
+
