@@ -18,10 +18,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'flazz/vim-colorschemes'
 
 " indents visualized
-" NeoBundle 'Yggdroot/indentLine'
-" let g:indentLine_color_gui = '#BDBDBD' "Gvim
-
-" indents visualized
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1 " enable on startup
 
@@ -74,7 +70,15 @@ NeoBundleCheck
 call neobundle#end() "neobundle end
 
 "PERSONAL SECTION
-colorscheme solarized   " awesome colorscheme. Do this first so that later commands aren't overwritten
+"  _____       _            _             _   _      _       _     _   
+" / ____|     | |          (_)           | | | |    (_)     | |   | |  
+"| (___   ___ | | __ _ _ __ _ _______  __| | | |     _  __ _| |__ | |_ 
+" \___ \ / _ \| |/ _` | '__| |_  / _ \/ _` | | |    | |/ _` | '_ \| __|
+" ____) | (_) | | (_| | |  | |/ /  __/ (_| | | |____| | (_| | | | | |_ 
+"|_____/ \___/|_|\__,_|_|  |_/___\___|\__,_| |______|_|\__, |_| |_|\__|
+"                                                       __/ |          
+"                                                      |___/           
+colorscheme solarized   " Do this first so that later commands aren't overwritten. All hail solarized light
 set background=light
 
 filetype indent on      " load filetype-specific indent files
