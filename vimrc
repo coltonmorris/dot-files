@@ -110,6 +110,7 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 set synmaxcol=300 "only syntax higlight first 200 columns, increases performance on weird files
+set tabpagemax=100 " we can have 100 tabs open. This extends the default
 set scrolloff=5 "keep the cursor vertically centered
 
 set laststatus=2 " always draw statusline
