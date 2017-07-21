@@ -2,7 +2,7 @@
 My dot files for easy dev env setups
 
 
-### Dev Dependencies
+### Dependencies
 ---
 * https://fishshell.com/
 * https://github.com/Shougo/neobundle.vim 
