@@ -10,3 +10,6 @@ set -x PATH $GOPATH/bin $PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/coltonmorris/go_workspace/src/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/Users/coltonmorris/go_workspace/src/google-cloud-sdk/path.fish.inc'; else; . '/Users/coltonmorris/go_workspace/src/google-cloud-sdk/path.fish.inc'; end; end
+
+# create chrome alias
+alias chrome google-chrome
