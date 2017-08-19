@@ -33,6 +33,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe='(npm bin)/eslint'
 
 let g:syntastic_error_symbol = '❌ '
 let g:syntastic_style_error_symbol = '⁉️ '
@@ -49,6 +50,9 @@ NeoBundle 'tpope/vim-commentary'
 
 " Plugin that other plugins use. Makes the repeat command '.' work
 NeoBundle 'tpope/vim-repeat'
+
+" Autocomplete
+NeoBundle 'tpope/vim-endwise'
 
 " Git wrapper. 
 NeoBundle 'tpope/vim-fugitive'
@@ -117,7 +121,7 @@ set laststatus=2 " always draw statusline
 set statusline+=%#constant#%-14.(\ \ col:\ %c%) " Show the column at the bottom in the statusline.
 set titlestring=\  " empty the title string
 
-" map enter and shift enter to insert a new line while staying in insert mode
+" map enter and shift enter to insert a new line while staying in command mode
 nmap <S-Enter> O<Esc>  
 nmap <CR> o<Esc>       
 
