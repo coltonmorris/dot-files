@@ -17,6 +17,8 @@ My dot files for easy dev env setups
 * docker-machine
 * gcloud sdk
 * node and npm
+  - ```brew install node```
+* golang
 * python and pip
 * google-chrome
   - Ad block plus
