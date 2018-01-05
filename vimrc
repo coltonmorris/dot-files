@@ -85,6 +85,10 @@ call neobundle#end() "neobundle end
 colorscheme solarized   " Do this first so that later commands aren't overwritten. All hail solarized light
 set background=light
 
+set guifont=Monaco:h18
+set lines=50 " initial window size
+set columns=300 " initial window size
+
 filetype indent on      " load filetype-specific indent files
 filetype plugin on      " load native plugins
 

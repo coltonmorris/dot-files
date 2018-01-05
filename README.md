@@ -10,9 +10,11 @@ My dot files for easy dev env setups
 * https://github.com/fisherman/fisherman
   - Ocean theme
   - ```fisher z```
-* https://github.com/Anthony25/gnome-terminal-colors-solarized
-  - Turns the terminal into solarized beauty
+* Solarized light for shell
+  - for gnome: https://github.com/Anthony25/gnome-terminal-colors-solarized
+  - for mac: import solarized light theme for iterm
 * A VM, was virtualbox but I've been annoyed with them
+  - might not be needed now depending on OS
 * docker
 * docker-machine
 * gcloud sdk
