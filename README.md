@@ -21,6 +21,8 @@ My dot files for easy dev env setups
 * node and npm
   - ```brew install node```
 * golang
+* grpc
+* protobuf
 * python and pip
 * google-chrome
   - Ad block plus
