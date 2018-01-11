@@ -9,9 +9,10 @@ My dot files for easy dev env setups
   - Comment out all lines in vimrc that set statusline to allow the bundles to be downloaded first.
 * https://github.com/fisherman/fisherman
   - Ocean theme
-  - ```fisher z```
+    * ```fisher z```
   - for ssh'ing password
-  - ```https://github.com/tuvistavie/fish-ssh-agent```
+    * The copy scripts should take care of this, and all that's needed is to run `ssh-add` once
+    * ```https://github.com/tuvistavie/fish-ssh-agent```
 * Solarized light for shell
   - for gnome: https://github.com/Anthony25/gnome-terminal-colors-solarized
   - for mac: import solarized light theme for iterm
