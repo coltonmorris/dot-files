@@ -25,6 +25,7 @@ My dot files for easy dev env setups
   - ```brew install node```
 * global git ignore: `git config --global core.excludesfile ~/.gitignore_global`
 * golang
+  - Download go from golang website
 * grpc
 * protobuf
 * python and pip
