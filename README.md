@@ -10,6 +10,8 @@ My dot files for easy dev env setups
 * https://github.com/fisherman/fisherman
   - Ocean theme
   - ```fisher z```
+  - for ssh'ing password
+  - ```https://github.com/tuvistavie/fish-ssh-agent```
 * Solarized light for shell
   - for gnome: https://github.com/Anthony25/gnome-terminal-colors-solarized
   - for mac: import solarized light theme for iterm
@@ -20,6 +22,7 @@ My dot files for easy dev env setups
 * gcloud sdk
 * node and npm
   - ```brew install node```
+* global git ignore: `git config --global core.excludesfile ~/.gitignore_global`
 * golang
 * grpc
 * protobuf
