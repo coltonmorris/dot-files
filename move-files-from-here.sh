@@ -2,5 +2,6 @@
 
 cp fish/functions/* ~/.config/fish/functions/
 cp fish/config.fish ~/.config/fish
+cp fish/init.fish ~/.config/fish
 cp vimrc ~/.vimrc 
 cp gitignore_global ~/.gitignore_global 
