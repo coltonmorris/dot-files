@@ -19,8 +19,11 @@ My dot files for easy dev env setups
 * A VM, was virtualbox but I've been annoyed with them
   - might not be needed now depending on OS
 * docker
+  - docker for mac > docker toolbox
 * docker-machine
 * gcloud sdk
+  - After gcloud is installed, use it to download kubernetes
+  - Also download helm
 * node and npm
   - ```brew install node```
 * global git ignore: `git config --global core.excludesfile ~/.gitignore_global`
