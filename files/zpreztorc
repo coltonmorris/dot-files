@@ -43,9 +43,9 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 
 # Set syntax highlighting styles.
 zstyle ':prezto:module:syntax-highlighting' styles \
-  'builtin' 'bg=white' \
-  'command' 'bg=white' \
-  'function' 'bg=white'
+  'builtin' 'fg=green' \
+  'command' 'fg=green' \
+  'function' 'fg=green'
 
 # Auto set the tab and window titles.
 zstyle ':prezto:module:terminal' auto-title 'yes'
