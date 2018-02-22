@@ -1,10 +1,9 @@
 #!/bin/bash
 
-cp ~/.vimrc  vimrc
-cp ~/.vim/solarized-light.itermcolors solarized-light.itermcolors
-cp ~/.zpreztorc  zpreztorc
-cp ~/.zshrc  zshrc
-cp ~/.zprezto/modules/prompt/functions/prompt_garrett_setup  prompt_garrett_setup
-cp ~/.gitignore_global gitignore_global
-cp ~/.gitconfig gitconfig
-
+cp ~/.vimrc  files/vimrc
+cp ~/.vim/solarized-light.itermcolors files/solarized-light.itermcolors
+cp ~/.zpreztorc  files/zpreztorc
+cp ~/.zshrc  files/zshrc
+cp ~/.zprezto/modules/prompt/functions/prompt_garrett_setup files/prompt_garrett_setup
+cp ~/.gitignore_global files/gitignore_global
+cp ~/.gitconfig files/gitconfig
