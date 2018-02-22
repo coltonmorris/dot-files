@@ -31,6 +31,7 @@ The `move-files-from-here.sh` script should be ran after installing the followin
 * gcloud sdk
   - After gcloud is installed, use it to download kubernetes
   - Also download helm
+  - Use this to download kubectl
 * node and npm
   - ```brew install node```
 * golang
