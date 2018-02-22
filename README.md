@@ -1,10 +1,22 @@
 # Dot-Files
 My dot files for easy dev env setups
 
+## Copy Script
+---
+
+The `move-files-from-here.sh` script should be ran after installing the following dependencies:
+* iterm
+* git
+* neobundle
+* zsh
+* zprezto
+
+
 
 ### Dependencies
 ---
 * iterm
+* git
 * neobundle
 * zsh
 * zprezto
@@ -21,7 +33,6 @@ My dot files for easy dev env setups
   - Also download helm
 * node and npm
   - ```brew install node```
-* global git ignore: `git config --global core.excludesfile ~/.gitignore_global`
 * golang
   - Download go from golang website
 * grpc
