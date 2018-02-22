@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cp fish/functions/* ~/.config/fish/functions/
-cp fish/config.fish ~/.config/fish
-cp fish/init.fish ~/.config/fish
-cp vimrc ~/.vimrc 
-cp gitignore_global ~/.gitignore_global 
+cp vimrc ~/.vimrc
+cp solarized-light.itermcolors ~/.vim/solarized-light.itermcolors
+cp zpreztorc ~/.zpreztorc
+cp zshrc ~/.zshrc
+cp prompt_garrett_setup ~/.zprezto/modules/prompt/functions/prompt_garrett_setup
+cp gitignore_global ~/.gitignore_global
+cp gitconfig ~/.gitconfig

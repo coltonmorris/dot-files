@@ -4,15 +4,10 @@ My dot files for easy dev env setups
 
 ### Dependencies
 ---
-* https://fishshell.com/
-* https://github.com/Shougo/neobundle.vim 
-  - Comment out all lines in vimrc that set statusline to allow the bundles to be downloaded first.
-* https://github.com/fisherman/fisherman
-  - Ocean theme
-    * ```fisher z```
-  - for ssh'ing password
-    * The copy scripts should take care of this, and all that's needed is to run `ssh-add` once
-    * ```https://github.com/tuvistavie/fish-ssh-agent```
+* iterm
+* neobundle
+* zsh
+* zprezto
 * Solarized light for shell
   - for gnome: https://github.com/Anthony25/gnome-terminal-colors-solarized
   - for mac: import solarized light theme for iterm

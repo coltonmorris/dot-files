@@ -1,4 +1,14 @@
+"
+" INITIAL SETTINGS
+"
+
+" set statusline+=%#constant#%-14.(\ \ col:\ %c%) " Show the column at the bottom in the statusline.
+set statusline=%<%#constant#%(\ \ col:\ %c%)\  " Show the column at the bottom in the statusline.
+
+
+"
 " NEOBUNDLE SECTION
+" 
 " Required:
 set runtimepath^=~/.vim/bundle/neobundle.vim/
 
@@ -56,7 +66,12 @@ NeoBundle 'tpope/vim-endwise'
 
 " Git wrapper. 
 NeoBundle 'tpope/vim-fugitive'
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}  "show file name and git branch at bottom
+let minWidth = 4
+let maxWidth = 40
+" manipulate string given by fugitive
+set statusline+=\[%h%m%r%{strpart(fugitive#statusline(),minWidth,maxWidth)}
+"filename
+set statusline+=\ %f
 NeoBundle 'shumphrey/fugitive-gitlab.vim' " gitlab plugin for vim-fugitive
 let g:fugitive_gitlab_domains = ['http://git', 'http://git.tcncloud.net'] " for private gitlab domains
 
@@ -122,8 +137,7 @@ set tabpagemax=100 " we can have 100 tabs open. This extends the default
 set scrolloff=5 "keep the cursor vertically centered
 
 set laststatus=2 " always draw statusline
-set statusline+=%#constant#%-14.(\ \ col:\ %c%) " Show the column at the bottom in the statusline.
-set titlestring=\  " empty the title string
+set titlestring=🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 " empty the title string
 
 " map enter and shift enter to insert a new line while staying in command mode
 nmap <S-Enter> O<Esc>  
