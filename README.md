@@ -4,13 +4,14 @@ My dot files for easy dev env setups
 ## Copy Script
 ---
 
-The `move-files-from-here.sh` script should be ran after installing the following dependencies:
+The `install.sh` script should be ran after installing the following dependencies:
 * iterm
 * git
 * neobundle
 * zsh
 * zprezto
 
+It creates a symbolic links in your home directory pointing to the files in this repo.
 
 
 ### Dependencies
