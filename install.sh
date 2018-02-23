@@ -1,28 +1,44 @@
 #!/bin/bash
 
-mv ~/.vimrc backups/vimrc
-ln -s ~/dot-files/files/vimrc ~/.vimrc
+# our dot files. These will be moved to backups, then sym links will take their place
+FILES=(
+  ~/.vim/solarized-light.itermcolors
+  ~/.gvimrc
+  ~/.vimrc
+  ~/.vim/iterm_profile 
+  ~/.zpreztorc 
+  ~/.zshrc 
+  ~/.zprezto/modules/prompt/functions/prompt_garrett_setup 
+  ~/.gitignore_global 
+  ~/.gitconfig 
+)
 
-mv ~/.gvimrc backups/gvimrc
-ln -s ~/dot-files/files/gvimrc ~/.gvimrc
+COUNTER=$[$(cat backups/COUNTER)]
 
-mv ~/.vim/solarized-light.itermcolors backups/solarized-light.itermcolors
-ln -s ~/dot-files/files/solarized-light.itermcolors ~/.vim/solarized-light.itermcolors
+# if counter gets too large, reset it to 0
+if [ $COUNTER -gt 20 ]; then
+  echo "0" > backups/COUNTER
+  COUNTER=0
+fi
 
-mv ~/.vim/iterm_profile backups/iterm_profile
-ln -s ~/dot-files/files/iterm_profile ~/.vim/iterm_profile
+# create/overwrite our backup files
+rm -rf backups/$COUNTER
+mkdir backups/$COUNTER
+echo "Storing backups in backups/$COUNTER"
 
-mv ~/.zpreztorc backups/zpreztorc
-ln -s ~/dot-files/files/zpreztorc ~/.zpreztorc
+for i in "${FILES[@]}"
+do
+  # if the file exists (either sym link or real) do not try to backup 
+  if [ -e $i ]; then
+    echo $i
 
-mv ~/.zshrc backups/zshrc
-ln -s ~/dot-files/files/zshrc ~/.zshrc
+    # back up locally, making sure not to copy symn links
+    cp -LRH $i backups/$COUNTER/"$(echo $i | sed 's/.*\///')"
 
-mv ~/.zprezto/modules/prompt/functions/prompt_garrett_setup backups/prompt_garrett_setup
-ln -s ~/dot-files/files/prompt_garrett_setup ~/.zprezto/modules/prompt/functions/prompt_garrett_setup
+    # remove to make room for link
+    rm $i
+  fi
+  ln -s $(pwd)/files/"$(echo $i | sed 's/.*\///')" $i
+done
 
-mv ~/.gitignore_global backups/gitignore_global
-ln -s ~/dot-files/files/gitignore_global ~/.gitignore_global
-
-mv ~/.gitconfig backups/gitconfig
-ln -s ~/dot-files/files/gitconfig ~/.gitconfig
+echo "$[$(cat backups/COUNTER) + 1]" > backups/COUNTER
