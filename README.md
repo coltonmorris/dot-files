@@ -16,6 +16,7 @@ The `move-files-from-here.sh` script should be ran after installing the followin
 ### Dependencies
 ---
 * iterm
+  + Fira code font with ligatures
 * git
 * neobundle
 * zsh

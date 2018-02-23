@@ -14,6 +14,9 @@ eval "$(fasd --init posix-alias zsh-hook)"
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
+# ctry f to accept autosuggest. use autosuggest-execute to accept and execute in one command
+bindkey '^f' autosuggest-accept
+bindkey '^w' forward-word
 
 #bazel to path
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -96,8 +99,6 @@ bindkey -M vicmd "q" push-line
 # it's like, space AND completion.  Gnarlbot.
 bindkey -M viins ' ' magic-space
 
-# ctry f to accept autosuggest. use autosuggest-execute to accept and execute in one command
-bindkey '^f' autosuggest-accept
 
 
 # tabtab source for serverless package

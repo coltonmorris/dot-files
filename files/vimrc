@@ -97,10 +97,12 @@ call neobundle#end() "neobundle end
 "|_____/ \___/|_|\__,_|_|  |_/___\___|\__,_| |______|_|\__, |_| |_|\__|
 "                                                       __/ |          
 "                                                      |___/           
+
 colorscheme solarized   " Do this first so that later commands aren't overwritten. All hail solarized light
 set background=light
 
-set guifont=Monaco:h18
+
+set guifont=Fira\ Code:h18
 set lines=50 " initial window size
 set columns=300 " initial window size
 

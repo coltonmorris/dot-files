@@ -310,7 +310,7 @@ function prompt_garrett_setup {
     # Set style.
     eval prompt_garrett_user=''
     eval prompt_garrett_host='${prompt_garrett_color_host}%m' # hostname up to first . (dot) (use %M for full hostname)
-    eval prompt_garrett_location='${prompt_garrett_user}${cyan}@${prompt_garrett_host}' # user@host.name
+    eval prompt_garrett_location='${cyan}ΞΟΛΤΟΝ'
   fi
 
   #

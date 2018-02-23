@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp ~/.vimrc  files/vimrc
+cp ~/.gvimrc  files/gvimrc
 cp ~/.vim/solarized-light.itermcolors files/solarized-light.itermcolors
 cp ~/.zpreztorc  files/zpreztorc
 cp ~/.zshrc  files/zshrc
