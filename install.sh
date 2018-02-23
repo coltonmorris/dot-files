@@ -20,7 +20,7 @@ YELLOW='\033[0;33m'
 NO_COLOR='\033[0m'
 
 # create backups dir
-mkdir backups/$DATE
+mkdir -p backups/$DATE
 echo -e "${GREEN}Storing backups in backups/$DATE${NO_COLOR}"
 echo ""
 
