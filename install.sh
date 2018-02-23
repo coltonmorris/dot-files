@@ -13,32 +13,37 @@ FILES=(
   ~/.gitconfig 
 )
 
-COUNTER=$[$(cat backups/COUNTER)]
+DATE=$(date +'%s')
 
-# if counter gets too large, reset it to 0
-if [ $COUNTER -gt 20 ]; then
-  echo "0" > backups/COUNTER
-  COUNTER=0
-fi
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NO_COLOR='\033[0m'
 
-# create/overwrite our backup files
-rm -rf backups/$COUNTER
-mkdir backups/$COUNTER
-echo "Storing backups in backups/$COUNTER"
+# create backups dir
+mkdir backups/$DATE
+echo -e "${GREEN}Storing backups in backups/$DATE${NO_COLOR}"
+echo ""
 
+
+# loop through FILES and create sym link for each, as well as a saved backup
+echo -e "${GREEN}Saving and linking files...${NO_COLOR}"
 for i in "${FILES[@]}"
 do
-  # if the file exists (either sym link or real) do not try to backup 
-  if [ -e $i ]; then
-    echo $i
 
+  # if the file exists (sym or real)
+  if [ -e $i ]; then
+    echo -e "\t${YELLOW}Backing Up: $i${NO_COLOR}"
     # back up locally, making sure not to copy symn links
-    cp -LRH $i backups/$COUNTER/"$(echo $i | sed 's/.*\///')"
+    cp -LRH $i backups/$DATE/"$(echo $i | sed 's/.*\///')"
 
     # remove to make room for link
     rm $i
+  else
+    echo -e "\t${GREEN}Creating: $i${NO_COLOR}"
+    # save to backups
+    cp files/"$(echo $i | sed 's/.*\///')" backups/$DATE
   fi
+
+  # now create the sym link
   ln -s $(pwd)/files/"$(echo $i | sed 's/.*\///')" $i
 done
-
-echo "$[$(cat backups/COUNTER) + 1]" > backups/COUNTER
