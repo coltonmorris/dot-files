@@ -17,6 +17,7 @@ The `move-files-from-here.sh` script should be ran after installing the followin
 ---
 * iterm
   + Fira code font with ligatures
+  + use `iterm_profile` json config file to import profile *untested*
 * git
 * neobundle
 * zsh
