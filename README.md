@@ -11,7 +11,7 @@ The `install.sh` script should be ran after installing the following dependencie
 * zsh
 * zprezto
 
-It creates a symbolic links in your home directory pointing to the files in this repo.
+It creates symbolic links in your home directory pointing to the files in this repo.
 
 
 ### Dependencies
