@@ -9,7 +9,11 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # sets up z for fasd
-eval "$(fasd --init posix-alias zsh-hook)"
+eval "$(fasd --init auto)"
+# quick opening files in gvim or vim
+alias g='f -e gvim'
+alias v='f -e vim'
+
 
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
