@@ -24,6 +24,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 "
 
+" blinks search result after jumping to it
+" This doesn't install with NeoBundle, so git clone the project at ~/.vim/bundles
+NeoBundle 'ivy/vim-bling'
+let g:bling_color_fg = 'cyan'
+let g:bling_color_gui_fg = 'cyan'
+let g:bling_count = 3
+
 " extra color schemes
 NeoBundle 'flazz/vim-colorschemes'
 
