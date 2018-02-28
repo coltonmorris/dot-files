@@ -61,6 +61,25 @@ NeoBundle 'tpope/vim-commentary'
 " Plugin that other plugins use. Makes the repeat command '.' work
 NeoBundle 'tpope/vim-repeat'
 
+" The best plugin ever. Requires vim-repeat to be installed.
+NeoBundle 'svermeulen/vim-easyclip'
+let g:EasyClipAutoFormat = 1 " there is also a way to bind a toggle functionality for this
+let g:EasyClipPreserveCursorPositionAfterYank = 1
+" allow for s<motion> to substitute over the given motion with a specifified
+" register. Use ss to paste over the line. Use gs the same as s but preserves
+" the cursor position
+let g:EasyClipUseSubstituteDefaults = 1
+" control+v to use EasyClips pasting while in insert mode
+imap <c-v> <plug>EasyClipInsertModePaste 
+" map command+v to use EasyClips pasting while in insert mode... TODO not working 
+imap <silent> <D-v> <plug>EasyClipInsertModePaste 
+set clipboard=unnamed,unnamedplus   " yanking adds to + and * registers. system clipboard is the * register btw.
+" remap m to be cut and M to cut end of line
+nnoremap gm m
+nmap M <Plug>MoveMotionEndOfLinePlug
+
+
+
 " Autocomplete
 NeoBundle 'tpope/vim-endwise'
 
@@ -151,7 +170,6 @@ nmap <Space> a<Space><Esc>
 " map Shift-Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <S-Space> :nohlsearch<Bar>:echo<CR>
 
-set clipboard=unnamed   " yanking adds to clipboard
 
 set shell=/bin/bash " so that fish doesn't interfere
 
