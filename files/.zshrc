@@ -29,9 +29,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$PATH
 
 # go to path
-export GOPATH=/Users/colton/go
-export GOBIN=$GOPATH/bin:$GOBIN
-export PATH=/usr/local/go/bin:$GOBIN:$PATH
+export GOPATH="${HOME}/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # protoc to path
 export LD_LIBRARY_PATH=/usr/local/lib

@@ -205,10 +205,20 @@ function prompt_garrett_preprompt_render() {
   local prompt_garrett_width_terminal
   (( prompt_garrett_width_terminal= ${COLUMNS} - 1 ))
 
+  # Newline + Prompt line 1 (set above PROMPT, below).
+  local finished_line='\n${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_upper_left_corner}( ${prompt_garrett_pwd}${git_info[remote_status]}${git_info[prompt_info]}${git_info[local_status]}${git_info[sha]} ${prompt_garrett_color_prompt})${prompt_garrett_altchar_enter}${(e)prompt_garrett_space}${prompt_garrett_altchar_leave}( ${node_info[version]}${prompt_garrett_location}${prompt_garrett_color_prompt} )${prompt_garrett_upper_right_corner}'
+
+  # if [[ "$prompt_line_1" -geq tput cols ]]; then
+  #   echo "its too long"
+  #   zstyle ':prezto:module:prompt' pwd-length 'short'
+  #   fi
+  # fi
+
+  # echo $prompt_garrett_width_terminal
+
   # Determine the length needed for prompt_garrett_space.
   # NOTE: Be sure not to include the ${(e)prompt_garrett_space} portion or it won't work.
   local prompt_line1="${prompt_garrett_upper_left_corner}( ${prompt_garrett_pwd}${git_info[remote_status]}${git_info[prompt_info]}${git_info[local_status]}${git_info[sha]} )( ${node_info[version]}${prompt_garrett_location} )${prompt_garrett_upper_right_corner}"
-  #local prompt_line1="${prompt_garrett_upper_left_corner}( ${prompt_garrett_pwd}${git_info[remote_status]}${git_info[prompt_info]}${git_info[local_status]}${git_info[sha]} )( ${ruby_info[version]}${prompt_garrett_location} )${prompt_garrett_upper_right_corner}"
   local zero='%([BSUbfksu]|([FB]|){*})'
   local prompt_garrett_width_line1=${#${(S%%)prompt_line1//$~zero/}}
 
@@ -220,8 +230,7 @@ function prompt_garrett_preprompt_render() {
   local prompt_space_character="${prompt_garrett_altchar_padding}"
   eval prompt_garrett_space="${prompt_garrett_color_prompt}\${(l.${prompt_garrett_space_padding}..${prompt_space_character}.)}"
 
-  # Newline + Prompt line 1 (set above PROMPT, below).
-  print -P '\n${prompt_garrett_altchar_enable}${prompt_garrett_color_prompt}${prompt_garrett_upper_left_corner}( ${prompt_garrett_pwd}${git_info[remote_status]}${git_info[prompt_info]}${git_info[local_status]}${git_info[sha]} ${prompt_garrett_color_prompt})${prompt_garrett_altchar_enter}${(e)prompt_garrett_space}${prompt_garrett_altchar_leave}( ${node_info[version]}${prompt_garrett_location}${prompt_garrett_color_prompt} )${prompt_garrett_upper_right_corner}'
+  print -P $finished_line
 }
 
 # Configure the prompt.

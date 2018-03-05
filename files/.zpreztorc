@@ -30,7 +30,7 @@ zstyle ':prezto:module:utility:ls' color 'yes'
 
 zstyle ':prezto:module:prompt' theme 'garrett'
 # can be either long or full
-zstyle ':prezto:module:prompt' pwd-length 'long'
+zstyle ':prezto:module:prompt' pwd-length 'short'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
