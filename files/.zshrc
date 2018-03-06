@@ -8,6 +8,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+
 # sets up z for fasd
 eval "$(fasd --init auto)"
 # quick opening files in gvim or vim

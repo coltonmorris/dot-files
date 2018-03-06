@@ -24,6 +24,16 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 "
 
+" javascript syntax highlighting
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+
+"typescript syntax highlighting
+NeoBundle 'leafgarland/typescript-vim'
+
+" tsx
+NeoBundle 'ianks/vim-tsx'
+
 " blinks search result after jumping to it
 " This doesn't install with NeoBundle, so git clone the project at ~/.vim/bundles
 NeoBundle 'ivy/vim-bling'
@@ -210,6 +220,8 @@ augroup autocmds
   " Check "Allow access to file URLs in chrome://extensions
   autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome" %:p:.<CR>'
 
+  autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript.tsx
+  autocmd BufNewFile,BufRead *.js,*.jsx setlocal filetype=javascript.jsx
   autocmd FileType gitcommit setlocal spell
   " automatically resize splits when vim is resized
   autocmd VimResized * wincmd =
