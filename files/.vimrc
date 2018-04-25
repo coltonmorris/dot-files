@@ -39,7 +39,7 @@ NeoBundle 'ianks/vim-tsx'
 NeoBundle 'ivy/vim-bling'
 let g:bling_color_fg = 'cyan'
 let g:bling_color_gui_fg = 'cyan'
-let g:bling_count = 3
+let g:bling_count = 1
 
 " extra color schemes
 NeoBundle 'flazz/vim-colorschemes'
@@ -170,7 +170,7 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-set synmaxcol=300 "only syntax higlight first 200 columns, increases performance on weird files
+set synmaxcol=400 "only syntax higlight first 400 columns, increases performance on weird files
 set tabpagemax=100 " we can have 100 tabs open. This extends the default
 set scrolloff=5 "keep the cursor vertically centered
 
@@ -207,6 +207,8 @@ set complete+=kspell
 " Only spell check SpellLocal and SpellBad (use :h hl-SpellBad)
 hi clear SpellCap
 hi clear SpellRare
+
+set backupcopy=yes
 
 
 " augroup is used to prevent a buildup of autocmd's whenever .vimrc is sourced

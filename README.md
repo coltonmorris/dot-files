@@ -23,6 +23,8 @@ It creates symbolic links in your home directory pointing to the files in this r
 * neobundle
 * zsh
 * zprezto
+  - custom theme called `garret_prompt_setup`
+  - zsh autosuggest
 * Solarized light for shell
   - for gnome: https://github.com/Anthony25/gnome-terminal-colors-solarized
   - for mac: import solarized light theme for iterm

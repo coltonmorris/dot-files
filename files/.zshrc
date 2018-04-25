@@ -1,6 +1,8 @@
 # default tmux load
 # [[ $TERM != "screen" ]] && exec tmux
 
+airhorn
+
 export TERM="xterm-256color"
 
 # Source Prezto.
