@@ -232,5 +232,8 @@ augroup autocmds
   set cole=0
   autocmd FileType * setl cole=0
 
+  " Comment // for cpp and proto files
+  autocmd FileType cpp,cc,proto setlocal commentstring=\/\/\ %s
+
 augroup END
 
