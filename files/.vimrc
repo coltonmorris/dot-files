@@ -24,6 +24,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 "
 
+" cheat sheet!
+NeoBundle 'dbeniamine/cheat.sh-vim'
+
+" editor config for syntax
+NeoBundle 'editorconfig/editorconfig-vim'
+let g:EditorConfig_exclude_patterns = ['fugitive://.*'] " makes fugitive work with this plugin
+
 " javascript syntax highlighting
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
@@ -110,6 +117,9 @@ set statusline+=\[%h%m%r%{strpart(fugitive#statusline(),minWidth,maxWidth)}
 set statusline+=\ %f
 NeoBundle 'shumphrey/fugitive-gitlab.vim' " gitlab plugin for vim-fugitive
 let g:fugitive_gitlab_domains = ['http://git', 'http://git.tcncloud.net'] " for private gitlab domains
+NeoBundle 'tpope/vim-rhubarb' " echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
+
+
 
 
 " ~~~~~~~~~~~ END ~~~~~~~~~~~~~
@@ -137,13 +147,11 @@ call neobundle#end() "neobundle end
 colorscheme solarized   " Do this first so that later commands aren't overwritten. All hail solarized light
 set background=light
 
+set backspace=indent,eol,start
 
 set guifont=Fira\ Code:h18
 set lines=50 " initial window size
 set columns=300 " initial window size
-
-filetype indent on      " load filetype-specific indent files
-filetype plugin on      " load native plugins
 
 set term=xterm-256color 
 set t_Co=256        " use 256 colors

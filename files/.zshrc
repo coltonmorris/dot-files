@@ -10,6 +10,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# alias for push messup
+alias 'gitp'=git
+
+# path to neo
+export NEO=/Users/colton/go/src/git.tcncloud.net/m/neo/
+export NEo=/Users/colton/go/src/git.tcncloud.net/m/neo/
+export Neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
+export neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
+
+# my own compiled version of vim
+alias 'vim'=/usr/local/opt/vim/bin/vim
+
+# brew install thefuck
+eval $(thefuck --alias)
 
 # sets up z for fasd
 eval "$(fasd --init auto)"

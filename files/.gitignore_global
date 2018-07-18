@@ -1,8 +1,8 @@
 node_modules
 *.swo
 *.swp
-package-lock.json
 .vscode
+bazel-*
 
 *.vim
 *.cache
