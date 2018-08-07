@@ -19,6 +19,10 @@ export NEo=/Users/colton/go/src/git.tcncloud.net/m/neo/
 export Neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
 export neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
 
+# path to my mono
+export MONO=/Users/colton/go/src/github.com/coltonmorris/mono
+export mono=/Users/colton/go/src/github.com/coltonmorris/mono
+
 # my own compiled version of vim
 alias 'vim'=/usr/local/opt/vim/bin/vim
 
