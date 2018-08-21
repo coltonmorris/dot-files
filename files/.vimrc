@@ -24,6 +24,22 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 "
 
+" go!
+NeoBundle 'mdempsky/gocode'
+
+" Linter Plugin
+NeoBundle 'w0rp/ale'
+let g:ale_sign_error = '❌ '
+let g:ale_sign_warning = '💩 '
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\ 'typescript': ['tslint'],
+\ 'typescript.tsx': ['tslint'],
+\}
+" All of ALE's completion information must come from Language Server Protocol linters, or from tsserver for TypeScript.
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
 " cheat sheet!
 NeoBundle 'dbeniamine/cheat.sh-vim'
 
@@ -56,28 +72,28 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1 " enable on startup
 
 " syntax checker
-NeoBundle 'scrooloose/syntastic' 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" NeoBundle 'scrooloose/syntastic' 
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe='(npm bin)/eslint'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+" " let g:syntastic_javascript_eslint_exe='(npm bin)/eslint'
 
-let g:syntastic_error_symbol = '❌ '
-let g:syntastic_style_error_symbol = '⁉️ '
-let g:syntastic_warning_symbol = '⚠️ '
-let g:syntastic_style_warning_symbol = '💩 '
+" let g:syntastic_error_symbol = '❌ '
+" let g:syntastic_style_error_symbol = '⁉️ '
+" let g:syntastic_warning_symbol = '⚠️ '
+" let g:syntastic_style_warning_symbol = '💩 '
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+" highlight link SyntasticErrorSign SignColumn
+" highlight link SyntasticWarningSign SignColumn
+" highlight link SyntasticStyleErrorSign SignColumn
+" highlight link SyntasticStyleWarningSign SignColumn
 
 " Used for commenting! Type gcc for one line, or gc* (example: gcap --comment around paragraph)
 NeoBundle 'tpope/vim-commentary'
@@ -244,4 +260,3 @@ augroup autocmds
   autocmd FileType cpp,cc,proto setlocal commentstring=\/\/\ %s
 
 augroup END
-

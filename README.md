@@ -16,6 +16,10 @@ It creates symbolic links in your home directory pointing to the files in this r
 
 ### Dependencies
 ---
+* tmux
+  + `brew install tmux`
+  + https://github.com/gpakosz/.tmux
+  + `brew install reattach-to-user-namespace`
 * iterm
   + Fira code font with ligatures
   + use `iterm_profile` json config file to import profile *untested*

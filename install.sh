@@ -11,6 +11,8 @@ FILES=(
   ~/.zprezto/modules/prompt/functions/prompt_garrett_setup 
   ~/.gitignore_global 
   ~/.gitconfig 
+  ~/.tmux.conf
+  ~/.tmux.conf.local
 )
 
 DATE=$(date +'%s')

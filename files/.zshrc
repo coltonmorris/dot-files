@@ -1,6 +1,7 @@
 # default tmux load
 # [[ $TERM != "screen" ]] && exec tmux
 
+tmux
 airhorn
 
 export TERM="xterm-256color"
