@@ -20,6 +20,7 @@ It creates symbolic links in your home directory pointing to the files in this r
   + `brew install tmux`
   + https://github.com/gpakosz/.tmux
   + `brew install reattach-to-user-namespace`
+  + Remember to select `Applications in terminal can access clipboard` in iterm preferences
 * iterm
   + Fira code font with ligatures
   + use `iterm_profile` json config file to import profile *untested*
