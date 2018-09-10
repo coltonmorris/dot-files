@@ -11,8 +11,9 @@ FILES=(
   ~/.zprezto/modules/prompt/functions/prompt_garrett_setup 
   ~/.gitignore_global 
   ~/.gitconfig 
-  ~/.tmux.conf
-  ~/.tmux.conf.local
+  ~/.tmux
+  ~/.tvrc
+  ~/notes
 )
 
 DATE=$(date +'%s')
@@ -29,7 +30,7 @@ echo ""
 
 
 # loop through FILES and create sym link for each, as well as a saved backup
-echo -e "${GREEN}Saving and linking files...${NO_COLOR}"
+echo -e "${GREEN}Saving and linking files to ./backups/$DATE...${NO_COLOR}"
 for i in "${FILES[@]}"
 do
 
@@ -40,11 +41,11 @@ do
     cp -LRH $i backups/$DATE/"$(echo $i | sed 's/.*\///')"
 
     # remove to make room for link
-    rm $i
+    rm -r $i
   else
     echo -e "\t${GREEN}Creating: $i${NO_COLOR}"
     # save to backups
-    cp files/"$(echo $i | sed 's/.*\///')" backups/$DATE
+    cp -R files/"$(echo $i | sed 's/.*\///')" backups/$DATE
   fi
 
   # now create the sym link

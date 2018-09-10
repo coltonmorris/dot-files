@@ -1,0 +1,1 @@
+- To checkout a file from a different branch: `git checkout branch-name -- filename`

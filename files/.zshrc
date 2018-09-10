@@ -1,18 +1,23 @@
 # default tmux load
 # [[ $TERM != "screen" ]] && exec tmux
 
-tmux
-airhorn
-
-export TERM="xterm-256color"
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export TERM="xterm-256color"
+
+# Bat is a replacement for cat: https://github.com/sharkdp/bat
+export BAT_THEME="Monokai Extended Light"
+
+export EDITOR="vim"
+
+alias 'n'=terminal_velocity
+
 # alias for push messup
 alias 'gitp'=git
+alias 'gi'=git
 
 # path to neo
 export NEO=/Users/colton/go/src/git.tcncloud.net/m/neo/

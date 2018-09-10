@@ -23,6 +23,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "       
 " Note: You don't set neobundle setting in .gvimrc!
 "
+"
+
+" fibonacci indent :)
+" NeoBundle 'dodie/vim-fibo-indent'
+
+" elm!
+" NeoBundle 'ElmCast/elm-vim'
+NeoBundle 'elmcast/elm-vim'
 
 " go!
 NeoBundle 'mdempsky/gocode'
@@ -212,7 +220,7 @@ nmap <Space> a<Space><Esc>
 :nnoremap <silent> <S-Space> :nohlsearch<Bar>:echo<CR>
 
 
-set shell=/bin/bash " so that fish doesn't interfere
+set shell=/bin/zsh " so that fish doesn't interfere
 
 " Only for MacVim. Bind cmd+num to switch through tabs
 map <silent> <D-1> :tabn 1<cr>

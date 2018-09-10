@@ -16,6 +16,9 @@ It creates symbolic links in your home directory pointing to the files in this r
 
 ### Dependencies
 ---
+* notes
+  - notational velocity and terminal velocity.
+  - the `~/notes` directory stores all of the notes. Use the alias `n` for terminal_velocity
 * tmux
   + `brew install tmux`
   + https://github.com/gpakosz/.tmux

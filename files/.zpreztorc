@@ -22,6 +22,8 @@ zstyle ':prezto:load' pmodule \
 
 # Set the key mapping style to 'vi'
 zstyle ':prezto:module:editor' key-bindings 'vi'
+# auto conversion of .... to ../..
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Set the SSH identities to load into the agent.
 zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa_personal_github' 'id_rsa_personal_gitlab'
