@@ -1,6 +1,9 @@
 [user]
 	email = colton.morris@tcnbroadcasting.com
-	name = colton
+	name = "Colton Morris"
+
+[url "ssh://git@github.com/coltonmorris/"]
+  insteadOf = https://github.com/coltonmorris/
 
 [url "git@git.tcncloud.net:"]
 	insteadOf = https://git.tcncloud.net
@@ -39,6 +42,8 @@
   # For when I type gi
   tpull = pull
   tpush = push
+  # git squash <number>: squashes the last <number> of commits
+  squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
@@ -83,3 +88,8 @@
 
 [include]
   path = .gitconfig.user
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -13,6 +13,8 @@ The `install.sh` script should be ran after installing the following dependencie
 
 It creates symbolic links in your home directory pointing to the files in this repo.
 
+TODO: adding files to the files directory is ugly. You can't just add a new dependency to your home directory and then add it to the list in the install script. You have to move that dependency to the files directory first, then run the install script. Quite ugly.
+
 
 ### Dependencies
 ---

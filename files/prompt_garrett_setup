@@ -27,6 +27,11 @@
 pmodload 'helper'
 zmodload -i zsh/datetime
 
+#bazel completion
+fpath[1,0]=~/.zsh/completion/
+mkdir -p ~/.zsh/completion/
+cp ~/.zprezto/modules/prompt/functions/_bazel ~/.zsh/completion
+
 # Prompt configuration help.
 # TODO not even remotely finished...
 # function prompt_garrett_help() {

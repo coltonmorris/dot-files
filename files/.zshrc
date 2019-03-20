@@ -6,12 +6,40 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# mkcert root cert location for node. https://github.com/FiloSottile/mkcert#installation
+export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+
+#flatc for flatbuffers
+export PATH=/Users/colton/go/src/github.com/google/flatbuffers:$PATH
+
+#please
+export PATH=$HOME/.please/:$PATH
+source <(plz --completion_script)
+
+# share history between terminals
+setopt inc_append_history
+setopt share_history
+export HISTSIZE=100000
+
 export TERM="xterm-256color"
+
+export SPOTIPY_CLIENT_ID='16b6296999424ba6b4ebeee0039f9382'
+export SPOTIPY_CLIENT_SECRET='a7de9ecc680b4ea2b791472a528f59c6'
+export SPOTIPY_REDIRECT_URI='http://localhost/'
 
 # Bat is a replacement for cat: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended Light"
 
 export EDITOR="vim"
+
+# bazel cli tools
+alias 'myibazel'=~/bazel-watcher/bazel-out/darwin-fastbuild/bin/ibazel/darwin_amd64_pure_stripped/ibazel 
+alias 'ts_auto_deps'=$GOPATH/src/github.com/bazelbuild/rules_typescript/bazel-out/darwin-fastbuild/bin/ts_auto_deps/darwin_amd64_stripped/ts_auto_deps
+#bazel to path
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+#bazel completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 alias 'n'=terminal_velocity
 
@@ -20,10 +48,10 @@ alias 'gitp'=git
 alias 'gi'=git
 
 # path to neo
-export NEO=/Users/colton/go/src/git.tcncloud.net/m/neo/
-export NEo=/Users/colton/go/src/git.tcncloud.net/m/neo/
-export Neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
-export neo=/Users/colton/go/src/git.tcncloud.net/m/neo/
+export NEO=/Users/colton/gomod/git.tcncloud.net/m/neo/
+export NEo=/Users/colton/gomod/git.tcncloud.net/m/neo/
+export Neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
+export neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
 
 # path to my mono
 export MONO=/Users/colton/go/src/github.com/coltonmorris/mono
@@ -49,20 +77,20 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 bindkey '^f' autosuggest-accept
 bindkey '^w' forward-word
 
-#bazel to path
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # vscode to path
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$PATH
 
 # go to path
+export MODPATH="${HOME}/gomod"
 export GOPATH="${HOME}/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+
 # protoc to path
-export LD_LIBRARY_PATH=/usr/local/lib
+# export LD_LIBRARY_PATH=/usr/local/lib
 
 # create chrome alias
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"

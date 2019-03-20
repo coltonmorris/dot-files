@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # our dot files. These will be moved to backups, then sym links will take their place
+# NOTE THIS HAS BEEN FAILING AT COPYING THE FILES. SAVE A COPY
 FILES=(
   ~/.vim/solarized-light.itermcolors
   ~/.gvimrc
@@ -9,6 +10,8 @@ FILES=(
   ~/.zpreztorc 
   ~/.zshrc 
   ~/.zprezto/modules/prompt/functions/prompt_garrett_setup 
+  ~/.zprezto/modules/prompt/functions/_bazel
+  ~/.zhistory
   ~/.gitignore_global 
   ~/.gitconfig 
   ~/.tmux

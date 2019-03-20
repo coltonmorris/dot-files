@@ -25,6 +25,18 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "
 "
 
+
+NeoBundle 'zchee/vim-flatbuffers'
+
+" auto sets shiftwidth
+NeoBundle 'tpope/vim-sleuth'
+
+" you already know who it is
+NeoBundle 'takac/vim-spotifysearch'
+
+" waka time
+NeoBundle 'wakatime/vim-wakatime'
+
 " fibonacci indent :)
 " NeoBundle 'dodie/vim-fibo-indent'
 
@@ -33,7 +45,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'elmcast/elm-vim'
 
 " go!
-NeoBundle 'mdempsky/gocode'
+NeoBundle 'fatih/vim-go'
 
 " Linter Plugin
 NeoBundle 'w0rp/ale'
@@ -64,13 +76,6 @@ NeoBundle 'leafgarland/typescript-vim'
 
 " tsx
 NeoBundle 'ianks/vim-tsx'
-
-" blinks search result after jumping to it
-" This doesn't install with NeoBundle, so git clone the project at ~/.vim/bundles
-NeoBundle 'ivy/vim-bling'
-let g:bling_color_fg = 'cyan'
-let g:bling_color_gui_fg = 'cyan'
-let g:bling_count = 1
 
 " extra color schemes
 NeoBundle 'flazz/vim-colorschemes'
@@ -106,6 +111,9 @@ let g:indent_guides_enable_on_vim_startup = 1 " enable on startup
 " Used for commenting! Type gcc for one line, or gc* (example: gcap --comment around paragraph)
 NeoBundle 'tpope/vim-commentary'
 
+" all about surroundings
+NeoBundle 'tpope/vim-surround'
+
 " Plugin that other plugins use. Makes the repeat command '.' work
 NeoBundle 'tpope/vim-repeat'
 
@@ -122,8 +130,9 @@ imap <c-v> <plug>EasyClipInsertModePaste
 " map command+v to use EasyClips pasting while in insert mode... TODO not working 
 imap <silent> <D-v> <plug>EasyClipInsertModePaste 
 set clipboard=unnamed,unnamedplus   " yanking adds to + and * registers. system clipboard is the * register btw.
-" remap m to be cut and M to cut end of line
+" remap the mark to be gm instead
 nnoremap gm m
+" remap m to be cut and M to cut end of line
 nmap M <Plug>MoveMotionEndOfLinePlug
 
 
@@ -143,7 +152,15 @@ NeoBundle 'shumphrey/fugitive-gitlab.vim' " gitlab plugin for vim-fugitive
 let g:fugitive_gitlab_domains = ['http://git', 'http://git.tcncloud.net'] " for private gitlab domains
 NeoBundle 'tpope/vim-rhubarb' " echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
 
-
+" git gutter info
+NeoBundle 'airblade/vim-gitgutter'
+" let g:gitgutter_highlight_lines = 1 " turn on line highlighting
+set updatetime=100 "make sure gutter signs show quicker
+let g:gitgutter_sign_added = '➕'
+let g:gitgutter_sign_modified = '📝'
+let g:gitgutter_sign_removed = '🗑'
+let g:gitgutter_sign_removed_first_line = '🥇'
+let g:gitgutter_sign_modified_removed = '♻️'
 
 
 " ~~~~~~~~~~~ END ~~~~~~~~~~~~~
@@ -181,10 +198,11 @@ set term=xterm-256color
 set t_Co=256        " use 256 colors
 syntax on           " enable syntax processing
 
-set tabstop=2       " number of visual spaces per TAB
-set softtabstop=2   " number of spaces in tab when editing
-set expandtab       " tabs are spaces
-set shiftwidth=2    " changes the amount of spaces << and >> move the text
+" vim sleuth does these
+  " set softtabstop=2   " number of spaces in tab when editing
+  " set expandtab       " tabs are spaces
+  " set shiftwidth=2    " changes the amount of spaces << and >> move the text
+  " set tabstop=2       " number of visual spaces per TAB
 set ignorecase      " ignorecase or infercase? The question of the century.
 
 set number              " show line numbers
@@ -232,13 +250,13 @@ map <silent> <D-6> :tabn 6<cr>
 
 " Use correct language for spellcheck (cos to toggle; z= for corrections).
 set spelllang=en_gb 
-
 " Allow <C-n> and <C-p> to use the dictionary for recommended words. 
 set spell
 set complete+=kspell
 " Only spell check SpellLocal and SpellBad (use :h hl-SpellBad)
 hi clear SpellCap
 hi clear SpellRare
+set spellsuggest=fast,20 "don't show too much suggestion for spell check.
 
 set backupcopy=yes
 
@@ -254,8 +272,11 @@ augroup autocmds
   " Check "Allow access to file URLs in chrome://extensions
   autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome" %:p:.<CR>'
 
+  " force filetypes
   autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.js,*.jsx setlocal filetype=javascript.jsx
+  autocmd BufNewFile,BufRead *.fbs setlocal filetype=fbs
+
   autocmd FileType gitcommit setlocal spell
   " automatically resize splits when vim is resized
   autocmd VimResized * wincmd =
