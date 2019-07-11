@@ -106,6 +106,10 @@ source /Users/colton/google-cloud-sdk/completion.zsh.inc
 # add homebrew to the completion path
 fpath=("/usr/local/bin/" $fpath)
 
+# for rbenv to change ruby versions it must be below homebrew so that it overrides currently installed ruby
+export PATH=$HOME/.rbenv/shims:$PATH
+
+
 # stop typing cd
 setopt AUTO_CD
 
@@ -167,3 +171,28 @@ bindkey -M viins ' ' magic-space
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+
+# converts plz paths to files in the $neo path 
+vimplz () {
+  FILES=()
+       
+  for var in "$@"
+  do
+    # make sure you have $neo added to your path
+    file=($(echo "$neo/$(echo $var | sed 's#//##')"))
+
+    # if there is a colon, replace it with /BUILD.plz
+    if [[ $file == *":"* ]]
+    then
+      file="${file%:*}/BUILD.plz"
+    else
+      # does not end in a colon
+      file="$file/BUILD.plz"
+    fi
+
+    FILES+=$file
+  done
+
+  vim $FILES
+}
