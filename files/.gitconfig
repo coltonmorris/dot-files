@@ -32,6 +32,7 @@
   # add
   a = add                           # add
   c = commit -m                     # commit with message
+  tcommit = commit  # For when I type gi tcommit
   # status
   s = status                        # status
   st = status                       # status

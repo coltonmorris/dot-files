@@ -18,6 +18,10 @@ TODO: adding files to the files directory is ugly. You can't just add a new depe
 
 ### Dependencies
 ---
+* mac programmers dvorak
+  - no need to install the drivers, just download karabiner elements
+  - under complex modification add rule from internet.
+  - remember that any keyboard modification done through native OS will fuck things up
 * notes
   - notational velocity and terminal velocity.
   - the `~/notes` directory stores all of the notes. Use the alias `n` for terminal_velocity
@@ -64,3 +68,4 @@ TODO: adding files to the files directory is ugly. You can't just add a new depe
   - React Developer Tools
   - Redux DevTools
   - Solarized Light Theme
+* https://github.com/hnarayanan/shpotify

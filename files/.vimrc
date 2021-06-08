@@ -26,6 +26,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "
 
 
+" context of the function off screen
+NeoBundle 'wellle/context.vim'
+
+NeoBundle 'ryot4/diary.vim'
+let g:diary_dir = expand('~/Journal')
+let g:diary_template = expand('~/Journal/template')
+
 NeoBundle 'zchee/vim-flatbuffers'
 
 " auto sets shiftwidth
@@ -147,6 +154,7 @@ set columns=300 " initial window size
 set term=xterm-256color 
 set t_Co=256        " use 256 colors
 syntax on           " enable syntax processing
+syntax enable       " enable syntax processing
 
 " vim sleuth does these
   " set softtabstop=2   " number of spaces in tab when editing
@@ -199,7 +207,7 @@ map <silent> <D-5> :tabn 5<cr>
 map <silent> <D-6> :tabn 6<cr>
 
 " Use correct language for spellcheck (cos to toggle; z= for corrections).
-set spelllang=en_gb 
+set spelllang=en_us 
 " Allow <C-n> and <C-p> to use the dictionary for recommended words. 
 set spell
 set complete+=kspell
@@ -214,6 +222,10 @@ set backupcopy=yes
 " augroup is used to prevent a buildup of autocmd's whenever .vimrc is sourced
 augroup autocmds
   "autocmd! " clear the augroup. if this isn't done often vim will be slowed down
+
+  " for files with no extension, set them to markdown filetype
+  " autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set ft=markdown | set background=dark | endif
+
   " spell check for text files
   autocmd BufNewFile,BufRead *.txt,*.md,*.markdown,*.rst setlocal spell
 
@@ -227,6 +239,7 @@ augroup autocmds
   autocmd BufNewFile,BufRead *.js,*.jsx setlocal filetype=javascript.jsx
   autocmd BufNewFile,BufRead *.fbs setlocal filetype=fbs
   autocmd BufNewFile,BufRead *.plz setlocal filetype=bzl
+  autocmd BufNewFile,BufRead *.build_defs setlocal filetype=python
 
   autocmd FileType gitcommit setlocal spell
   " automatically resize splits when vim is resized
@@ -238,5 +251,8 @@ augroup autocmds
 
   " Comment // for cpp and proto files
   autocmd FileType cpp,cc,proto setlocal commentstring=\/\/\ %s
+
+  " Comment # for plz files
+  autocmd FileType plz setlocal commentstring=\# %s
 
 augroup END

@@ -1,10 +1,26 @@
 # default tmux load
 # [[ $TERM != "screen" ]] && exec tmux
+#
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+       
+
+ticker $(cat ~/ticker.conf)
+
+export PATH="/usr/local/opt/node@12/bin:$PATH"
+       
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# for please containers
+export DOCKER_CONFIG=$HOME/.docker
+export CLOUDSDK_CONFIG=$HOME/.config/gcloud
+# needed to let gcloud work
+export CLOUDSDK_PYTHON=python2
 
 # mkcert root cert location for node. https://github.com/FiloSottile/mkcert#installation
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
@@ -30,7 +46,7 @@ export SPOTIPY_REDIRECT_URI='http://localhost/'
 # Bat is a replacement for cat: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended Light"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # bazel cli tools
 alias 'myibazel'=~/bazel-watcher/bazel-out/darwin-fastbuild/bin/ibazel/darwin_amd64_pure_stripped/ibazel 
@@ -52,13 +68,16 @@ export NEO=/Users/colton/gomod/git.tcncloud.net/m/neo/
 export NEo=/Users/colton/gomod/git.tcncloud.net/m/neo/
 export Neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
 export neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
+export neo1=/Users/colton/gomod/git.tcncloud.net/m/neo1/
+export neo2=/Users/colton/gomod/git.tcncloud.net/m/neo2/
+export neo3=/Users/colton/gomod/git.tcncloud.net/m/neo3/
 
 # path to my mono
 export MONO=/Users/colton/go/src/github.com/coltonmorris/mono
 export mono=/Users/colton/go/src/github.com/coltonmorris/mono
 
 # my own compiled version of vim
-alias 'vim'=/usr/local/opt/vim/bin/vim
+alias 'vim'=nvim
 
 # brew install thefuck
 eval $(thefuck --alias)
@@ -196,3 +215,60 @@ vimplz () {
 
   vim $FILES
 }
+
+plzwtf()
+{
+  plz $@
+  ret=$?
+  if [[ $ret -ne 0 ]]
+  then
+    imgcat ~/Downloads/matrix-wtf.gif
+  fi
+       
+  return $ret
+}
+
+blakes_ticker()
+{
+  echo "-----------------"
+  echo "CALLS. up up up up to the moon"
+  ticker $(cat ~/blakes_calls)
+  echo "-----------------"
+  echo ""
+
+  echo "-----------------"
+  echo "PUTS. down down down like his gf"
+  ticker $(cat ~/blakes_puts)
+  echo "-----------------"
+  echo ""
+
+  echo "-----------------"
+  echo "STRADDLES. no changes no changes no changes"
+  ticker $(cat ~/blakes_straddles)
+  echo "-----------------"
+}
+       
+export KUBE_PATH=~/.kube
+switch_context()
+{
+  export KUBE=$1
+  export CLOUDSDK_CONTAINER_CLUSTER=$2
+  export CLOUDSDK_ACTIVE_CONFIG_NAME=$3
+  export KUBECONFIG=${KUBE_PATH}/${KUBE}.conf
+  [[ -n ${3} ]] && gcloud config configurations activate $3
+}
+alias 'syd'='switch_context syd syd-1 syd'
+alias 'lon'='switch_context lon lon-1 lon'
+alias 'bom'='switch_context bom bom-1 bom'
+alias 'staging'='switch_context staging staging-1 staging'
+alias 'dev'='switch_context dev dev-1 dev'
+alias 'yul'='switch_context yul yul-1 yul'
+alias 'cbf'='switch_context cbf cbf-1 cbf'
+alias 'cbf-ana'='switch_context cbf-ana cbf-ana-1 cbf'
+alias 'chs'='switch_context chs chs-1 chs'
+
+# automatically load dev k8 env
+dev
+
+# added by travis gem
+[ -f /Users/colton/.travis/travis.sh ] && source /Users/colton/.travis/travis.sh
