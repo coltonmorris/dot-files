@@ -1,6 +1,9 @@
 # Dot-Files
 My dot files for easy dev env setups
 
+## Adding new files
+adding files to the files directory is ugly. You can't just add a new dependency to your home directory and then add it to the list in the install script. You have to move that dependency to the files directory first, then run the install script.
+
 ## Copy Script
 ---
 
@@ -12,8 +15,6 @@ The `install.sh` script should be ran after installing the following dependencie
 * zprezto
 
 It creates symbolic links in your home directory pointing to the files in this repo.
-
-TODO: adding files to the files directory is ugly. You can't just add a new dependency to your home directory and then add it to the list in the install script. You have to move that dependency to the files directory first, then run the install script. Quite ugly.
 
 
 ### Dependencies
@@ -31,8 +32,8 @@ TODO: adding files to the files directory is ugly. You can't just add a new depe
   + `brew install reattach-to-user-namespace`
   + Remember to select `Applications in terminal can access clipboard` in iterm preferences
 * iterm
-  + Fira code font with ligatures
-  + use `iterm_profile` json config file to import profile *untested*
+  + brew install font-fira-mono-nerd-font
+  + use `iterm_profile` json config file to import profile *untested* (otherwise set it in profiles -> text)
 * git
 * neobundle
 * zsh

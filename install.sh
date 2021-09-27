@@ -17,7 +17,7 @@ FILES=(
   ~/.tmux
   ~/.tvrc
   ~/notes
-  ~/.config/nvim/init.vim
+  ~/.config/lvim/config.lua
 )
 
 DATE=$(date +'%s')

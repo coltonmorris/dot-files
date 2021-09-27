@@ -231,7 +231,8 @@ function prompt_garrett_precmd {
 # Add a line to prompt for visibility.
 function prompt_garrett_preprompt_render() {
   # get the spotify status
-  prompt_showSpotifyStatus
+  # prompt_showSpotifyStatus
+
   # get the kube env status
   prompt_showKubectlEnvironment
 

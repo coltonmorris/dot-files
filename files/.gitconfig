@@ -10,7 +10,7 @@
 [core]
 	excludesfile = /Users/colton/.gitignore_global
   autocrlf = false
-  editor = vim
+  editor = nvim
 
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.

@@ -216,6 +216,7 @@ hi clear SpellCap
 hi clear SpellRare
 set spellsuggest=fast,20 "don't show too much suggestion for spell check.
 
+" TODO why is this even here?
 set backupcopy=yes
 
 

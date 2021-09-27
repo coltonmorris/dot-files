@@ -6,12 +6,26 @@
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-       
+
 
 ticker $(cat ~/ticker.conf)
 
 export PATH="/usr/local/opt/node@12/bin:$PATH"
-       
+export PATH="/Users/colton/Library/Python/3.9/bin:$PATH"
+
+# wollemi completion
+autoload -Uz compinit && compinit -C
+source <(wollemi completion zsh)
+compdef _wollemi wollemi
+
+# add lvim to path
+export PATH=$HOME/.local/bin:$PATH
+
+
+# add rust to path
+# export PATH="$HOME/.cargo/env:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -31,6 +45,8 @@ export PATH=/Users/colton/go/src/github.com/google/flatbuffers:$PATH
 #please
 export PATH=$HOME/.please/:$PATH
 source <(plz --completion_script)
+# clean up dead symlinks
+alias cleanlinks='find -L . -type l -exec rm -i {} \;'
 
 # share history between terminals
 setopt inc_append_history
@@ -46,7 +62,11 @@ export SPOTIPY_REDIRECT_URI='http://localhost/'
 # Bat is a replacement for cat: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended Light"
 
-export EDITOR="nvim"
+export EDITOR="lvim"
+alias 'vim'=lvim
+# quick opening files in gvim or vim
+alias g='f -e gvim'
+alias v='f -e vim'
 
 # bazel cli tools
 alias 'myibazel'=~/bazel-watcher/bazel-out/darwin-fastbuild/bin/ibazel/darwin_amd64_pure_stripped/ibazel 
@@ -76,17 +96,12 @@ export neo3=/Users/colton/gomod/git.tcncloud.net/m/neo3/
 export MONO=/Users/colton/go/src/github.com/coltonmorris/mono
 export mono=/Users/colton/go/src/github.com/coltonmorris/mono
 
-# my own compiled version of vim
-alias 'vim'=nvim
 
 # brew install thefuck
 eval $(thefuck --alias)
 
 # sets up z for fasd
 eval "$(fasd --init auto)"
-# quick opening files in gvim or vim
-alias g='f -e gvim'
-alias v='f -e vim'
 
 
 # autosuggestions
@@ -103,8 +118,8 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$
 # go to path
 export MODPATH="${HOME}/gomod"
 export GOPATH="${HOME}/go"
-export GOROOT="$(brew --prefix golang)/libexec"
 export GOBIN="$GOPATH/bin"
+export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 
@@ -191,6 +206,23 @@ bindkey -M viins ' ' magic-space
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
+# run git grep on the provided string, and prompt the user how they will open the files in vim. 
+# this also opens vim with the grepped string already highlighted
+gitgrepvim () {
+  git grep -l $@
+
+  echo -n "Open in vim? Use 'o' to open them vertically, 'y' to open them in separate buffers. 'n' to exit.  "
+  read REPLY
+
+  case $REPLY in
+    [Yy]) vim +/$@ `git grep -l $@ | tr '\n' ' '` ;;
+    [Oo]) vim -O +/$@ `git grep -l $@ | tr '\n' ' '` ;;
+    [Nn]) exit ;;
+    *) confirm ;;
+  esac
+
+  return
+}
 
 # converts plz paths to files in the $neo path 
 vimplz () {
@@ -228,26 +260,6 @@ plzwtf()
   return $ret
 }
 
-blakes_ticker()
-{
-  echo "-----------------"
-  echo "CALLS. up up up up to the moon"
-  ticker $(cat ~/blakes_calls)
-  echo "-----------------"
-  echo ""
-
-  echo "-----------------"
-  echo "PUTS. down down down like his gf"
-  ticker $(cat ~/blakes_puts)
-  echo "-----------------"
-  echo ""
-
-  echo "-----------------"
-  echo "STRADDLES. no changes no changes no changes"
-  ticker $(cat ~/blakes_straddles)
-  echo "-----------------"
-}
-       
 export KUBE_PATH=~/.kube
 switch_context()
 {
@@ -272,3 +284,13 @@ dev
 
 # added by travis gem
 [ -f /Users/colton/.travis/travis.sh ] && source /Users/colton/.travis/travis.sh
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
