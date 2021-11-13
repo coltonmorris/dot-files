@@ -1,21 +1,24 @@
 # Dot-Files
 My dot files for easy dev env setups
 
-## Adding new files
-adding files to the files directory is ugly. You can't just add a new dependency to your home directory and then add it to the list in the install script. You have to move that dependency to the files directory first, then run the install script.
+## Setup
+1) Clone dot-files repo
+2) Install gnu-stow
+  * `brew install stow` 
+3) Use stow to install symlinks for desired dirs
+  * stow -v -R -t ~ git
+  * `-t ~` means where the stow should install symlinks. 
 
-## Copy Script
+
+
+## TODO consider adding to stow the installation process of these
 ---
-
-The `install.sh` script should be ran after installing the following dependencies:
 * iterm
+  * colors should be loaded using iterm, not sure where they are stored, so cant get stow to work with them
 * git
 * neobundle
 * zsh
 * zprezto
-
-It creates symbolic links in your home directory pointing to the files in this repo.
-
 
 ### Dependencies
 ---
