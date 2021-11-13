@@ -51,6 +51,9 @@ require('packer').startup(function()
     use {"hrsh7th/cmp-path"}
     use {"hrsh7th/cmp-nvim-lua"}
     use {"hrsh7th/cmp-nvim-lsp"}
+    use {"hrsh7th/cmp-calc"}
+    use {"hrsh7th/cmp-cmdline"}
+    use {"hrsh7th/cmp-emoji"}
     use {"David-Kunz/cmp-npm", requires = {'nvim-lua/plenary.nvim'}}
     -- TODO maybe have this ripgrep the whole project rather than just cwd
     use {"lukas-reineke/cmp-rg"}
@@ -179,6 +182,10 @@ require('packer').startup(function()
     -- Speed up Neovim startup time.
     use 'lewis6991/impatient.nvim'
     ---- Also speed up Neovim startup time.
-    -- TODO get my file types to work with this that are set in vimrc
-    use("nathom/filetype.nvim")
+    use {
+        "nathom/filetype.nvim",
+        config = function()
+            require("config.filetype")
+        end
+    }
 end)

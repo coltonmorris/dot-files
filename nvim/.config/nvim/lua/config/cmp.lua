@@ -19,12 +19,16 @@ cmp.setup({
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
+
     -- the order you put these in are the ranking you want it shown up
     sources = cmp.config.sources({
         {name = "rp", keyword_length = 4}, -- make sure `brew install ripgrep`
         {name = "npm", keyword_length = 4}, -- only active for package.json
         {name = "nvim_lua"}, -- nice for nvim development
         {name = "nvim_lsp"}, -- not sure exactly
+        {name = "calc"}, -- nice for math
+        {name = "cmdline"}, -- source for vim's cmdline
+        {name = "emoji"}, -- emoji's are cool
         {name = 'buffer', keyword_length = 5}, -- only show buffer after word is past n chars long
         {name = "path"}, {name = 'vsnip'} -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
@@ -42,7 +46,10 @@ cmp.setup({
                 buffer = "[buf]",
                 path = "[path]",
                 -- luasnip = "[snip]",
-                vsnip = "[snip]"
+                vsnip = "[snip]",
+                cmdline = "[cmd]",
+                emoji = "[emoji]",
+                calc = "[calc]"
             }
         }
     },
