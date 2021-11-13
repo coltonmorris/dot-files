@@ -22,5 +22,5 @@ lspconfig.tailwindls.setup {
         util.find_node_modules_ancestor(fname) or
         util.find_git_ancestor(fname)
     end,
-    on_attach = require'lsp'.common_on_attach
+    on_attach = require'config.lsp'.common_on_attach
 }

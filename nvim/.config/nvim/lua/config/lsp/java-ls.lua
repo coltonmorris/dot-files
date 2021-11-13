@@ -20,7 +20,7 @@ local bundles = {
 
 local on_attach = function(client, bufr)
     require('jdtls').setup_dap()
-    require'lsp'.common_on_attach(client, bufr)
+    require'config.lsp'.common_on_attach(client, bufr)
 end
 
 require('jdtls').start_or_attach({
