@@ -7,7 +7,7 @@ My dot files for easy dev env setups
   * `brew install stow` 
 3) Use stow to install symlinks for desired dirs
   * stow -v -R -t ~ git
-  * `-t ~` means where the stow should install symlinks. 
+  * `-t ~` means the stow root will be at `~`.
 
 
 
