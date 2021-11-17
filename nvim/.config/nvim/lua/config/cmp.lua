@@ -3,6 +3,8 @@ lspkind.init()
 
 local cmp = require "cmp"
 
+cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -17,6 +19,7 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
+        -- TODO maybe dont want enter (carriage return) to be a mapping
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
 
@@ -27,10 +30,11 @@ cmp.setup({
         {name = "nvim_lua"}, -- nice for nvim development
         {name = "nvim_lsp"}, -- not sure exactly
         {name = "calc"}, -- nice for math
-        {name = "cmdline"}, -- source for vim's cmdline
+        {name = "spell", keyword_length = 5}, -- based on vim's spellsuggest
         {name = "emoji"}, -- emoji's are cool
         {name = 'buffer', keyword_length = 5}, -- only show buffer after word is past n chars long
-        {name = "path"}, {name = 'vsnip'} -- For vsnip users.
+        {name = "path"}, -- local file path completion
+        {name = 'vsnip'} -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
@@ -44,10 +48,10 @@ cmp.setup({
                 nvim_lua = "[api]",
                 nvim_lsp = "[LSP]",
                 buffer = "[buf]",
+                spell = "[spell]",
                 path = "[path]",
                 -- luasnip = "[snip]",
                 vsnip = "[snip]",
-                cmdline = "[cmd]",
                 emoji = "[emoji]",
                 calc = "[calc]"
             }

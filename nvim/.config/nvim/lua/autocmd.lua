@@ -55,6 +55,26 @@ local go_format = {'BufWritePre', '*.go', 'lua vim.lsp.buf.formatting_sync(nil,1
 table.insert(auto_formatters, go_format)
 
 define_augroups({
+    _terminal_settings = {
+        -- turn numbers on for normal bufferl; turm them off for terminal buffers
+        -- {'TermOpen,BufWinEnter', '*', 'call lib#SetNumberDisplay()'},
+
+        -- enter instert mode whenever we're in a terminal
+        {'TermOpen,BufWinEnter,BufEnter', 'term://*', 'startinsert'},
+
+        -- when in a neovim terminal, add a buffer to the existing vim session
+        -- instead of nesting (credit justinmk)
+        {
+            'VimEnter', '*', [[if !empty($NVIM_LISTEN_ADDRESS) && $NVIM_LISTEN_ADDRESS !=# v:servername
+            \ |let g:r=jobstart(['nc', '-U', $NVIM_LISTEN_ADDRESS],{'rpc':v:true})
+            \ |let g:f=fnameescape(expand('%:p'))
+            \ |noau bwipe
+            \ |call rpcrequest(g:r, "nvim_command", "edit ".g:f)
+            \ |call rpcrequest(g:r, "nvim_command", "call lib#SetNumberDisplay()")
+            \ |qa
+            \ |endif]]
+        }
+    },
     _general_settings = {
         {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'},
         {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},

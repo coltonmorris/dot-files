@@ -28,14 +28,18 @@ require('packer').startup(function()
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
+    use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
+    use {
+        "ray-x/lsp_signature.nvim",
+        after = "nvim-lspconfig",
+        config = function()
+            require("config.lsp-signature")
+        end
+    }
     use {"folke/trouble.nvim"}
 
     -- Debugging
     use {"mfussenegger/nvim-dap"}
-
-    -- Autocomplete
-    -- 
-    use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
 
     use {
         "hrsh7th/nvim-cmp",
@@ -44,14 +48,15 @@ require('packer').startup(function()
         end
     }
 
+    -- Autocomplete
     -- must declare these sources in the cmp config file
-    -- TODO get a calculator cmp
     -- TODO get a spelling cmp
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
     use {"hrsh7th/cmp-nvim-lua"}
     use {"hrsh7th/cmp-nvim-lsp"}
     use {"hrsh7th/cmp-calc"}
+    use {"f3fora/cmp-spell"}
     use {"hrsh7th/cmp-cmdline"}
     use {"hrsh7th/cmp-emoji"}
     use {"David-Kunz/cmp-npm", requires = {'nvim-lua/plenary.nvim'}}

@@ -9,5 +9,6 @@ bazel-*
 *.cache
 
 
+*ignore.md
 
 *.pem

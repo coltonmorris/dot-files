@@ -157,8 +157,8 @@ local mappings = {
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
     p = {
         name = "+Plz | Project",
-        b = {"<cmd>!plz build<cr>", "plz build"},
-        t = {"<cmd>!plz test<cr>", "plz test"},
+        b = {"<cmd>term plz build<cr>", "plz build"},
+        t = {"<cmd>term plz test<cr>", "plz test"},
         v = {"<cmd>:Lexplore<cr>", "Open netrw file browser"}
     }
 }

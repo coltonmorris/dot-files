@@ -19,6 +19,8 @@ TERMINAL = vim.fn.expand('$TERMINAL')
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim colton"
 
+vim.opt.spell = true
+vim.opt.spelllang = {'en_us'}
 vim.wo.wrap = true
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
