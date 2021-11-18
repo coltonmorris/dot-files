@@ -1,4 +1,5 @@
 require'nvim-treesitter.configs'.setup {
+    autopairs = {enable = true},
     ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {"haskell"},
     matchup = {

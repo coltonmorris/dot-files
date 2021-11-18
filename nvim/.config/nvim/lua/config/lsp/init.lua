@@ -68,14 +68,10 @@ end
 -- TODO add capabilities to this for nvim-cmp
 local lsp_config = {}
 
--- TODO should see how this effects things by setting it to false
--- if O.document_highlight then
-if true then
-    function lsp_config.common_on_attach(client, bufnr)
-        documentHighlight(client, bufnr)
+function lsp_config.common_on_attach(client, bufnr)
+    documentHighlight(client, bufnr)
 
-        -- require"lsp_signature".on_attach()
-    end
+    require'lsp_signature'.on_attach()
 end
 
 function lsp_config.tsserver_on_attach(client, bufnr)

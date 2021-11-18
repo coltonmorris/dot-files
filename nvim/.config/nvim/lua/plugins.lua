@@ -27,13 +27,12 @@ require('packer').startup(function()
 
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
-    use {"kabouzeid/nvim-lspinstall"}
+    -- use {"kabouzeid/nvim-lspinstall"}
     use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
     use {
         "ray-x/lsp_signature.nvim",
-        after = "nvim-lspconfig",
         config = function()
-            require("config.lsp-signature")
+            require("config.signature")
         end
     }
     use {"folke/trouble.nvim"}
@@ -181,6 +180,13 @@ require('packer').startup(function()
     }
 
     use {"github/copilot.vim"}
+    use {
+        "henriquehbr/nvim-startup.lua",
+        config = function()
+            -- TODO call this in a which key binding, it is supposed to show up when vim is opened, but something is eating the log
+            require'nvim-startup'.setup()
+        end
+    }
 
     -- use {"svermeulen/vim-easyclip", opt = true}
 

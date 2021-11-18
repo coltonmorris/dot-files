@@ -22,6 +22,7 @@ My dot files for easy dev env setups
 
 ### Dependencies
 ---
+* `brew install alt-tab`
 * mac programmers dvorak
   - no need to install the drivers, just download karabiner elements
   - under complex modification add rule from internet.

@@ -66,7 +66,7 @@ export SPOTIPY_REDIRECT_URI='http://localhost/'
 export BAT_THEME="Monokai Extended Light"
 
 export EDITOR="nvim"
-alias 'vim'=nvim
+alias 'vim'=nvim --startuptime /tmp/nvim-startuptime
 # quick opening files in gvim or vim
 alias g='f -e gvim'
 alias v='f -e vim'

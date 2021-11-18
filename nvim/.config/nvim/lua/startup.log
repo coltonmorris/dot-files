@@ -1,0 +1,220 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- NVIM STARTING ---
+001.076  001.066: locale set
+001.649  000.573: inits 1
+001.675  000.026: window checked
+005.454  003.778: parsing arguments
+005.764  000.311: expanding arguments
+005.833  000.068: inits 2
+006.367  000.534: init highlight
+006.368  000.001: waiting for UI
+010.728  004.360: done waiting for UI
+010.773  000.045: init screen for UI
+010.806  000.033: init default mappings
+011.895  001.089: init default autocommands
+119.563  106.517  106.517: sourcing /Users/colton/.config/nvim/init.lua
+119.597  001.185: sourcing vimrc file(s)
+120.264  000.280  000.280: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
+121.590  000.285  000.285: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/filetype.vim
+122.830  000.364  000.364: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/ftplugin.vim
+124.608  000.326  000.326: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/indent.vim
+127.329  000.396  000.396: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/syntax/synload.vim
+127.449  002.564  002.168: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/syntax/syntax.vim
+132.419  000.213  000.213: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/gzip.vim
+132.529  000.023  000.023: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/health.vim
+132.659  000.053  000.053: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/man.vim
+134.266  000.221  000.221: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+134.568  001.827  001.606: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchit.vim
+134.850  000.196  000.196: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchparen.vim
+135.934  000.996  000.996: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/netrwPlugin.vim
+136.367  000.021  000.021: sourcing /Users/colton/.local/share/nvim/rplugin.vim
+136.378  000.320  000.300: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/rplugin.vim
+136.564  000.091  000.091: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/shada.vim
+136.703  000.040  000.040: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/spellfile.vim
+136.939  000.138  000.138: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tarPlugin.vim
+137.157  000.118  000.118: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tohtml.vim
+137.362  000.042  000.042: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tutor.vim
+137.658  000.195  000.195: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/zipPlugin.vim
+214.917  004.481  004.481: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/material.nvim/colors/material.vim
+265.867  000.427  000.427: sourcing /Users/colton/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/autoload/indent_blankline.vim
+266.039  017.090  016.664: sourcing /Users/colton/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/plugin/indent_blankline.vim
+266.442  128.513  106.941: sourcing /Users/colton/.config/nvim/plugin/packer_compiled.lua
+267.198  011.017: loading rtp plugins
+272.069  000.565  000.565: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/highlight.vim
+281.489  012.335  011.770: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/barbar.nvim/plugin/bufferline.vim
+284.606  000.602  000.602: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/autoload/copilot.vim
+284.984  001.427  000.825: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/plugin/copilot.vim
+286.305  000.489  000.489: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/editorconfig-vim/plugin/editorconfig.vim
+286.889  000.043  000.043: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
+288.131  000.113  000.113: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/fugitive-gitlab.vim/plugin/gitlab.vim
+289.165  000.132  000.132: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/galaxyline.nvim/plugin/galaxyline.vim
+291.932  002.061  002.061: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/git-blame.nvim/plugin/gitblame.vim
+292.857  000.220  000.220: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/lspsaga.nvim/plugin/lspsaga.vim
+294.426  000.050  000.050: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/neoformat/plugin/neoformat.vim
+295.588  000.056  000.056: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-bqf/plugin/bqf.vim
+297.736  001.507  001.507: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+298.539  000.127  000.127: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+299.064  000.079  000.079: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-lspinstall/plugin/lspinstall.vim
+301.427  001.658  001.658: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+306.518  004.542  004.542: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context/plugin/treesitter-context.vim
+308.156  001.125  001.125: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter-pairs/plugin/nvim-treesitter-pairs.vim
+311.005  002.142  002.142: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag/plugin/nvim-ts-autotag.vim
+312.304  000.763  000.763: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
+313.806  000.717  000.717: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow/plugin/rainbow.vim
+314.257  000.063  000.063: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+315.086  000.056  000.056: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+315.565  000.121  000.121: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/trouble.nvim/plugin/trouble.vim
+316.451  000.195  000.195: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-commentary/plugin/commentary.vim
+318.883  002.024  002.024: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-fugitive/plugin/fugitive.vim
+319.401  000.117  000.117: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-illuminate/plugin/illuminate.vim
+320.906  000.305  000.305: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/unmatchit.vim
+322.162  000.031  000.031: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchparen.vim
+323.526  000.810  000.810: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup.vim
+324.333  000.405  000.405: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/perf.vim
+325.544  000.574  000.574: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/loader.vim
+326.799  000.812  000.812: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/matchparen.vim
+328.714  008.697  005.760: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/plugin/matchup.vim
+329.452  000.169  000.169: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-rhubarb/plugin/rhubarb.vim
+330.054  000.193  000.193: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-sleuth/plugin/sleuth.vim
+330.885  000.473  000.473: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-vsnip/plugin/vsnip.vim
+331.319  000.034  000.034: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+331.654  022.728: loading packages
+334.469  000.040  000.040: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/after/plugin/matchit.vim
+335.968  001.031  001.031: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+337.121  000.809  000.809: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-calc/after/plugin/cmp_calc.lua
+338.265  000.874  000.874: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+339.311  000.781  000.781: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-emoji/after/plugin/cmp_emoji.lua
+340.931  001.248  001.248: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+342.107  000.887  000.887: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua
+342.876  000.494  000.494: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+343.532  000.354  000.354: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-rg/after/plugin/cmp-rg.lua
+344.085  000.326  000.326: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-spell/after/plugin/cmp-spell.lua
+344.354  005.855: loading after plugins
+344.372  000.019: inits 3
+350.036  005.664: reading ShaDa
+351.601  000.474  000.474: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/ts_engine.vim
+356.503  000.504  000.504: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/re.vim
+356.834  005.821: opening buffers
+357.257  000.423: BufEnter autocommands
+357.262  000.004: editing files in windows
+388.410  001.025  001.025: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/autoload/copilot/agent.vim
+389.297  000.422  000.422: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/autoload/copilot/job.vim
+410.914  000.676  000.676: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/autoload/copilot/logger.vim
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.009  000.009: --- NVIM STARTING ---
+000.860  000.852: locale set
+001.443  000.583: inits 1
+001.473  000.029: window checked
+005.399  003.926: parsing arguments
+005.733  000.335: expanding arguments
+005.805  000.072: inits 2
+006.324  000.519: init highlight
+006.325  000.002: waiting for UI
+008.753  002.427: done waiting for UI
+008.788  000.036: init screen for UI
+008.819  000.030: init default mappings
+009.021  000.202: init default autocommands
+071.000  061.751  061.751: sourcing /Users/colton/.config/nvim/init.lua
+071.024  000.253: sourcing vimrc file(s)
+071.200  000.018  000.018: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
+071.532  000.030  000.030: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/filetype.vim
+072.010  000.055  000.055: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/ftplugin.vim
+072.544  000.056  000.056: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/indent.vim
+073.265  000.105  000.105: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/syntax/synload.vim
+073.378  000.650  000.545: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/syntax/syntax.vim
+077.482  000.210  000.210: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/gzip.vim
+077.588  000.025  000.025: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/health.vim
+077.711  000.051  000.051: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/man.vim
+079.074  000.216  000.216: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+079.409  001.624  001.408: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchit.vim
+079.684  000.196  000.196: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchparen.vim
+080.155  000.389  000.389: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/netrwPlugin.vim
+080.510  000.019  000.019: sourcing /Users/colton/.local/share/nvim/rplugin.vim
+080.521  000.264  000.245: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/rplugin.vim
+080.764  000.163  000.163: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/shada.vim
+080.890  000.036  000.036: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/spellfile.vim
+081.107  000.129  000.129: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tarPlugin.vim
+081.305  000.109  000.109: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tohtml.vim
+081.422  000.032  000.032: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/tutor.vim
+081.681  000.177  000.177: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/zipPlugin.vim
+130.041  003.822  003.822: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/material.nvim/colors/material.vim
+159.052  000.036  000.036: sourcing /Users/colton/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/autoload/indent_blankline.vim
+159.171  007.348  007.312: sourcing /Users/colton/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/plugin/indent_blankline.vim
+159.700  077.777  066.607: sourcing /Users/colton/.config/nvim/plugin/packer_compiled.lua
+160.469  007.455: loading rtp plugins
+162.735  000.094  000.094: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/highlight.vim
+168.627  006.889  006.795: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/barbar.nvim/plugin/bufferline.vim
+171.047  000.586  000.586: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/autoload/copilot.vim
+171.171  001.093  000.508: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/copilot.vim/plugin/copilot.vim
+172.053  000.487  000.487: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/editorconfig-vim/plugin/editorconfig.vim
+172.516  000.038  000.038: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
+173.079  000.098  000.098: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/fugitive-gitlab.vim/plugin/gitlab.vim
+173.629  000.187  000.187: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/galaxyline.nvim/plugin/galaxyline.vim
+175.397  001.415  001.415: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/git-blame.nvim/plugin/gitblame.vim
+176.457  000.350  000.350: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/lspsaga.nvim/plugin/lspsaga.vim
+177.046  000.029  000.029: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/neoformat/plugin/neoformat.vim
+177.527  000.032  000.032: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-bqf/plugin/bqf.vim
+178.661  000.663  000.663: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+179.402  000.090  000.090: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+179.817  000.060  000.060: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-lspinstall/plugin/lspinstall.vim
+181.227  001.050  001.050: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+183.669  001.982  001.982: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context/plugin/treesitter-context.vim
+184.804  000.719  000.719: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-treesitter-pairs/plugin/nvim-treesitter-pairs.vim
+186.290  001.047  001.047: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag/plugin/nvim-ts-autotag.vim
+186.995  000.334  000.334: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
+187.696  000.344  000.344: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow/plugin/rainbow.vim
+188.150  000.052  000.052: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+188.964  000.067  000.067: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+189.546  000.141  000.141: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/trouble.nvim/plugin/trouble.vim
+190.259  000.268  000.268: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-commentary/plugin/commentary.vim
+192.297  001.557  001.557: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-fugitive/plugin/fugitive.vim
+192.884  000.131  000.131: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-illuminate/plugin/illuminate.vim
+193.815  000.075  000.075: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/unmatchit.vim
+194.429  000.035  000.035: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/plugin/matchparen.vim
+195.214  000.358  000.358: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup.vim
+195.814  000.206  000.206: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/perf.vim
+197.045  000.592  000.592: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/loader.vim
+198.212  000.716  000.716: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/matchparen.vim
+199.715  006.405  004.424: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/plugin/matchup.vim
+200.500  000.130  000.130: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-rhubarb/plugin/rhubarb.vim
+207.053  000.465  000.465: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-sleuth/plugin/sleuth.vim
+208.039  000.379  000.379: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-startuptime/plugin/startuptime.vim
+209.159  000.546  000.546: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-vsnip/plugin/vsnip.vim
+209.784  000.051  000.051: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+210.279  022.713: loading packages
+212.133  000.034  000.034: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/after/plugin/matchit.vim
+212.878  000.485  000.485: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+213.417  000.270  000.270: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-calc/after/plugin/cmp_calc.lua
+214.011  000.298  000.298: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+214.488  000.214  000.214: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-emoji/after/plugin/cmp_emoji.lua
+215.227  000.472  000.472: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+215.782  000.291  000.291: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua
+216.439  000.398  000.398: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+217.036  000.286  000.286: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-rg/after/plugin/cmp-rg.lua
+217.508  000.249  000.249: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/cmp-spell/after/plugin/cmp-spell.lua
+217.730  004.453: loading after plugins
+217.747  000.017: inits 3
+223.504  005.757: reading ShaDa
+224.805  000.134  000.134: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/ts_engine.vim
+227.811  000.056  000.056: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/re.vim
+228.107  004.413: opening buffers
+228.472  000.365: BufEnter autocommands
+228.476  000.004: editing files in windows
+241.912  013.437: VimEnter autocommands
+241.917  000.004: UIEnter autocommands
+242.677  000.244  000.244: sourcing /usr/local/Cellar/neovim/HEAD-3e1ef18/share/nvim/runtime/autoload/provider/clipboard.vim
+242.688  000.527: before starting main loop
+243.196  000.163  000.163: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-illuminate/autoload/illuminate.vim
+243.968  000.142  000.142: sourcing /Users/colton/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/pos.vim
+245.714  002.721: first screen update
+245.717  000.003: --- NVIM STARTED ---
