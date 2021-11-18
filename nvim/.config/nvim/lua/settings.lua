@@ -19,6 +19,7 @@ TERMINAL = vim.fn.expand('$TERMINAL')
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim colton"
 
+vim.g.gitblame_enabled = false
 vim.opt.spell = true
 vim.opt.spelllang = {'en_us'}
 vim.wo.wrap = true

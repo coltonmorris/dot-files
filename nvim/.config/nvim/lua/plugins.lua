@@ -35,7 +35,13 @@ require('packer').startup(function()
             require("config.signature")
         end
     }
-    use {"folke/trouble.nvim"}
+    -- TODO setup for nice window to show diagnostics and quickfix, see if others use this
+    use {
+        "folke/trouble.nvim",
+        config = function()
+            require("config.trouble")
+        end
+    }
 
     -- Debugging
     use {"mfussenegger/nvim-dap"}
@@ -99,7 +105,9 @@ require('packer').startup(function()
             require("config.gitsigns")
         end
     }
+    -- this is auto disabled, can toggle it on using <leader>gB
     use {"f-person/git-blame.nvim"}
+
     use {
         "folke/which-key.nvim",
         config = function()
@@ -180,13 +188,6 @@ require('packer').startup(function()
     }
 
     use {"github/copilot.vim"}
-    use {
-        "henriquehbr/nvim-startup.lua",
-        config = function()
-            -- TODO call this in a which key binding, it is supposed to show up when vim is opened, but something is eating the log
-            require'nvim-startup'.setup()
-        end
-    }
 
     -- use {"svermeulen/vim-easyclip", opt = true}
 

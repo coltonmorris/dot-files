@@ -66,7 +66,7 @@ export SPOTIPY_REDIRECT_URI='http://localhost/'
 export BAT_THEME="Monokai Extended Light"
 
 export EDITOR="nvim"
-alias 'vim'=nvim --startuptime /tmp/nvim-startuptime
+alias 'vim'=nvim
 # quick opening files in gvim or vim
 alias g='f -e gvim'
 alias v='f -e vim'
@@ -284,16 +284,3 @@ alias 'chs'='switch_context chs chs-1 chs'
 
 # automatically load dev k8 env
 dev
-
-# added by travis gem
-[ -f /Users/colton/.travis/travis.sh ] && source /Users/colton/.travis/travis.sh
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-fpath+=${ZDOTDIR:-~}/.zsh_functions
