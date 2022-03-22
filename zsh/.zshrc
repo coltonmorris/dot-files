@@ -2,6 +2,8 @@
 # [[ $TERM != "screen" ]] && exec tmux
 #
 
+autoload -Uz compinit && compinit -C
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -14,7 +16,6 @@ export PATH="/usr/local/opt/node@12/bin:$PATH"
 export PATH="/Users/colton/Library/Python/3.9/bin:$PATH"
 
 # wollemi completion
-autoload -Uz compinit && compinit -C
 source <(wollemi completion zsh)
 compdef _wollemi wollemi
 

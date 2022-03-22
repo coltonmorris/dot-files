@@ -62,7 +62,8 @@ require('packer').startup(function()
     use {"hrsh7th/cmp-nvim-lsp"}
     use {"hrsh7th/cmp-calc"}
     use {"f3fora/cmp-spell"}
-    use {"hrsh7th/cmp-cmdline"}
+    -- not a huge fan of this one
+    -- use {"hrsh7th/cmp-cmdline"}
     use {"hrsh7th/cmp-emoji"}
     use {"David-Kunz/cmp-npm", requires = {'nvim-lua/plenary.nvim'}}
     -- TODO maybe have this ripgrep the whole project rather than just cwd

@@ -7,7 +7,8 @@ local cmp = require "cmp"
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
 cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
 
-cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
+-- not really a huge fan of having this instead of the wildmenu
+-- cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
 
 cmp.setup({
     snippet = {
