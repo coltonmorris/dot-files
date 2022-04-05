@@ -16,6 +16,7 @@ My dot files for dev env setups
   * add fonts
   + brew tap homebrew/cask-fonts && brew install --cask font-fira-code-nerd-font
     * after ^ make sure iterm uses the new font
+    * make sure ligatures are activated
   + use `iterm_profile` json config file to import profile *untested* (otherwise set it in profiles -> text)
 * git
   + git config --global core.excludesFile '~/.gitignore_global'
