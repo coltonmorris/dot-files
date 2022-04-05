@@ -453,6 +453,7 @@ function prompt_garrett_setup {
   # zstyle ':prezto:module:editor:info:keymap:primary' format "${red}❱%(?.${prompt_garrett_color_prompt}.${red})❱❱ "
 
   # eggplant
+  # zstyle ':prezto:module:editor:info:keymap:primary' format ">  "
   zstyle ':prezto:module:editor:info:keymap:primary' format "🍆  "
 
   # Vim insert mode.
@@ -462,6 +463,7 @@ function prompt_garrett_setup {
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format "${red}♺ "
 
   # Vim normal (command) mode.
+  # zstyle ':prezto:module:editor:info:keymap:alternate' format "|  "
   zstyle ':prezto:module:editor:info:keymap:alternate' format "💪  "
   # zstyle ':prezto:module:editor:info:keymap:alternate' format "${red}❰%(?.${prompt_garrett_color_prompt}.${red})❰❰ "
 

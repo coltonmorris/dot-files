@@ -1,5 +1,5 @@
 [user]
-	email = colton.morris@tcnbroadcasting.com
+	email = coltonmorris94@gmail.com
 	name = "Colton Morris"
 
 [url "ssh://git@github.com/coltonmorris/"]
@@ -8,7 +8,7 @@
 [url "git@git.tcncloud.net:"]
 	insteadOf = https://git.tcncloud.net
 [core]
-	excludesfile = /Users/colton/.gitignore_global
+	excludesFile = ~/.gitignore_global
   autocrlf = false
   editor = nvim
 

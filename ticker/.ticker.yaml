@@ -1,0 +1,36 @@
+show-summary: true
+show-tags: true
+show-fundamentals: true
+show-separator: true
+show-holdings: true
+interval: 5
+currency: USD
+currency-summary-only: false
+watchlist:
+  - VIGIX
+  - VSMAX
+  - JFFYX
+  - MINDX
+  - VMCPX
+  - VSCPX
+  - VTPSX
+  - BTC-USD
+  - ETH-USD
+  - OCGN
+  - VO
+colors:
+  text: "#005fff"
+  text-light: "#0087ff"
+  text-label: "#00d7ff"
+  text-line: "#00ffff"
+  text-tag: "#005fff"
+  background-tag: "#0087ff"
+groups:
+  - name: crypto
+    watchlist:
+      - SHIB-USD
+      - VGX-USD
+    holdings:
+      - symbol: SOL1-USD
+        quantity: 17
+        unit_cost: 159.10

@@ -7,7 +7,7 @@ if not lspconfig.tailwindls then configs['tailwindls'] = {default_config = {}} e
 
 lspconfig.tailwindls.setup {
     cmd = {
-        "node", DATA_PATH .. "/lspinstall/tailwindcss/tailwindcss-intellisense/extension/dist/server/tailwindServer.js",
+        "node", DATA_PATH .. "/lsp_servers/tailwindcss/tailwindcss-intellisense/extension/dist/server/tailwindServer.js",
         "--stdio"
     },
     filetypes = {'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},

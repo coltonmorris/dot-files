@@ -10,14 +10,16 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 
-ticker $(cat ~/ticker.conf)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+export PATH=/opt/homebrew/bin:$PATH
+
+ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-separator
 
 export PATH="/usr/local/opt/node@12/bin:$PATH"
-export PATH="/Users/colton/Library/Python/3.9/bin:$PATH"
-
-# wollemi completion
-source <(wollemi completion zsh)
-compdef _wollemi wollemi
+export PATH="/Users/colton.morris/Library/Python/3.9/bin:$PATH"
 
 # fancy $ script fix when you copy and paste from internet
 export PATH=$HOME/bin:$PATH
@@ -30,9 +32,6 @@ export PATH=$HOME/.local/bin:$PATH
 # export PATH="$HOME/.cargo/env:$PATH"
 # export PATH="$HOME/.cargo/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 
 # for please containers
 export DOCKER_CONFIG=$HOME/.docker
@@ -40,13 +39,11 @@ export CLOUDSDK_CONFIG=$HOME/.config/gcloud
 # needed to let gcloud work
 export CLOUDSDK_PYTHON=python2
 
-# mkcert root cert location for node. https://github.com/FiloSottile/mkcert#installation
-export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
-
 #flatc for flatbuffers
-export PATH=/Users/colton/go/src/github.com/google/flatbuffers:$PATH
+export PATH=/Users/colton.morris/go/src/github.com/google/flatbuffers:$PATH
 
 #please
+alias plz="please"
 export PATH=$HOME/.please/:$PATH
 source <(plz --completion_script)
 # clean up dead symlinks
@@ -70,7 +67,7 @@ export EDITOR="nvim"
 alias 'vim'=nvim
 # quick opening files in gvim or vim
 alias g='f -e gvim'
-alias v='f -e vim'
+alias v='f -e nvim'
 
 # bazel cli tools
 alias 'myibazel'=~/bazel-watcher/bazel-out/darwin-fastbuild/bin/ibazel/darwin_amd64_pure_stripped/ibazel 
@@ -88,17 +85,17 @@ alias 'gitp'=git
 alias 'gi'=git
 
 # path to neo
-export NEO=/Users/colton/gomod/git.tcncloud.net/m/neo/
-export NEo=/Users/colton/gomod/git.tcncloud.net/m/neo/
-export Neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
-export neo=/Users/colton/gomod/git.tcncloud.net/m/neo/
-export neo1=/Users/colton/gomod/git.tcncloud.net/m/neo1/
-export neo2=/Users/colton/gomod/git.tcncloud.net/m/neo2/
-export neo3=/Users/colton/gomod/git.tcncloud.net/m/neo3/
+export NEO=/Users/colton.morris/go/src/neo/
+export NEo=/Users/colton.morris/go/src/neo/
+export Neo=/Users/colton.morris/go/src/neo/
+export neo=/Users/colton.morris/go/src/neo/
+# export neo1=/Users/colton.morris/go/src/neo1/
+# export neo2=/Users/colton.morris/go/src/neo2/
+# export neo3=/Users/colton.morris/go/src/neo3/
 
 # path to my mono
-export MONO=/Users/colton/go/src/github.com/coltonmorris/mono
-export mono=/Users/colton/go/src/github.com/coltonmorris/mono
+export MONO=/Users/colton.morris/go/src/github.com/coltonmorris/mono
+export mono=/Users/colton.morris/go/src/github.com/coltonmorris/mono
 
 
 # brew install thefuck
@@ -123,8 +120,9 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$
 export MODPATH="${HOME}/gomod"
 export GOPATH="${HOME}/go"
 export GOBIN="$GOPATH/bin"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+# export GOROOT="$(brew --prefix golang)/libexec"
+# export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="$PATH:${GOPATH}/bin"
 
 
 # protoc to path
@@ -133,19 +131,23 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # create chrome alias
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-# gcloud to path 
-source /Users/colton/google-cloud-sdk/path.zsh.inc
-# gcloud zsh completiton
-autoload -U compinit compdef
-compinit
-source /Users/colton/google-cloud-sdk/completion.zsh.inc
-
 
 # add homebrew to the completion path
 fpath=("/usr/local/bin/" $fpath)
 
 # for rbenv to change ruby versions it must be below homebrew so that it overrides currently installed ruby
 export PATH=$HOME/.rbenv/shims:$PATH
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# wollemi completion
+source <(wollemi completion zsh)
+compdef _wollemi wollemi
 
 
 # stop typing cd
@@ -201,15 +203,6 @@ bindkey -M vicmd "q" push-line
 # it's like, space AND completion.  Gnarlbot.
 bindkey -M viins ' ' magic-space
 
-
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
 # run git grep on the provided string, and prompt the user how they will open the files in vim. 
 # this also opens vim with the grepped string already highlighted
 gitgrepvim () {
@@ -264,6 +257,13 @@ plzwtf()
   return $ret
 }
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/colton.morris/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/colton.morris/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/colton.morris/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/colton.morris/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
 export KUBE_PATH=~/.kube
 switch_context()
 {
@@ -285,3 +285,4 @@ alias 'chs'='switch_context chs chs-1 chs'
 
 # automatically load dev k8 env
 dev
+

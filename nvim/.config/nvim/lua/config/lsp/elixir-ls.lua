@@ -1,5 +1,5 @@
 require'lspconfig'.elixirls.setup{
-    cmd = { DATA_PATH .. "/lspinstall/elixir/elixir-ls/language_server.sh"};
+    cmd = { DATA_PATH .. "/lsp_servers/elixir/elixir-ls/language_server.sh"};
 }
 
 -- needed for the LSP to recognize elixir files (alternativly just use elixir-editors/vim-elixir)

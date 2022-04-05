@@ -26,8 +26,7 @@ require('packer').startup(function()
     -- use {"wbthomason/packer.nvim", event = "VimEnter"}
 
     use {"neovim/nvim-lspconfig"}
-    use {"glepnir/lspsaga.nvim"}
-    -- use {"kabouzeid/nvim-lspinstall"}
+    use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
     use {
         "ray-x/lsp_signature.nvim",
@@ -140,7 +139,7 @@ require('packer').startup(function()
 
     -- Status Line and Bufferline
     use {
-        "glepnir/galaxyline.nvim",
+        "NTBBloodbath/galaxyline.nvim",
         config = function()
             require("config.galaxyline")
         end
