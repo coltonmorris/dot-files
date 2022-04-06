@@ -3,13 +3,13 @@ My dot files for dev env setups
 
 ## First Steps - do in order
 1) install iterm + zprezto
-1) Clone dot-files repo
-2) Install gnu-stow
+2) Clone dot-files repo
+3) Install gnu-stow
   * `brew install stow` 
-3) Use stow to install symlinks for desired dirs
+4) Use stow to install symlinks for desired dirs
   * stow -v -R -t ~ git
   * `-t ~` means the stow root will be at `~`.
-1) install karabiner elements and make dvorak our boy. also update apple modifier keys
+5) install karabiner elements and make dvorak our boy. also update apple modifier keys
 
 * iterm
   * solarized light should be there
