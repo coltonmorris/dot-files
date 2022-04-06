@@ -20,14 +20,14 @@ My dot files for dev env setups
   + use `iterm_profile` json config file to import profile *untested* (otherwise set it in profiles -> text)
 * git
   + git config --global core.excludesFile '~/.gitignore_global'
+* zsh
+* zprezto
 * install nvm and node
   * nvm default should be set so it persists between sessions
 * neovim
 	+ brew install neovim
 	+ :PackerInstall
 	+ TSInstall all
-* zsh
-* zprezto
 
 ### Other Dependencies
 ---
