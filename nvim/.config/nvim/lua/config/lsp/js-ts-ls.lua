@@ -22,5 +22,6 @@ require'lspconfig'.tsserver.setup {
             underline = true,
             update_in_insert = true
         })
-    }
+    },
+    capabilities = require'config.lsp'.common_capabilities,
 }

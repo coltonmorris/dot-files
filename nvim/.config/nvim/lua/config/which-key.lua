@@ -10,7 +10,7 @@ require("which-key").setup {
             text_objects = false, -- help for text objects triggered after entering an operator
             windows = false, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
-            z = false, -- bindings for folds, spelling and others prefixed with z
+            z = true, -- bindings for folds, spelling and others prefixed with z
             g = true -- bindings for prefixed with g
         }
     },
@@ -59,9 +59,6 @@ vim.g.mapleader = ' '
 -- no hl
 vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true, silent = true})
 
--- explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
-
 -- telescope
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
 
@@ -72,9 +69,6 @@ vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true,
 -- close buffer
 vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
 
--- open projects
-vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
-                        {noremap = true, silent = true})
 
 -- GBrowse
 vim.api.nvim_set_keymap("v", "<leader>w", ":GBrowse<CR>", {noremap = true, silent = false})
@@ -86,7 +80,6 @@ local vmappings = {
     ["/"] = {"<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment"}
 }
 
--- TODO create entire treesitter section
 local mappings = {
     ["/"] = "Comment",
     ["c"] = "Close Buffer",
@@ -97,10 +90,11 @@ local mappings = {
 
     b = {
         name = "Buffers",
+        c = {"<cmd>BufferClose<cr>", "Close"},
         p = {"<cmd>BufferLineCyclePrev<cr>", "Previous"},
         e = {"<cmd>BufferLinePickClose<cr>", "Pick which buffer to close"},
-        h = {"<cmd>BufferLineCloseLeft<cr>", "Close all to the left"},
-        l = {"<cmd>BufferLineCloseRight<cr>", "Close all to the right"},
+        l = {"<cmd>BufferCloseBuffersLeft<cr>", "Close all to the left"},
+        r = {"<cmd>BufferCloseBuffersRight<cr>", "Close all to the right"},
         D = {"<cmd>BufferLineSortByDirectory<cr>", "Sort by directory"},
         L = {"<cmd>BufferLineSortByExtension<cr>", "Sort by language"}
     },
@@ -156,8 +150,8 @@ local mappings = {
         name = "+LSP",
         a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
         A = {"<cmd>Lspsaga range_code_action<cr>", "Selected Action"},
-        d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
-        D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
+        d = {"<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics toggle"},
+        D = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics toggle"},
         f = {"<cmd>LspFormatting<cr>", "Format"},
         i = {"<cmd>LspInfo<cr>", "Info"},
         l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
@@ -178,8 +172,7 @@ local mappings = {
         name = "+Search",
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
-        d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
-        D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
+        d = {"<cmd>Telescope diagnostics<cr>", "Document Diagnostics"},
         f = {"<cmd>Telescope find_files<cr>", "Find File"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
@@ -193,7 +186,56 @@ local mappings = {
         b = {"<cmd>term plz build<cr>", "plz build"},
         t = {"<cmd>term plz test<cr>", "plz test"},
         v = {"<cmd>:Lexplore<cr>", "Open netrw file browser"}
+    },
+
+    T = {
+        name = "Trouble",
+        q = {"<cmd>TroubleToggle quickfix<cr>", "Quickfix list toggle"},
+        d = {"<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics toggle"},
+        w = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics toggle"},
+        n = {"<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "Next"},
+        p = {"<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>", "Previous"},
+    },
+
+    t = {
+        name = "Telescope",
+        r = {"<cmd>Telescope resume<cr>", "Resume"},
+        f = {
+            name = "Find",
+            f = {"<cmd>Telescope find_files<cr>", "Find File"},
+            s = {"<cmd>Telescope grep_string<cr>", "Find String Under Cursor"},
+            g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep"},
+            b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
+            h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
+            c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
+            q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
+        },
+        l = {
+            name = "Lsp",
+            r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
+            c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
+            i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
+            d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
+        },
+        t = {
+            name = "Treesitter",
+            t = {"<cmd>Telescope treesitter<cr>", "List Function names, variables, from Treesitter"},
+        },
+    },
+
+    q = {
+        name = "Quickfix List",
+        n = {"<cmd>cn<cr>", "Next"},
+        p = {"<cmd>cp<cr>", "Previous"},
+        c = {"<cmd>cclose<cr>", "Close"},
+        o = {"<cmd>copen<cr>", "Open"},
+    },
+    h = {
+        name = "Harpoon",
+        o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
+        c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
     }
+
 }
 
 local wk = require("which-key")

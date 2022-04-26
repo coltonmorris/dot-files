@@ -12,7 +12,7 @@ vim.cmd('set scrolloff=3') -- keep the cursor from going all the way to the bott
 vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
 vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 vim.cmd('set inccommand=split') -- Make substitution work in realtime
-vim.o.hidden = true
+vim.o.hidden = true -- lets you navigate to a different buffer without saving
 
 vim.o.title = true
 TERMINAL = vim.fn.expand('$TERMINAL')
@@ -26,7 +26,6 @@ vim.wo.wrap = true
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
-vim.cmd('set colorcolumn=99999') -- fix indentline for now
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.termguicolors = true -- set term gui colors most terminals support this
@@ -50,7 +49,12 @@ vim.o.clipboard = "unnamed,unnamedplus" -- yanking adds to + and * registers. sy
 -- vim.g.loaded_netrwPlugin = 1 -- needed for netrw gx command to open remote links in browser
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 4 -- 4 open files in previon window, use 2 for vertical
-vim.g.netrw_winsize = 20
+vim.g.netrw_browse_split = 2 -- 4 open files in previon window, use 2 for vertical
 vim.g.netrw_altv = 1 -- have window open on left
 vim.o.guifont = "FiraCode Nerd Font:h17"
+
+-- use the new filetype detector in neovim 0.7. Could have some bugs with it
+vim.g.do_filetype_lua = 1
+-- this line ensures we do not use the old filetype checking, comment out if its not working
+vim.g.did_load_filetypes = 0
+

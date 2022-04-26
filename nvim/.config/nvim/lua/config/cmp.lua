@@ -33,7 +33,7 @@ cmp.setup({
         {name = "rp", keyword_length = 4}, -- make sure `brew install ripgrep`
         {name = "npm", keyword_length = 4}, -- only active for package.json
         {name = "nvim_lua"}, -- nice for nvim development
-        {name = "nvim_lsp"}, -- not sure exactly
+        {name = "nvim_lsp"}, -- for lsp completions
         {name = "calc"}, -- nice for math
         {name = "spell", keyword_length = 5}, -- based on vim's spellsuggest
         {name = "emoji"}, -- emoji's are cool
@@ -64,6 +64,7 @@ cmp.setup({
     },
     experimental = {native_menu = false, ghost_text = true}
 })
+
 
 -- TODO can mess with highlight groups for cmp and use material somehow
 -- colorbuddy does something like exporting groups and styles, then define the cmp group on that colorbuddy group like so:

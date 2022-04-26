@@ -14,11 +14,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
-export PATH=/opt/homebrew/bin:$PATH
-
 ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-separator
 
-export PATH="/usr/local/opt/node@12/bin:$PATH"
+export PATH=/opt/homebrew/bin:$PATH
+
+export PATH="~/.local/bin:$PATH"
 export PATH="/Users/colton.morris/Library/Python/3.9/bin:$PATH"
 
 # fancy $ script fix when you copy and paste from internet
@@ -258,10 +258,10 @@ plzwtf()
 }
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/colton.morris/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/colton.morris/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/colton.morris/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/colton.morris/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/colton.morris/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/colton.morris/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc'; fi
 
 
 export KUBE_PATH=~/.kube

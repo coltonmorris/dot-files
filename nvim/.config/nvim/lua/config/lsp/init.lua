@@ -56,7 +56,6 @@ local function documentHighlight(client, bufnr)
     end
 end
 
--- TODO add capabilities to this for nvim-cmp
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
@@ -69,6 +68,14 @@ function lsp_config.tsserver_on_attach(client, bufnr)
     lsp_config.common_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
 end
+
+function lsp_config.common_capabilities(client, bufnr)
+    -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    return capabilities
+end
+
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches

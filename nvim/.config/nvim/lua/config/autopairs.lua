@@ -2,6 +2,7 @@ local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
+    disable_filetype = { "TelescopePrompt" },
     check_ts = true,
     ts_config = {
         lua = {'string'}, -- it will not add pair on that treesitter node

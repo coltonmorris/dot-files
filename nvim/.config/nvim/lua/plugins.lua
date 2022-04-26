@@ -13,7 +13,6 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- TODO add:
--- easyclip,
 -- set up quickfix list <ctrl q> with telescope
 -- set up telescope to search project
 -- and add stuff to which-key
@@ -34,16 +33,29 @@ require('packer').startup(function()
             require("config.signature")
         end
     }
-    -- TODO setup for nice window to show diagnostics and quickfix, see if others use this
-    use {
-        "folke/trouble.nvim",
-        config = function()
-            require("config.trouble")
-        end
-    }
 
     -- Debugging
     use {"mfussenegger/nvim-dap"}
+
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-fzf-native.nvim'},
+        },
+        config = function()
+            require("config.telescope")
+        end
+    }
+
+    -- TODO use the terminal related commands
+    use {'ThePrimeagen/harpoon',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope.nvim'},
+        },
+    }
 
     use {
         "hrsh7th/nvim-cmp",
@@ -54,7 +66,6 @@ require('packer').startup(function()
 
     -- Autocomplete
     -- must declare these sources in the cmp config file
-    -- TODO get a spelling cmp
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
     use {"hrsh7th/cmp-nvim-lua"}
@@ -137,11 +148,21 @@ require('packer').startup(function()
 
     use {"kyazdani42/nvim-web-devicons"}
 
+    -- TODO setup for nice window to show diagnostics and quickfix, see if others use this
+    use {
+        "folke/trouble.nvim",
+        requires = { 'kyazdani42/nvim-web-devicons'},
+        config = function()
+            require("config.trouble")
+        end
+    }
+
     -- Status Line and Bufferline
     use {
-        "NTBBloodbath/galaxyline.nvim",
+        "nvim-lualine/lualine.nvim",
+        requires = { 'kyazdani42/nvim-web-devicons'},
         config = function()
-            require("config.galaxyline")
+            require("config.lualine")
         end
     }
     use {
@@ -187,17 +208,12 @@ require('packer').startup(function()
         end
     }
 
-    use {"github/copilot.vim"}
-
-    -- use {"svermeulen/vim-easyclip", opt = true}
+    use {"github/copilot.vim",
+        config = function()
+            vim.g.copilot_node_command = '/Users/colton.morris/.nvm/versions/node/v17.8.0/bin/node' 
+        end
+    }
 
     -- Speed up Neovim startup time.
     use 'lewis6991/impatient.nvim'
-    ---- Also speed up Neovim startup time.
-    use {
-        "nathom/filetype.nvim",
-        config = function()
-            require("config.filetype")
-        end
-    }
 end)

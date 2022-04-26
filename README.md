@@ -33,9 +33,15 @@ My dot files for dev env setups
 ---
 * install wollemi from source
 * `brew install alt-tab` change the controls for opening alt tab to be GUI + tab so that it overrides the default GUI + tab
+* brew install ripgrep
+* brew install fd
 *  brew install derailed/k9s/k9s
+* brew install tree
 * brew install git-lfs
+* brew install grpcurl
+* go install github.com/fullstorydev/grpcui/cmd/grpcui@latest
 * ssh-add -K ~/.ssh/id_rsa
+* go install github.com/mgechev/revive@latest
 * neobundle
 * zsh
 * zprezto
