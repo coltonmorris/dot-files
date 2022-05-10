@@ -57,15 +57,32 @@ require('packer').startup(function()
         },
     }
 
+    -- Autocomplete
+    -- must declare these sources in the cmp config file
     use {
         "hrsh7th/nvim-cmp",
         config = function()
             require("config.cmp")
-        end
+        end,
+        -- wants = { "LuaSnip" },
+        -- requires = {
+        --     {
+        --         "L3MON4D3/LuaSnip",
+        --         event = "BufReadPre",
+        --         wants = "friendly-snippets",
+        --         requires = {
+        --             "rafamadriz/friendly-snippets",
+        --             "luasnip_snippets.nvim",
+        --         }
+        --     },{
+        --         "windwp/nvim-autopairs",
+        --         event = "BufReadPre",
+        --     },
+        -- },
+        -- TODO this event line causes the plugin to be optional?
+        -- event = "InsertEnter",
     }
-
-    -- Autocomplete
-    -- must declare these sources in the cmp config file
+    use {"hrsh7th/cmp-copilot"}
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
     use {"hrsh7th/cmp-nvim-lua"}
@@ -77,15 +94,19 @@ require('packer').startup(function()
     use {"hrsh7th/cmp-emoji"}
     use {"David-Kunz/cmp-npm", requires = {'nvim-lua/plenary.nvim'}}
     -- TODO maybe have this ripgrep the whole project rather than just cwd
+    -- TODO dont think this is working
     use {"lukas-reineke/cmp-rg"}
 
-    -- TODO use snippet pluign: https://github.com/L3MON4D3/LuaSnip
-    -- TODO and then use https://github.com/saadparwaiz1/cmp_luasnip to have cmp work with snippets
-    -- or use ultisnips, or snippy, or vsnip. tjdevries uses luasnip. ultisnips seems to be more supported in vim
+    -- use {"rafamadriz/friendly-snippets"}
+    -- use {"molleweide/LuaSnip-snippets.nvim"}
     -- TODO when a snippet completes then we should have a keybinding for jumping between the values for filling it out
-
-    use {"hrsh7th/vim-vsnip"}
-    use {"rafamadriz/friendly-snippets"}
+    -- use {"L3MON4D3/LuaSnip", 
+    --     requires = {'nvim-lua/plenary.nvim'},
+    --     config = function()
+    --         require("config.luasnip")
+    --     end
+    -- }
+    -- use {"saadparwaiz1/cmp_luasnip"}
 
     -- Treesitter
     use {
@@ -131,10 +152,13 @@ require('packer').startup(function()
             require("config.autopairs")
         end
     }
-    use {"kevinhwang91/nvim-bqf"}
 
-    -- Comments
-    use {"tpope/vim-commentary"}
+    -- Comments with treesitter support
+    use {'terrortylor/nvim-comment',
+        config = function()
+            require("config.comment")
+        end
+    }
     use {'JoosepAlviste/nvim-ts-context-commentstring'}
 
     use {"lukas-reineke/indent-blankline.nvim", after = "material.nvim"}
@@ -208,9 +232,14 @@ require('packer').startup(function()
         end
     }
 
+    
     use {"github/copilot.vim",
         config = function()
             vim.g.copilot_node_command = '/Users/colton.morris/.nvm/versions/node/v17.8.0/bin/node' 
+
+            vim.cmd("imap <silent><script><expr> <C-J> copilot#Accept(<CR>")
+            vim.g.copilot_no_tab_map = true
+
         end
     }
 

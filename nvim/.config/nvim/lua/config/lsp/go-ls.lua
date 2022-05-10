@@ -4,5 +4,5 @@ require'lspconfig'.gopls.setup {
     root_dir = require'lspconfig'.util.root_pattern(".git", "go.mod", "."),
     init_options = {usePlaceholders = true, completeUnimported = true},
     on_attach = require'config.lsp'.common_on_attach,
-    capabilities = require'config.lsp'.common_capabilities,
+    -- capabilities = require'config.lsp'.common_capabilities,
 }

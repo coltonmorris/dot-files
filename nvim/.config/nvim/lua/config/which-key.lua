@@ -82,7 +82,6 @@ local vmappings = {
 
 local mappings = {
     ["/"] = "Comment",
-    ["c"] = "Close Buffer",
     ["e"] = "Explorer",
     ["f"] = "Find File",
     ["h"] = "No Highlight",
@@ -234,8 +233,11 @@ local mappings = {
         name = "Harpoon",
         o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
         c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
-    }
-
+    },
+    c = {
+        name = "Copilot",
+        o = {"<cmd>Copilot panel<cr>", "Open copliot panel"},
+    },
 }
 
 local wk = require("which-key")
