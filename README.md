@@ -1,14 +1,14 @@
-# Dot-Files
-My dot files for dev env setups
+# Yung Cooltons dot files
+Now using gnu stow. A complete game changer.
 
-## First Steps - do in order
+## First steps - do in order
 1) install iterm + zprezto
 2) Clone dot-files repo
 3) Install gnu-stow
   * `brew install stow` 
 4) Use stow to install symlinks for desired dirs
   * stow -v -R -t ~ git
-  * `-t ~` means the stow root will be at `~`.
+  * `-t ~` means the stow root is at `~`.
 5) install karabiner elements and make dvorak our boy. also update apple modifier keys
 
 * iterm
