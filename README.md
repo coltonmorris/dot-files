@@ -31,6 +31,8 @@ My dot files for dev env setups
 
 ### Other Dependencies
 ---
+* install vale https://github.com/errata-ai/vale
+  - `vale sync`
 * install wollemi from source
 * `brew install alt-tab` change the controls for opening alt tab to be GUI + tab so that it overrides the default GUI + tab
 * brew install ripgrep
@@ -47,8 +49,8 @@ My dot files for dev env setups
 * zprezto
   - custom theme called `garret_prompt_setup`
   - zsh autosuggest
-* A VM, was virtualbox but I've been annoyed with them
-  - might not be needed now depending on OS
+* A VM, was virtualbox but it's an annoying tool to bother with / manage
+  - might not need now depending on OS and containerless images
 * docker
   - docker for mac > docker toolbox
 * gcloud sdk

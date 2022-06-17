@@ -57,18 +57,11 @@ vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true}
 vim.g.mapleader = ' '
 
 -- no hl
-vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true, silent = true})
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
-
--- Comments
-vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-
--- close buffer
-vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
-
+vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope live_grep<CR>', {noremap = true, silent = true})
 
 -- GBrowse
 vim.api.nvim_set_keymap("v", "<leader>w", ":GBrowse<CR>", {noremap = true, silent = false})
@@ -81,10 +74,15 @@ local vmappings = {
 }
 
 local mappings = {
-    ["/"] = "Comment",
+    ["w"] = "Git Browser",
+    ["b"] = "Git Browser",
+
     ["e"] = "Explorer",
     ["f"] = "Find File",
-    ["h"] = "No Highlight",
+    ["g"] = "Grep String",
+    ["H"] = "No Highlight",
+    ["h"] = {"<cmd>lua vim.lsp.buf.hover()", "Type Information. Hover LSP"},
+
     -- ["P"] = "Projects", -- this a telescope thing?
 
     b = {
@@ -127,7 +125,7 @@ local mappings = {
         s = {"<cmd>DebugStart<cr>", "Start"}
     },
 
-    g = {
+    G = {
         name = "+Git",
         j = {"<cmd>NextHunk<cr>", "Next Hunk"},
         k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
@@ -228,6 +226,7 @@ local mappings = {
         p = {"<cmd>cp<cr>", "Previous"},
         c = {"<cmd>cclose<cr>", "Close"},
         o = {"<cmd>copen<cr>", "Open"},
+        v = {"<cmd>vopen<cr>", "Open item in vertical split"},
     },
     h = {
         name = "Harpoon",

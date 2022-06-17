@@ -22,12 +22,11 @@ end
 
 local auto_formatters = {}
 
--- TODO why is wollemi not working?
-local wollemi_autoformat = {
-    "BufWritePost *.go silent exec '!wollemi --log fatal gofmt' shellescape(expand('%:h'), 1)",
-    "BufWritePost *.plz silent exec '!wollemi --log fatal fmt' shellescape(expand('%:h'), 1)"
-}
+local wollemi_autoformat = {"BufWritePost", "*.go", "silent exec '!wollemi --log fatal gofmt' shellescape(expand('%:h'), 1)"}
+local wollemi_autoformat2 = {"BufWritePost", "*.plz", "silent exec '!wollemi --log fatal fmt' shellescape(expand('%:h'), 1)"}
+
 table.insert(auto_formatters, wollemi_autoformat)
+table.insert(auto_formatters, wollemi_autoformat2)
 
 local python_autoformat = {'BufWritePre', '*.py', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 table.insert(auto_formatters, python_autoformat)

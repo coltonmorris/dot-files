@@ -14,7 +14,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
-ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-separator
+# vale is a grammar checker
+export PATH=$PATH:/Users/colton.morris/vale_2.18.0_macOS_arm64/bin
+
+export PATH=$PATH:/Users/colton.morris/.linkerd2/bin
 
 export PATH=/opt/homebrew/bin:$PATH
 
@@ -27,11 +30,24 @@ export PATH=$HOME/bin:$PATH
 # a common location things store binaries at
 export PATH=$HOME/.local/bin:$PATH
 
+ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-separator
 
 # add rust to path
 # export PATH="$HOME/.cargo/env:$PATH"
 # export PATH="$HOME/.cargo/bin:$PATH"
 
+export OMNI_CONFIG_DB_HOST="127.0.0.1"
+export OMNI_CONFIG_USER="omni"
+export OMNI_CONFIG_DBNAME="omni"
+export OMNI_CONFIG_SSL_DISABLED="true"
+export OMNI_CONFIG_PASS="secret"
+export OMNI_CONFIG_PG_PORT="5433"
+
+export OMNI_CONFIG_WHITELIST_IP="168.245.32.192"
+export OMNI_CONFIG_IP_ADDRESS="167.89.111.199"
+export OMNI_CONFIG_WHITELIST_DOMAIN="tcncommunications.com"
+export OMNI_CONFIG_ATTACHMENT_FILE_DIR="/mnt/datafs/tempest/shared/sounds/backoffice/attachments"
+export OMNI_CONFIG_BLACK_LIST_DOMAINS="google.com"
 
 # for please containers
 export DOCKER_CONFIG=$HOME/.docker

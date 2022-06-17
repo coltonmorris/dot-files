@@ -1,7 +1,7 @@
 local nvim_lint = require('lint')
 
 nvim_lint.linters_by_ft = {go = {'revive'}}
-nvim_lint.linters.revive.args = {'-config', '/Users/colton/gomod/git.tcncloud.net/m/neo/config.toml'}
+nvim_lint.linters.revive.args = {'-config', NEO_PATH .. 'config.toml'}
 
 -- run the linter on files that are defined
 local function enable_lint()
@@ -11,7 +11,7 @@ local function enable_lint()
     -- if not nvim_lint.linters_by_ft[vim.bo.filetype] then return end
     if vim.bo.filetype ~= "" then print("COLTON: the filetype check for nvim-lint is working now") end
 
-    -- TODO when filetype works update the *.go with <buffer=%d>
+    -- TODO when filetype check above works update can just remove the autocammands ?
     vim.cmd(string.format("augroup lint_go", bufnr))
     vim.cmd("au!")
     vim.cmd(string.format("au ColorScheme *.go lua require'lint'.try_lint()", bufnr))

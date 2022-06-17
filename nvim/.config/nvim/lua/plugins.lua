@@ -34,6 +34,16 @@ require('packer').startup(function()
         end
     }
 
+    use {"jose-elias-alvarez/null-ls.nvim",
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope.nvim'},
+        },
+        config = function()
+        require("config.null-ls")
+        end
+    }
+
     -- Debugging
     use {"mfussenegger/nvim-dap"}
 
@@ -49,12 +59,34 @@ require('packer').startup(function()
         end
     }
 
+    -- gives the quickfix list a lot of functionality. Initially used to open items in vertical splits
+    use { "yssl/QFEnter" }
+
     -- TODO use the terminal related commands
     use {'ThePrimeagen/harpoon',
         requires = {
             {'nvim-lua/plenary.nvim'},
             {'nvim-telescope/telescope.nvim'},
         },
+    }
+
+    -- auto adjust window splits
+    use { "beauwilliams/focus.nvim",
+        config = function()
+            require("focus").setup()
+        end
+    }
+
+    -- TODO why not working?
+    -- surround words with characters: sa{motion}{char} 
+    -- replace surrounding characters: sr<from><to>
+    -- delete surrounding characters: sd<char>
+    -- cycle surrounding quotes: stq
+    -- cycle surrounding brackets: stb
+    use { "ur4ltz/surround.nvim",
+        config = function()
+            require"surround".setup {mappings_style = "sandwhich"}
+        end
     }
 
     -- Autocomplete
@@ -169,6 +201,12 @@ require('packer').startup(function()
             require("config.material")
         end
     }
+    
+    use { 'norcalli/nvim-colorizer.lua',
+        config = function()
+            require("config.colorizer")
+        end,
+    }
 
     use {"kyazdani42/nvim-web-devicons"}
 
@@ -213,9 +251,11 @@ require('packer').startup(function()
             require("config.fugitive")
         end
     }
+    -- used for :GBrowse. Can also use omni-complete in commit messages <C-X><C-O>
     use {"tpope/vim-rhubarb"}
-    -- TODO vim-go is messing with nvim-lint i think. taking forever to save
-    -- the snippets in vim-go are good. also implementing a interface with lsp is nice
+
+    -- TODO vim-go has extra lsp functions that could be nice, but it is messing with nvim-lint i think. taking forever to save
+    -- the snippets in vim-go are good too.
     -- use {
     --     'fatih/vim-go',
     --     config = function()
@@ -225,6 +265,7 @@ require('packer').startup(function()
     -- }
     -- TODO could look into getting this to work instead
     -- use {"~/go/pkg/mod/github.com/zchee/nvim-go@v0.3.0/plugin/nvim-go.vim", opt = true, run = "make"}
+
     use {
         "mfussenegger/nvim-lint",
         config = function()

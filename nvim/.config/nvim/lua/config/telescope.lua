@@ -10,6 +10,8 @@ telescope.setup{
     mappings = {
       i = {
         ["<C-a>"] = trouble.open_with_trouble,
+        ["<C-Q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
@@ -18,6 +20,8 @@ telescope.setup{
       },
       n = {
         ["<C-a>"] = trouble.open_with_trouble,
+        ["<C-Q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
       }
     }
   },

@@ -8,7 +8,8 @@ npairs.setup({
         lua = {'string'}, -- it will not add pair on that treesitter node
         javascript = {'template_string'},
         java = false -- don't check treesitter on java
-    }
+    },
+    enable_check_bracket_line = false,
 })
 
 local ts_conds = require('nvim-autopairs.ts-conds')
