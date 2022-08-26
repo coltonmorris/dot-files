@@ -1,3 +1,5 @@
+local utils = require("../utils")
+
 require("which-key").setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -180,8 +182,8 @@ local mappings = {
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
     p = {
         name = "+Plz | Project",
-        b = {"<cmd>term plz build<cr>", "plz build"},
-        t = {"<cmd>term plz test<cr>", "plz test"},
+        b = {function() utils.formatFilenameToPlzPath() end, "plz build"},
+        t = {"<cmd>top split | resize 20 | term plz test<cr>", "plz test"},
         v = {"<cmd>:Lexplore<cr>", "Open netrw file browser"}
     },
 
