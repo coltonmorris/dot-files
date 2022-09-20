@@ -1,5 +1,6 @@
 local export = {}
 
+-- formatFilenameToPlzPath - formats the current buffers filename into its plz path. If the file is at "~/neo/services/omnichannel/project/app/service.go" it will run "plz build //services/omnichannel/project/app"
 function export.formatFilenameToPlzPath()
     local file = vim.api.nvim_buf_get_name(0)
 

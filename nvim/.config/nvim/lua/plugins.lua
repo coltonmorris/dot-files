@@ -13,9 +13,7 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- TODO add:
--- set up quickfix list <ctrl q> with telescope
 -- set up telescope to search project
--- and add stuff to which-key
 local use = require('packer').use
 require('packer').startup(function()
     use {"nvim-lua/plenary.nvim"}
@@ -59,8 +57,9 @@ require('packer').startup(function()
         end
     }
 
+    -- TODO i think this is breaking things
     -- gives the quickfix list a lot of functionality. Initially used to open items in vertical splits
-    use { "yssl/QFEnter" }
+    -- use { "yssl/QFEnter" }
 
     -- TODO use the terminal related commands
     use {'ThePrimeagen/harpoon',
@@ -114,6 +113,7 @@ require('packer').startup(function()
         -- TODO this event line causes the plugin to be optional?
         -- event = "InsertEnter",
     }
+    --
     use {"hrsh7th/cmp-copilot"}
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
@@ -129,16 +129,16 @@ require('packer').startup(function()
     -- TODO dont think this is working
     use {"lukas-reineke/cmp-rg"}
 
-    -- use {"rafamadriz/friendly-snippets"}
-    -- use {"molleweide/LuaSnip-snippets.nvim"}
+    use {"rafamadriz/friendly-snippets"}
+    use {"molleweide/LuaSnip-snippets.nvim"}
     -- TODO when a snippet completes then we should have a keybinding for jumping between the values for filling it out
-    -- use {"L3MON4D3/LuaSnip", 
-    --     requires = {'nvim-lua/plenary.nvim'},
-    --     config = function()
-    --         require("config.luasnip")
-    --     end
-    -- }
-    -- use {"saadparwaiz1/cmp_luasnip"}
+    use {"L3MON4D3/LuaSnip", 
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            require("config.luasnip")
+        end
+    }
+    use {"saadparwaiz1/cmp_luasnip"}
 
     -- Treesitter
     use {
@@ -210,15 +210,6 @@ require('packer').startup(function()
 
     use {"kyazdani42/nvim-web-devicons"}
 
-    -- TODO setup for nice window to show diagnostics and quickfix, see if others use this
-    use {
-        "folke/trouble.nvim",
-        requires = { 'kyazdani42/nvim-web-devicons'},
-        config = function()
-            require("config.trouble")
-        end
-    }
-
     -- Status Line and Bufferline
     use {
         "nvim-lualine/lualine.nvim",
@@ -277,10 +268,10 @@ require('packer').startup(function()
     use {"github/copilot.vim",
         config = function()
             vim.g.copilot_node_command = '/Users/colton.morris/.nvm/versions/node/v17.8.0/bin/node' 
-
+    
             vim.cmd("imap <silent><script><expr> <C-J> copilot#Accept(<CR>")
             vim.g.copilot_no_tab_map = true
-
+    
         end
     }
 

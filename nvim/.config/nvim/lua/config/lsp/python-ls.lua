@@ -10,13 +10,14 @@ require'lspconfig'.pyright.setup {
             update_in_insert = true
         })
     },
-	 settings = {
-      python = {
-        analysis = {
-            typeCheckingMode = "basic",
-            autoSearchPaths = true,
-            useLibraryCodeForTypes = true,
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+            }
         }
-      }
-    }
+    },
+    capabilities = require'config.lsp'.common_capabilities(),
 }

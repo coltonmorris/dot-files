@@ -9,22 +9,30 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# we use pyenv for managing python versions. `pyenv global 2.7.18` sets the default to v2, but we like v3 the most
+# put this high up so other tools can use python
+export PATH=$(pyenv root)/shims:$PATH
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+# https://github.com/xinntao/Real-ESRGAN tool for upscaling images
+export PATH=$PATH:~/Real-ESRGAN/bin
 
 # vale is a grammar checker
 export PATH=$PATH:/Users/colton.morris/vale_2.18.0_macOS_arm64/bin
 
 export PATH=$PATH:/Users/colton.morris/.linkerd2/bin
 
+# adding homebrew to path
 export PATH=/opt/homebrew/bin:$PATH
 
-export PATH="~/.local/bin:$PATH"
-export PATH="/Users/colton.morris/Library/Python/3.9/bin:$PATH"
-
-# fancy $ script fix when you copy and paste from internet
+# add my dotfiles bin to path
 export PATH=$HOME/bin:$PATH
 
 # a common location things store binaries at
@@ -81,6 +89,7 @@ export BAT_THEME="Monokai Extended Light"
 
 export EDITOR="nvim"
 alias 'vim'=nvim
+alias 'gvim'='neovide'
 # quick opening files in gvim or vim
 alias g='f -e gvim'
 alias v='f -e nvim'
@@ -113,13 +122,8 @@ export neo=/Users/colton.morris/go/src/neo/
 export MONO=/Users/colton.morris/go/src/github.com/coltonmorris/mono
 export mono=/Users/colton.morris/go/src/github.com/coltonmorris/mono
 
-
-# brew install thefuck
-eval $(thefuck --alias)
-
 # sets up z for fasd
 eval "$(fasd --init auto)"
-
 
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -127,7 +131,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 # ctry f to accept autosuggest. use autosuggest-execute to accept and execute in one command
 bindkey '^f' autosuggest-accept
 bindkey '^w' forward-word
-
 
 # vscode to path
 export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$PATH
@@ -140,13 +143,11 @@ export GOBIN="$GOPATH/bin"
 # export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 export PATH="$PATH:${GOPATH}/bin"
 
-
 # protoc to path
 # export LD_LIBRARY_PATH=/usr/local/lib
 
 # create chrome alias
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
 
 # add homebrew to the completion path
 fpath=("/usr/local/bin/" $fpath)
@@ -164,7 +165,6 @@ export PATH=$HOME/.rbenv/shims:$PATH
 # wollemi completion
 source <(wollemi completion zsh)
 compdef _wollemi wollemi
-
 
 # stop typing cd
 setopt AUTO_CD
@@ -230,7 +230,7 @@ gitgrepvim () {
   case $REPLY in
     [Yy]) vim +/$@ `git grep -l $@ | tr '\n' ' '` ;;
     [Oo]) vim -O +/$@ `git grep -l $@ | tr '\n' ' '` ;;
-    [Nn]) exit ;;
+    [Nn]) return ;;
     *) confirm ;;
   esac
 
@@ -301,4 +301,19 @@ alias 'chs'='switch_context chs chs-1 chs'
 
 # automatically load dev k8 env
 dev
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/colton.morris/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/colton.morris/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/colton.morris/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/colton.morris/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
 

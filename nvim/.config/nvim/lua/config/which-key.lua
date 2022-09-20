@@ -8,8 +8,8 @@ require("which-key").setup {
         -- No actual key bindings are created
         presets = {
             operators = false, -- adds help for operators like d, y, ...
-            motions = false, -- adds help for motions
-            text_objects = false, -- help for text objects triggered after entering an operator
+            motions = true, -- adds help for motions
+            text_objects = true, -- help for text objects triggered after entering an operator
             windows = false, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
@@ -22,7 +22,7 @@ require("which-key").setup {
         group = "+" -- symbol prepended to a group
     },
     window = {
-        border = "single", -- none, single, double, shadow
+        border = "double", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
         padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
@@ -58,32 +58,22 @@ local vopts = {
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
--- no hl
-vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true, silent = true})
-
--- telescope
-vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope live_grep<CR>', {noremap = true, silent = true})
-
--- GBrowse
-vim.api.nvim_set_keymap("v", "<leader>w", ":GBrowse<CR>", {noremap = true, silent = false})
-vim.api.nvim_set_keymap("v", "<leader>b", ":GBrowse<CR>", {noremap = true, silent = false})
-
--- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
--- see https://neovim.io/doc/user/map.html#:map-cmd
+-- NOTE: <cmd> puts you back in normal-mode.
+    --    :    keeps you in visual mode
+    -- see https://neovim.io/doc/user/map.html#:map-cmd
 local vmappings = {
-    ["/"] = {"<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment"}
+    ["/"] = {"<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment"},
+    ["w"] = {"<cmd>GBrowse<cr>", "Gbrowse"},
+    ["b"] = {"<cmd>GBrowse<cr>", "Gbrowse"},
 }
 
 local mappings = {
-    ["w"] = "Git Browser",
-    ["b"] = "Git Browser",
-
-    ["e"] = "Explorer",
-    ["f"] = "Find File",
-    ["g"] = "Grep String",
-    ["H"] = "No Highlight",
-    ["h"] = {"<cmd>lua vim.lsp.buf.hover()", "Type Information. Hover LSP"},
+    -- Use these when setting keymapping elsewhere
+    ["f"] = {"<cmd>Telescope find_files<cr>", "Find File"},
+    ["g"] = {"<cmd>Telescope live_grep<cr>", "Grep String"},
+    ["H"] = {":set hlsearch!<cr>", "No Highlight"},
+    -- TODO lets give this a border somehow
+    ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
 
     -- ["P"] = "Projects", -- this a telescope thing?
 
@@ -97,6 +87,7 @@ local mappings = {
         D = {"<cmd>BufferLineSortByDirectory<cr>", "Sort by directory"},
         L = {"<cmd>BufferLineSortByExtension<cr>", "Sort by language"}
     },
+
     P = {
         name = "Packer",
         c = {"<cmd>PackerCompile<cr>", "Compile"},
@@ -105,26 +96,6 @@ local mappings = {
         s = {"<cmd>PackerSync<cr>", "Sync"},
         S = {"<cmd>PackerStatus<cr>", "Status"},
         u = {"<cmd>PackerUpdate<cr>", "Update"}
-    },
-
-    d = {
-        name = "+Diagnostics",
-        t = {"<cmd>TroubleToggle<cr>", "trouble"},
-        w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace"},
-        d = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document"},
-        q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
-        l = {"<cmd>TroubleToggle loclist<cr>", "loclist"},
-        r = {"<cmd>TroubleToggle lsp_references<cr>", "references"}
-    },
-
-    D = {
-        name = "+Debug",
-        b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
-        c = {"<cmd>DebugContinue<cr>", "Continue"},
-        i = {"<cmd>DebugStepInto<cr>", "Step Into"},
-        o = {"<cmd>DebugStepOver<cr>", "Step Over"},
-        r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
-        s = {"<cmd>DebugStart<cr>", "Start"}
     },
 
     G = {
@@ -147,24 +118,37 @@ local mappings = {
 
     l = {
         name = "+LSP",
-        a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
-        A = {"<cmd>Lspsaga range_code_action<cr>", "Selected Action"},
-        d = {"<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics toggle"},
-        D = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics toggle"},
-        f = {"<cmd>LspFormatting<cr>", "Format"},
-        i = {"<cmd>LspInfo<cr>", "Info"},
-        l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
-        L = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
-        p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
-        q = {"<cmd>Telescope quickfix<cr>", "Quickfix"},
-        r = {"<cmd>Lspsaga rename<cr>", "Rename"},
-        t = {"<cmd>LspTypeDefinition<cr>", "Type Definition"},
-        x = {"<cmd>cclose<cr>", "Close Quickfix"},
+        I = {"<cmd>LspInfo<cr>", "Info"},
+        i = {"<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation"},
+        a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
+        d = {
+            name = "Diagnostics",
+            d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition"},
+            D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration"},
+            -- TODO automatically load diagnostics in quickfix list somehow?
+            g = {"<cmd>Telescope diagnostics<cr>", "Document Diagnostics"},
+            n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
+            N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
+        },
+        f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format"},
+        h = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Type Information"},
+        r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
+        R = {"<cmd>lua vim.lsp.buf.references()<cr>", "References"},
+        S = {"<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help"},
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-        S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"},
-        n = {"<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic"},
-        N = {"<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous Diagnostic"},
-        R = {"<cmd>lua require'lint'.try_lint()<cr>", "Load Revive (nvim-lint)"}
+        t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
+        -- NODE: revive should automatically start, but can manually load if needed
+        v = {"<cmd>lua require'lint'.try_lint()<cr>", "Load Revive (nvim-lint)"},
+        w = {
+            name = "Workspace",
+            l = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", "List Workspace Folders"},
+            -- TODO should populate the function with the paramater for workspace folder
+            -- also have no clue wtf this does
+            w = {"<cmd>lua vim.lsp.buf.add_workspace_folders()<cr>", "Add Workspace Folder"},
+            W = {"<cmd>lua vim.lsp.buf.remove_workspace_folders()<cr>", "Remove Workspace Folder"},
+            -- TODO get this working :) the query is bad
+            -- x = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"},
+        },
     },
 
     s = {
@@ -179,21 +163,13 @@ local mappings = {
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"}
     },
+
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
+
     p = {
-        name = "+Plz | Project",
+        name = "Plz",
         b = {function() utils.formatFilenameToPlzPath() end, "plz build"},
         t = {"<cmd>top split | resize 20 | term plz test<cr>", "plz test"},
-        v = {"<cmd>:Lexplore<cr>", "Open netrw file browser"}
-    },
-
-    T = {
-        name = "Trouble",
-        q = {"<cmd>TroubleToggle quickfix<cr>", "Quickfix list toggle"},
-        d = {"<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics toggle"},
-        w = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics toggle"},
-        n = {"<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "Next"},
-        p = {"<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>", "Previous"},
     },
 
     t = {
@@ -209,13 +185,14 @@ local mappings = {
             c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
             q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
         },
-        l = {
-            name = "Lsp",
-            r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
-            c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
-            i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
-            d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
-        },
+        -- NOTE: can just use the builtins rather than this
+        -- l = {
+        --     name = "Lsp",
+        --     r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
+        --     c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
+        --     i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
+        --     d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
+        -- },
         t = {
             name = "Treesitter",
             t = {"<cmd>Telescope treesitter<cr>", "List Function names, variables, from Treesitter"},
@@ -230,11 +207,13 @@ local mappings = {
         o = {"<cmd>copen<cr>", "Open"},
         v = {"<cmd>vopen<cr>", "Open item in vertical split"},
     },
-    h = {
+
+    a = {
         name = "Harpoon",
         o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
         c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
     },
+
     c = {
         name = "Copilot",
         o = {"<cmd>Copilot panel<cr>", "Open copliot panel"},
