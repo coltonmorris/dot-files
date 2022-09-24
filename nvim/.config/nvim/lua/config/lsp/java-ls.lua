@@ -25,6 +25,7 @@ end
 
 require('jdtls').start_or_attach({
     on_attach = on_attach,
+    capabilities = require'config.lsp'.common_capabilities(),
     cmd = {JAVA_LS_EXECUTABLE},
     root_dir = require('jdtls.setup').find_root({'build.gradle', 'pom.xml', '.git'}),
     init_options = {bundles = bundles}

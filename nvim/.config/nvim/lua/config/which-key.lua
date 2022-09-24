@@ -4,36 +4,35 @@ require("which-key").setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        spelling = {
+            enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+            suggestions = 20, -- how many suggestions should be shown in the list?
+        },
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-            operators = false, -- adds help for operators like d, y, ...
+            operators = true, -- adds help for operators like d, y, ...
             motions = true, -- adds help for motions
             text_objects = true, -- help for text objects triggered after entering an operator
-            windows = false, -- default bindings on <c-w>
+            windows = true, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
             g = true -- bindings for prefixed with g
         }
     },
-    icons = {
-        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-        separator = "➜", -- symbol used between a key and it's label
-        group = "+" -- symbol prepended to a group
-    },
+
     window = {
         border = "double", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
         padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
     },
+
     layout = {
         height = {min = 4, max = 25}, -- min and max height of the columns
         width = {min = 20, max = 50}, -- min and max width of the columns
         spacing = 3 -- spacing between columns
     },
-    hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-    show_help = true -- show help message on the command line when the popup is visible
 }
 
 local opts = {
@@ -72,7 +71,18 @@ local mappings = {
     ["f"] = {"<cmd>Telescope find_files<cr>", "Find File"},
     ["g"] = {"<cmd>Telescope live_grep<cr>", "Grep String"},
     ["H"] = {":set hlsearch!<cr>", "No Highlight"},
-    -- TODO lets give this a border somehow
+
+    d = {
+        name = "Diagnostics",
+        d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition"},
+        D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration"},
+        g = {"<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics"},
+        h = {"<cmd>lua vim.diagnostic.open_float()<cr>", "Hover Diagnostic"},
+        n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
+        N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
+        q = {"<cmd>lua vim.diagnostic.setqflist()<cr>", "Quickfix Diagnostics"},
+    },
+
     ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
 
     -- ["P"] = "Projects", -- this a telescope thing?
@@ -121,15 +131,6 @@ local mappings = {
         I = {"<cmd>LspInfo<cr>", "Info"},
         i = {"<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation"},
         a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
-        d = {
-            name = "Diagnostics",
-            d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition"},
-            D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration"},
-            -- TODO automatically load diagnostics in quickfix list somehow?
-            g = {"<cmd>Telescope diagnostics<cr>", "Document Diagnostics"},
-            n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
-            N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
-        },
         f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format"},
         h = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Type Information"},
         r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},

@@ -101,6 +101,8 @@ require"lspconfig".efm.setup {
         "lua", "python", "javascriptreact", "javascript", "typescript", "typescriptreact", "sh", "html", "css", "json",
         "yaml", "markdown", "vue"
     },
+    on_attach = require'config.lsp'.common_on_attach,
+    capabilities = require'config.lsp'.common_capabilities(),
     settings = {
         rootMarkers = {".git/"},
         languages = {

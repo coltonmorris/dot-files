@@ -6,34 +6,67 @@ function lsp_config.common_on_attach(client, bufnr)
     require'lsp_signature'.on_attach()
 end
 
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    -- TODO why was this needed? if not we can get rid of the tsserver attach
-    client.resolved_capabilities.document_formatting = false
-end
-
 function lsp_config.common_capabilities(client, bufnr)
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     return capabilities
 end
 
--- TODO these probably arent needed, i think they are already set in which-key
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- local opts = { noremap=true, silent=true }
--- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
--- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+function lsp_config.init()
+    require('config.lsp.angular-ls')
+    require('config.lsp.bash-ls')
+    require('config.lsp.clangd')
+    require('config.lsp.cmake-ls')
+    require('config.lsp.css-ls')
+    require('config.lsp.dart-ls')
+    require('config.lsp.docker-ls')
+    require('config.lsp.efm-general-ls')
+    require('config.lsp.elm-ls')
+    require('config.lsp.emmet-ls')
+    require('config.lsp.graphql-ls')
+    require('config.lsp.go-ls')
+    require('config.lsp.html-ls')
+    require('config.lsp.json-ls')
+    require('config.lsp.js-ts-ls')
+    require('config.lsp.kotlin-ls')
+    require('config.lsp.latex-ls')
+    require('config.lsp.lua-ls')
+    require('config.lsp.php-ls')
+    require('config.lsp.python-ls')
+    require('config.lsp.ruby-ls')
+    require('config.lsp.rust-ls')
+    require('config.lsp.svelte-ls')
+    require('config.lsp.terraform-ls')
+    -- require('config.lsp.tailwindcss-ls')
+    require('config.lsp.vim-ls')
+    require('config.lsp.vue-ls')
+    require('config.lsp.yaml-ls')
+    require('config.lsp.elixir-ls')
 
-function lsp_config.keybinds()
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
+    lsp_config.make_stuff_pretty()
+end
 
-    -- TODO get this working
-    -- Enable completion triggered by <c-x><c-o>
-    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+function lsp_config.make_stuff_pretty()
+    -- change the border of the hover window
+    local border = {
+          {"┏", "FloatBorder"},
+          {"━", "FloatBorder"},
+          {"┓", "FloatBorder"},
+          {"┃", "FloatBorder"},
+          {"┛", "FloatBorder"},
+          {"━", "FloatBorder"},
+          {"┗", "FloatBorder"},
+          {"┃", "FloatBorder"},
+    }
+
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or border
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
 end
 
 return lsp_config

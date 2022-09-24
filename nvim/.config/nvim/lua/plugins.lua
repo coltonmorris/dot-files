@@ -22,7 +22,8 @@ require('packer').startup(function()
     use "wbthomason/packer.nvim"
     -- use {"wbthomason/packer.nvim", event = "VimEnter"}
 
-    use {"neovim/nvim-lspconfig"}
+    -- configurations are done in config/lsp/init.lua
+    use { "neovim/nvim-lspconfig", }
     use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
     use {
@@ -105,15 +106,13 @@ require('packer').startup(function()
         --             "rafamadriz/friendly-snippets",
         --             "luasnip_snippets.nvim",
         --         }
-        --     },{
-        --         "windwp/nvim-autopairs",
-        --         event = "BufReadPre",
-        --     },
+        --     }
         -- },
         -- TODO this event line causes the plugin to be optional?
         -- event = "InsertEnter",
     }
     --
+    use {"hrsh7th/cmp-nvim-lsp-signature-help"}
     use {"hrsh7th/cmp-copilot"}
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
@@ -147,19 +146,30 @@ require('packer').startup(function()
             require("config.treesitter")
         end
     }
+    -- HTML auto close and auto rename tags
     use {"windwp/nvim-ts-autotag"}
+    -- extends the percent sign % to work with more objects
     use {
         'andymass/vim-matchup',
         config = function()
             require("config.matchup")
         end
     }
+    -- sets the comment string based on treesitter queries
+    use {'JoosepAlviste/nvim-ts-context-commentstring'}
     -- show you which function you're looking at at the top of the screen
-    use {"romgrk/nvim-treesitter-context"}
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = function()
+            require("config.treesitter-context")
+        end
+    }
+    use {'nvim-treesitter/nvim-treesitter-textobjects'}
     -- make matching parens and stuff different colors
     use {"p00f/nvim-ts-rainbow"}
     -- makes extra pairs that work with %
     use {"theHamsta/nvim-treesitter-pairs"}
+
     -- auto highlight the current word
     use {"RRethy/vim-illuminate"}
 
@@ -191,7 +201,6 @@ require('packer').startup(function()
             require("config.comment")
         end
     }
-    use {'JoosepAlviste/nvim-ts-context-commentstring'}
 
     use {"lukas-reineke/indent-blankline.nvim", after = "material.nvim"}
 
@@ -199,7 +208,8 @@ require('packer').startup(function()
         "marko-cerovac/material.nvim",
         config = function()
             require("config.material")
-        end
+        end,
+        after = "lualine.nvim",
     }
     
     use { 'norcalli/nvim-colorizer.lua',

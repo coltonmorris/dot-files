@@ -5,9 +5,7 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require("cmp")
 -- local luasnip = require("luasnip")
 
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
--- add a lisp filetype ? not sure the point of this
-cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 -- not really a huge fan of having this instead of the wildmenu
 -- cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
@@ -32,10 +30,11 @@ cmp.setup({
     -- the order you put these in are the ranking you want it shown up
     sources = cmp.config.sources({
         {name = 'copilot'},
-        {name = "rp", keyword_length = 4}, -- make sure `brew install ripgrep`
+        {name = "rg", keyword_length = 4}, -- make sure `brew install ripgrep`
         {name = "npm", keyword_length = 4}, -- only active for package.json
         {name = "nvim_lua"}, -- nice for nvim development
         {name = "nvim_lsp"}, -- for lsp completions
+        {name = 'nvim_lsp_signature_help'},
         {name = "calc"}, -- nice for math
         {name = "spell", keyword_length = 5}, -- based on vim's spellsuggest
         {name = "emoji"}, -- emoji's are cool

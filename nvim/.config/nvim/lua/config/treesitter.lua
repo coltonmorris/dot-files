@@ -1,44 +1,62 @@
 require'nvim-treesitter.configs'.setup {
-    autopairs = {enable = true},
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = {"go", "javascript", "typescript", "python"},
     ignore_install = {"haskell"},
-    matchup = {
-        enable = true -- mandatory, false will disable the whole extension
-        -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    },
+
     highlight = {enable = true},
-    context_commentstring = {enable = true, config = {css = '// %s'}},
-    incremental_selection = {
-        enable = true,
-        -- TODO try these out
-        keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm"
-        }
+
+    indent = {enable = true},
+
+    matchup = {
+        enable = true
     },
-    textobjects = {enable = true},
-    pairs = {
-        enable = true,
-        disable = {},
-        highlight_pair_events = {}, -- e.g. {"CursorMoved"}, -- when to highlight the pairs, use {} to deactivate highlighting
-        highlight_self = false, -- whether to highlight also the part of the pair under cursor (or only the partner)
-        goto_right_end = false, -- whether to go to the end of the right partner or the beginning
-        fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. "normal! %")
-        keymaps = {goto_partner = "<leader>%"}
-    },
+
     rainbow = {
         enable = true,
         extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-        max_file_lines = 1000 -- Do not enable for files with more than 1000 lines, int
+        max_file_lines = nil -- Do not enable for files with more than N lines, int
     },
-    context = {enable = true},
 
-    indent = {enable = true},
-    -- indent = {enable = true, disable = {"python", "html", "javascript"}},
-    -- TODO seems to be broken
-    -- indent = {enable = {"javascriptreact"}},
-    autotag = {enable = true}
+    autotag = {enable = true},
+
+    autopairs = {enable = true},
+
+    context_commentstring = {
+        enable = true,
+        -- disabled for nvim-comment
+        enable_autocmd = false,
+    },
+
+    pairs = {
+        enable = true,
+    },
+
+    textobjects = {
+        select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@conditional.outer",
+                -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
+                ["ic"] = { query = "@conditional.inner", desc = "Select inner part of a conditional region" },
+            },
+            -- You can choose the select mode (default is charwise 'v')
+            selection_modes = {
+                ['@parameter.outer'] = 'v', -- charwise
+                ['@function.outer'] = 'V', -- linewise
+                ['@conditional.outer'] = '<c-v>', -- blockwise
+            },
+            -- If you set this to `true` (default is `false`) then any textobject is
+            -- extended to include preceding xor succeeding whitespace. Succeeding
+            -- whitespace has priority in order to act similarly to eg the built-in
+            -- `ap`.
+            include_surrounding_whitespace = true,
+        },
+    },
 }
 

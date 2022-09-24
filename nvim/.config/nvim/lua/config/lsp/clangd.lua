@@ -1,6 +1,7 @@
 require'lspconfig'.clangd.setup {
     cmd = {DATA_PATH .. "/lsp_servers/cpp/clangd/bin/clangd"},
     on_attach = require'config.lsp'.common_on_attach,
+    capabilities = require'config.lsp'.common_capabilities(),
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             virtual_text = {spacing = 0, prefix = ""},
@@ -8,5 +9,5 @@ require'lspconfig'.clangd.setup {
             underline = true,
             update_in_insert = true
         })
-    }
+    },
 }
