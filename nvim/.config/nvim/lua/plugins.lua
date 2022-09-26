@@ -32,6 +32,13 @@ require('packer').startup(function()
             require("config.signature")
         end
     }
+    use {
+        "ray-x/go.nvim",
+        config = function()
+            require("go").setup()
+        end
+    }
+    use {"ray-x/guihua.lua"}
 
     use {"jose-elias-alvarez/null-ls.nvim",
         requires = {

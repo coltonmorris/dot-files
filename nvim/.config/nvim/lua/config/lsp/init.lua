@@ -1,8 +1,6 @@
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
-    lsp_config.keybinds()
-
     require'lsp_signature'.on_attach()
 end
 
