@@ -85,8 +85,6 @@ local mappings = {
 
     ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
 
-    -- ["P"] = "Projects", -- this a telescope thing?
-
     b = {
         name = "Buffers",
         c = {"<cmd>BufferClose<cr>", "Close"},
@@ -168,9 +166,10 @@ local mappings = {
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
 
     p = {
-        name = "Plz",
+        name = "Plz and Project",
         b = {function() utils.formatFilenameToPlzPath() end, "plz build"},
         t = {"<cmd>top split | resize 20 | term plz test<cr>", "plz test"},
+        o = {"<cmd>ProjectMgr<cr>", "Open Project. Press `a` to add a new project."},
     },
 
     t = {
@@ -209,15 +208,25 @@ local mappings = {
         v = {"<cmd>vopen<cr>", "Open item in vertical split"},
     },
 
-    a = {
-        name = "Harpoon",
-        o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
-        c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
-    },
+    -- TODO not using this atm, would rather have some kind of project set up where i can grep in arbitrary trees in the source
+    -- a = {
+    --     name = "Harpoon",
+    --     o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
+    --     c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
+    -- },
 
     c = {
         name = "Copilot",
         o = {"<cmd>Copilot panel<cr>", "Open copliot panel"},
+    },
+
+    z = {
+        name = "Spelling",
+        n = { "]s", "Next" },
+        p = { "[s", "Previous" },
+        a = { "zg", "Add word" },
+        f = { "1z=", "Use 1. correction" },
+        l = { "<cmd>Telescope spell_suggest<cr>", "List corrections" },
     },
 }
 

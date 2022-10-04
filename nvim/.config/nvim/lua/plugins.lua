@@ -24,6 +24,7 @@ require('packer').startup(function()
 
     -- configurations are done in config/lsp/init.lua
     use { "neovim/nvim-lspconfig", }
+    -- TODO use mason instead
     use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
     use {
@@ -62,6 +63,13 @@ require('packer').startup(function()
         },
         config = function()
             require("config.telescope")
+        end
+    }
+    use {
+        'charludo/projectmgr.nvim',
+        rocks = {'lsqlite3complete'},
+        config = function()
+            require("config.project")
         end
     }
 
@@ -294,4 +302,6 @@ require('packer').startup(function()
 
     -- Speed up Neovim startup time.
     use 'lewis6991/impatient.nvim'
+    -- run :StartupTime to see how long it takes to load plugins
+    use 'dstein64/vim-startuptime'
 end)

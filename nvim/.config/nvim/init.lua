@@ -3,6 +3,7 @@ DATA_PATH = vim.fn.stdpath('data')
 CACHE_PATH = vim.fn.stdpath('cache')
 NEO_PATH = '/Users/colton.morris/go/src/neo/'
 
+require('impatient')
 require('plugins')
 require('settings')
 require('autocmd')

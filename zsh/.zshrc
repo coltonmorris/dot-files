@@ -44,18 +44,6 @@ ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-sep
 # export PATH="$HOME/.cargo/env:$PATH"
 # export PATH="$HOME/.cargo/bin:$PATH"
 
-export OMNI_CONFIG_DB_HOST="127.0.0.1"
-export OMNI_CONFIG_USER="omni"
-export OMNI_CONFIG_DBNAME="omni"
-export OMNI_CONFIG_SSL_DISABLED="true"
-export OMNI_CONFIG_PASS="secret"
-export OMNI_CONFIG_PG_PORT="5433"
-
-export OMNI_CONFIG_WHITELIST_IP="168.245.32.192"
-export OMNI_CONFIG_IP_ADDRESS="167.89.111.199"
-export OMNI_CONFIG_WHITELIST_DOMAIN="tcncommunications.com"
-export OMNI_CONFIG_ATTACHMENT_FILE_DIR="/mnt/datafs/tempest/shared/sounds/backoffice/attachments"
-export OMNI_CONFIG_BLACK_LIST_DOMAINS="google.com"
 
 # for please containers
 export DOCKER_CONFIG=$HOME/.docker
@@ -114,9 +102,23 @@ export NEO=/Users/colton.morris/go/src/neo/
 export NEo=/Users/colton.morris/go/src/neo/
 export Neo=/Users/colton.morris/go/src/neo/
 export neo=/Users/colton.morris/go/src/neo/
-# export neo1=/Users/colton.morris/go/src/neo1/
-# export neo2=/Users/colton.morris/go/src/neo2/
-# export neo3=/Users/colton.morris/go/src/neo3/
+# config options for local testing neo
+export ZONE_ID=2
+export REGION_ID=2
+export K8S_CLUSTER=2
+export OMNI_CONFIG_DB_HOST="127.0.0.1"
+export OMNI_CONFIG_USER="omni"
+export OMNI_CONFIG_DBNAME="omni"
+export OMNI_CONFIG_SSL_DISABLED="true"
+export OMNI_CONFIG_PASS="secret"
+export OMNI_CONFIG_PG_PORT="5433"
+export OMNI_CONFIG_WHITELIST_IP="168.245.32.192"
+export OMNI_CONFIG_IP_ADDRESS="167.89.111.199"
+export OMNI_CONFIG_WHITELIST_DOMAIN="tcncommunications.com"
+export OMNI_CONFIG_ATTACHMENT_FILE_DIR="/mnt/datafs/tempest/shared/sounds/backoffice/attachments"
+export OMNI_CONFIG_BLACK_LIST_DOMAINS="google.com"
+export OMNI_CONFIG_TCN_CLOUD_NOTIFICATION_API_KEY="apiKey"
+
 
 # path to my mono
 export MONO=/Users/colton.morris/go/src/github.com/coltonmorris/mono

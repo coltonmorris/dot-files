@@ -59,10 +59,6 @@ require'nvim-treesitter.configs'.setup {
         lookahead = true,
         lsp_interop = {
             enable = true,
-            peek_definition_code = {
-                ["DF"] = "@function.outer",
-                ["DF"] = "@class.outer"
-            }
         },
 
         keymaps = {
