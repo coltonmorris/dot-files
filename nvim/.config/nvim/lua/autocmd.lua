@@ -59,7 +59,7 @@ define_augroups({
         -- {'TermOpen,BufWinEnter', '*', 'call lib#SetNumberDisplay()'},
 
         -- enter instert mode whenever we're in a terminal
-        {'TermOpen,BufWinEnter,BufEnter', 'term://*', 'startinsert'},
+        -- {'TermOpen,BufWinEnter,BufEnter', 'term://*', 'startinsert'},
 
         -- when in a neovim terminal, add a buffer to the existing vim session
         -- instead of nesting (credit justinmk)

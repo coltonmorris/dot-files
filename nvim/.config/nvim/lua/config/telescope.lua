@@ -24,6 +24,13 @@ telescope.setup{
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
+    find_files = {
+      -- TODO need a way to dynamically set this to include neo or not. can use the project plugins init commands
+      search_dirs = { ".", NEO_PATH .. "protos" },
+    },
+    live_grep = {
+      search_dirs = { ".", NEO_PATH .. "protos" },
+    }
     -- picker_name = {
     --   picker_config_key = value,
     --   ...

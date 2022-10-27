@@ -12,8 +12,6 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
--- TODO add:
--- set up telescope to search project
 local use = require('packer').use
 require('packer').startup(function()
     use {"nvim-lua/plenary.nvim"}
@@ -159,7 +157,10 @@ require('packer').startup(function()
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("config.treesitter")
-        end
+        end,
+        run = function()
+            require('nvim-treesitter.install').update({ with_sync = true })
+        end,
     }
     -- HTML auto close and auto rename tags
     use {"windwp/nvim-ts-autotag"}
@@ -194,8 +195,6 @@ require('packer').startup(function()
             require("config.gitsigns")
         end
     }
-    -- this is auto disabled, can toggle it on using <leader>gB
-    use {"f-person/git-blame.nvim"}
 
     use {
         "folke/which-key.nvim",
@@ -224,7 +223,17 @@ require('packer').startup(function()
         config = function()
             require("config.material")
         end,
-        after = "lualine.nvim",
+        after = {
+            "lualine.nvim",
+            "nvim-treesitter",
+        },
+    }
+
+    use {
+        'Tsuzat/NeoSolarized.nvim',
+        config = function()
+            -- require("config.solarized")
+        end,
     }
     
     use { 'norcalli/nvim-colorizer.lua',
@@ -299,6 +308,9 @@ require('packer').startup(function()
     
         end
     }
+
+    use {"tpope/vim-dadbod"}
+    use {"kristijanhusak/vim-dadbod-ui"}
 
     -- Speed up Neovim startup time.
     use 'lewis6991/impatient.nvim'

@@ -1,6 +1,8 @@
-require('material').setup({
-    borders = true,
+local material = require 'material'
+local colors = require 'material.colors'
 
+material.setup{
+    borders = true,
     italics = {comments = true},
 
     lualine_style = 'default',
@@ -18,7 +20,41 @@ require('material').setup({
         non_current_windows = true, -- Enable darker background for non-current windows
         popup_menu = true, -- Enable lighter background for the popup menu
     },
-})
+
+    plugins = { -- Uncomment the plugins that you use to highlight them
+        -- Available plugins:
+        -- "dap",
+        -- "dashboard",
+        "gitsigns",
+        -- "hop",
+        "indent-blankline",
+        -- "lspsaga",
+        -- "mini",
+        -- "neogit",
+        "nvim-cmp",
+        -- "nvim-navic",
+        -- "nvim-tree",
+        -- "sneak",
+        "telescope",
+        -- "trouble",
+        "which-key",
+    },
+
+    disable = {
+        background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+    },
+
+    high_visibility = {
+        lighter = false, -- Enable higher contrast text for lighter style
+        darker = false -- Enable higher contrast text for darker style
+    },
+
+    -- Investigate the different groups here:
+    --      https://github.com/marko-cerovac/material.nvim/blob/main/lua/material/colors/init.lua
+    custom_colors = function(colors)
+        colors.editor.selection = "#c2f2ee"
+    end
+}
 
 vim.g.material_style = "lighter"
 

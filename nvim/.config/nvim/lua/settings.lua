@@ -19,9 +19,12 @@ TERMINAL = vim.fn.expand('$TERMINAL')
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim colton"
 
-vim.g.gitblame_enabled = false
-vim.opt.spell = true
-vim.opt.spelllang = {'en_us'}
+-- TODO nvim 0.8 made changes to how spell is handled.
+--      https://github.com/kamykn/spelunker.vim has more info
+--      set spell is handled in 3 different ways, if its true, false, or unset.
+-- vim.opt.spell = true
+-- vim.opt.spelllang = {'en_us'}
+
 vim.wo.wrap = true
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
@@ -53,8 +56,9 @@ vim.g.netrw_browse_split = 2 -- 4 open files in previon window, use 2 for vertic
 vim.g.netrw_altv = 1 -- have window open on left
 vim.o.guifont = "FiraCode Nerd Font:h17"
 
+-- these are detrimental in v0.8
 -- use the new filetype detector in neovim 0.7. Could have some bugs with it
-vim.g.do_filetype_lua = 1
+-- vim.g.do_filetype_lua = 1
 -- this line ensures we do not use the old filetype checking, comment out if its not working
-vim.g.did_load_filetypes = 0
+-- vim.g.did_load_filetypes = 0
 

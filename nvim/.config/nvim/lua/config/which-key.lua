@@ -68,19 +68,23 @@ local vmappings = {
 
 local mappings = {
     -- Use these when setting keymapping elsewhere
-    ["f"] = {"<cmd>Telescope find_files<cr>", "Find File"},
-    ["g"] = {"<cmd>Telescope live_grep<cr>", "Grep String"},
-    ["H"] = {":set hlsearch!<cr>", "No Highlight"},
+    f = {"<cmd>Telescope find_files <cr>", "Find File"},
+    g = {"<cmd>Telescope live_grep <cr>", "Grep String"},
+    H = {":set hlsearch!<cr>", "No Highlight"},
 
     d = {
         name = "Diagnostics",
-        d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition"},
-        D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration"},
         g = {"<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics"},
         h = {"<cmd>lua vim.diagnostic.open_float()<cr>", "Hover Diagnostic"},
         n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
         N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
         q = {"<cmd>lua vim.diagnostic.setqflist()<cr>", "Quickfix Diagnostics"},
+    },
+
+    D = {
+        name = "Database",
+        -- TODO works for now, the terminal should be a "job", which i guess is a neovim specific thing i can look into. :help job
+        o = {"<cmd>:terminal kubectl port-forward $(kubectl get pods -l=app=matrix-db-cloudsql -o jsonpath=\"{.items[0].metadata.name}\") 5432:5432 <cr> :DBUI <cr> ", "Open dev db"},
     },
 
     ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
@@ -126,6 +130,8 @@ local mappings = {
 
     l = {
         name = "+LSP",
+        d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition"},
+        D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration"},
         I = {"<cmd>LspInfo<cr>", "Info"},
         i = {"<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation"},
         a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
@@ -155,12 +161,12 @@ local mappings = {
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         d = {"<cmd>Telescope diagnostics<cr>", "Document Diagnostics"},
-        f = {"<cmd>Telescope find_files<cr>", "Find File"},
+        f = {"<cmd>Telescope find_files <cr>", "Find File"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
-        t = {"<cmd>Telescope live_grep<cr>", "Text"}
+        t = {"<cmd>Telescope live_grep <cr>", "Text"},
     },
 
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
@@ -177,22 +183,14 @@ local mappings = {
         r = {"<cmd>Telescope resume<cr>", "Resume"},
         f = {
             name = "Find",
-            f = {"<cmd>Telescope find_files<cr>", "Find File"},
+            f = {"<cmd>Telescope find_files <cr>", "Find File"},
             s = {"<cmd>Telescope grep_string<cr>", "Find String Under Cursor"},
-            g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep"},
+            g = {"<cmd>Telescope live_grep <cr>", "Live Grep"},
             b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
             h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
             c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
             q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
         },
-        -- NOTE: can just use the builtins rather than this
-        -- l = {
-        --     name = "Lsp",
-        --     r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
-        --     c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
-        --     i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
-        --     d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
-        -- },
         t = {
             name = "Treesitter",
             t = {"<cmd>Telescope treesitter<cr>", "List Function names, variables, from Treesitter"},
@@ -206,6 +204,7 @@ local mappings = {
         c = {"<cmd>cclose<cr>", "Close"},
         o = {"<cmd>copen<cr>", "Open"},
         v = {"<cmd>vopen<cr>", "Open item in vertical split"},
+        q = {"<cmd>cdo g//norm @q <cr>", "Run @q macro on quickfix list"}
     },
 
     -- TODO not using this atm, would rather have some kind of project set up where i can grep in arbitrary trees in the source

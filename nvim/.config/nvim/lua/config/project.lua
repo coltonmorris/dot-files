@@ -2,7 +2,7 @@
 require("projectmgr").setup {
     autogit = false,
     reopen = false, -- reopen last opened project
-    session = { enabled = true, file = "Session.vim" },
+    session = { enabled = false, file = "Session.vim" },
     shada = { enabled = false, file = "main.shada" },
     scripts = {
         enabled = true,
