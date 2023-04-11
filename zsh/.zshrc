@@ -21,6 +21,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
+. $HOME/.cargo/env
+
 # https://github.com/xinntao/Real-ESRGAN tool for upscaling images
 export PATH=$PATH:~/Real-ESRGAN/bin
 
@@ -268,27 +270,6 @@ if [ -f '/Users/colton.morris/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/c
 if [ -f '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc'; fi
 
 
-export KUBE_PATH=~/.kube
-switch_context()
-{
-  export KUBE=$1
-  export CLOUDSDK_CONTAINER_CLUSTER=$2
-  export CLOUDSDK_ACTIVE_CONFIG_NAME=$3
-  export KUBECONFIG=${KUBE_PATH}/${KUBE}.conf
-  [[ -n ${3} ]] && gcloud config configurations activate $3
-}
-alias 'syd'='switch_context syd syd-1 syd'
-alias 'lon'='switch_context lon lon-1 lon'
-alias 'bom'='switch_context bom bom-1 bom'
-alias 'staging'='switch_context staging staging-1 staging'
-alias 'dev'='switch_context dev dev-1 dev'
-alias 'yul'='switch_context yul yul-1 yul'
-alias 'cbf'='switch_context cbf cbf-1 cbf'
-alias 'cbf-ana'='switch_context cbf-ana cbf-ana-1 cbf'
-alias 'chs'='switch_context chs chs-1 chs'
-
-# automatically load dev k8 env
-dev
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -305,3 +286,6 @@ dev
 # unset __conda_setup
 # <<< conda initialize <<<
 
+source ~/.tcnrc
+
+dev

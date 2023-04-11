@@ -2,6 +2,7 @@
 Now using gnu stow. A complete game changer.
 
 ## First steps - do in order
+1) make sure gcc (or equivalent c compiler), golang, node, and python are installed
 1) install iterm + zprezto
 2) Clone dot-files repo
 3) Install gnu-stow

@@ -26,11 +26,17 @@ require('packer').startup(function()
     use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"} -- vscode-like pictograms for cmp
     use {
+        -- TODO look into using hrsh7th/cmp-nvim-lsp-signature-help instead, will have no overlap of windows
         "ray-x/lsp_signature.nvim",
         config = function()
             require("config.signature")
         end
     }
+
+    -- rust stuff
+    use {"simrat39/rust-tools.nvim"}
+
+    -- fatih/vim-go was too slow, and this is basically feature parity. failed to get zchee/nvim-go to work
     use {
         "ray-x/go.nvim",
         config = function()
@@ -63,6 +69,8 @@ require('packer').startup(function()
             require("config.telescope")
         end
     }
+
+    -- A nice project plugin, lets you switch between projects and changes $CWD
     use {
         'charludo/projectmgr.nvim',
         rocks = {'lsqlite3complete'},
@@ -279,18 +287,6 @@ require('packer').startup(function()
     -- used for :GBrowse. Can also use omni-complete in commit messages <C-X><C-O>
     use {"tpope/vim-rhubarb"}
 
-    -- TODO vim-go has extra lsp functions that could be nice, but it is messing with nvim-lint i think. taking forever to save
-    -- the snippets in vim-go are good too.
-    -- use {
-    --     'fatih/vim-go',
-    --     config = function()
-    --         vim.g.syntastic_go_checkers = {}
-    --         vim.g.go_fmt_command = ""
-    --     end
-    -- }
-    -- TODO could look into getting this to work instead
-    -- use {"~/go/pkg/mod/github.com/zchee/nvim-go@v0.3.0/plugin/nvim-go.vim", opt = true, run = "make"}
-
     use {
         "mfussenegger/nvim-lint",
         config = function()
@@ -309,6 +305,8 @@ require('packer').startup(function()
         end
     }
 
+    -- database plugin, will need an env set:
+    --      export DBUI_URL="postgres://omni:password@localhost:5432/omni"
     use {"tpope/vim-dadbod"}
     use {"kristijanhusak/vim-dadbod-ui"}
 

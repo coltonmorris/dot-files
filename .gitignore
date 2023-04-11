@@ -1,2 +1,4 @@
 backups/*
 undo-dir
+
+bin/bin/minikube
