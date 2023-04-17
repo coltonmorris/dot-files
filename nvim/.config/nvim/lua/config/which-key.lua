@@ -61,33 +61,32 @@ vim.g.mapleader = ' '
     --    :    keeps you in visual mode
     -- see https://neovim.io/doc/user/map.html#:map-cmd
 local vmappings = {
+    a = {
+        name = "AI",
+        i = {"<cmd>ChatGPTEditWithInstructions<cr>", "edit selected text or whole window using the code-davinci-edit-002 model (GPT 3.5 fine-tuned for coding)."},
+        g = {"<cmd>ChatGPTRun grammar_correction<cr>", "use gpt 3.5 to correct grammar"},
+        o = {"<cmd>ChatGPT<cr>", "opens interactive window for chatGPT"},
+        t = {"<cmd>ChatGPTRun add_tests<cr>", "write tests for your code using gpt 3.5"},
+    },
+
     ["/"] = {"<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment"},
     ["w"] = {"<cmd>GBrowse<cr>", "Gbrowse"},
     ["b"] = {"<cmd>GBrowse<cr>", "Gbrowse"},
 }
 
 local mappings = {
-    -- Use these when setting keymapping elsewhere
-    f = {"<cmd>Telescope find_files <cr>", "Find File"},
-    g = {"<cmd>Telescope live_grep <cr>", "Grep String"},
-    H = {":set hlsearch!<cr>", "No Highlight"},
-
-    d = {
-        name = "Diagnostics",
-        g = {"<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics"},
-        h = {"<cmd>lua vim.diagnostic.open_float()<cr>", "Hover Diagnostic"},
-        n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
-        N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
-        q = {"<cmd>lua vim.diagnostic.setqflist()<cr>", "Quickfix Diagnostics"},
+    a = {
+        name = "AI",
+        i = {"<cmd>ChatGPTEditWithInstructions<cr>", "edit selected text or whole window using the code-davinci-edit-002 model (GPT 3.5 fine-tuned for coding)."},
+        g = {"<cmd>ChatGPTRun grammar_correction<cr>", "use gpt 3.5 to correct grammar"},
+        o = {"<cmd>ChatGPT<cr>", "opens interactive window using the gpt-3.5-turbo model"},
+        t = {"<cmd>ChatGPTRun add_tests<cr>", "write tests for your code using gpt 3.5"},
     },
 
-    D = {
-        name = "Database",
-        -- TODO works for now, the terminal should be a "job", which i guess is a neovim specific thing i can look into. :help job
-        o = {"<cmd>:terminal kubectl port-forward $(kubectl get pods -l=app=matrix-db-cloudsql -o jsonpath=\"{.items[0].metadata.name}\") 5432:5432 <cr> :DBUI <cr> ", "Open dev db"},
+    c = {
+        name = "Copilot",
+        o = {"<cmd>Copilot panel<cr>", "Open copliot panel"},
     },
-
-    ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
 
     b = {
         name = "Buffers",
@@ -100,16 +99,25 @@ local mappings = {
         L = {"<cmd>BufferLineSortByExtension<cr>", "Sort by language"}
     },
 
-    P = {
-        name = "Packer",
-        c = {"<cmd>PackerCompile<cr>", "Compile"},
-        i = {"<cmd>PackerInstall<cr>", "Install"},
-        r = {"<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile"},
-        s = {"<cmd>PackerSync<cr>", "Sync"},
-        S = {"<cmd>PackerStatus<cr>", "Status"},
-        u = {"<cmd>PackerUpdate<cr>", "Update"}
+    d = {
+        name = "Diagnostics",
+        g = {"<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics"},
+        h = {"<cmd>lua vim.diagnostic.open_float()<cr>", "Hover Diagnostic"},
+        n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
+        N = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous Diagnostic"},
+        q = {"<cmd>lua vim.diagnostic.setqflist()<cr>", "Quickfix Diagnostics"},
+    },
+    D = {
+        name = "Database",
+        -- TODO works for now, the terminal should be a "job", which i guess is a neovim specific thing i can look into. :help job
+        o = {"<cmd>:terminal kubectl port-forward $(kubectl get pods -l=app=matrix-db-cloudsql -o jsonpath=\"{.items[0].metadata.name}\") 5432:5432 <cr> :DBUI <cr> ", "Open dev db"},
     },
 
+
+    -- Use these when setting keymapping elsewhere
+    f = {"<cmd>Telescope find_files <cr>", "Find File"},
+
+    g = {"<cmd>Telescope live_grep <cr>", "Grep String"},
     G = {
         name = "+Git",
         j = {"<cmd>NextHunk<cr>", "Next Hunk"},
@@ -127,6 +135,10 @@ local mappings = {
         C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
         a = {"<cmd>Telescope git_branches<cr>", "Checkout branch"}
     },
+
+
+    ["h"] = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Type Information. Hover LSP"},
+    H = {":set hlsearch!<cr>", "No Highlight"},
 
     l = {
         name = "+LSP",
@@ -168,7 +180,6 @@ local mappings = {
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep <cr>", "Text"},
     },
-
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
 
     p = {
@@ -176,6 +187,15 @@ local mappings = {
         b = {function() utils.formatFilenameToPlzPath() end, "plz build"},
         t = {"<cmd>top split | resize 20 | term plz test<cr>", "plz test"},
         o = {"<cmd>ProjectMgr<cr>", "Open Project. Press `a` to add a new project."},
+    },
+    P = {
+        name = "Packer",
+        c = {"<cmd>PackerCompile<cr>", "Compile"},
+        i = {"<cmd>PackerInstall<cr>", "Install"},
+        r = {"<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile"},
+        s = {"<cmd>PackerSync<cr>", "Sync"},
+        S = {"<cmd>PackerStatus<cr>", "Status"},
+        u = {"<cmd>PackerUpdate<cr>", "Update"}
     },
 
     t = {
@@ -205,18 +225,6 @@ local mappings = {
         o = {"<cmd>copen<cr>", "Open"},
         v = {"<cmd>vopen<cr>", "Open item in vertical split"},
         q = {"<cmd>cdo g//norm @q <cr>", "Run @q macro on quickfix list"}
-    },
-
-    -- TODO not using this atm, would rather have some kind of project set up where i can grep in arbitrary trees in the source
-    -- a = {
-    --     name = "Harpoon",
-    --     o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open"},
-    --     c = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Close"},
-    -- },
-
-    c = {
-        name = "Copilot",
-        o = {"<cmd>Copilot panel<cr>", "Open copliot panel"},
     },
 
     z = {

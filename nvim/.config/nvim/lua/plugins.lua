@@ -20,6 +20,8 @@ require('packer').startup(function()
     use "wbthomason/packer.nvim"
     -- use {"wbthomason/packer.nvim", event = "VimEnter"}
 
+    use "MunifTanjim/nui.nvim"
+
     -- configurations are done in config/lsp/init.lua
     use { "neovim/nvim-lspconfig", }
     -- TODO use mason instead
@@ -303,6 +305,18 @@ require('packer').startup(function()
             vim.g.copilot_no_tab_map = true
     
         end
+    }
+
+    use {
+      "jackMort/ChatGPT.nvim",
+        config = function()
+            require("config.chat-gpt")
+        end,
+        requires = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
     }
 
     -- database plugin, will need an env set:

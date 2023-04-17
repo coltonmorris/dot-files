@@ -108,6 +108,11 @@ export GITLAB_URI=git.tcncloud.net
 export GITLAB_HOST=git.tcncloud.net
 source ~/.secret_zshrc
 
+# for acd testing, can remove
+export ACDCTL=$neo/plz-out/bin/services/acd/acdctl/acdctl
+export PATH=$ACDCTL:$PATH
+
+
 # path to my mono
 export MONO=/Users/colton.morris/go/src/github.com/coltonmorris/mono
 export mono=/Users/colton.morris/go/src/github.com/coltonmorris/mono
@@ -129,9 +134,9 @@ export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/:$
 export MODPATH="${HOME}/gomod"
 export GOPATH="${HOME}/go"
 export GOBIN="$GOPATH/bin"
+export PATH="$PATH:${GOPATH}/bin"
 # export GOROOT="$(brew --prefix golang)/libexec"
 # export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-export PATH="$PATH:${GOPATH}/bin"
 
 # protoc to path
 # export LD_LIBRARY_PATH=/usr/local/lib
@@ -287,5 +292,6 @@ if [ -f '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 # <<< conda initialize <<<
 
 source ~/.tcnrc
+source ~/.secretrc
 
 dev
