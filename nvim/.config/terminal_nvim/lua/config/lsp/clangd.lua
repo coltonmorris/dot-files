@@ -1,5 +1,6 @@
 require'lspconfig'.clangd.setup {
-    cmd = {DATA_PATH .. "/lsp_servers/cpp/clangd/bin/clangd"},
+    cmd = {DATA_PATH .. "/lsp_servers/clangd/clangd/bin/clangd", "--offset-encoding=utf-16"},
+    -- cmd = {"clangd"},
     on_attach = require'config.lsp'.common_on_attach,
     capabilities = require'config.lsp'.common_capabilities(),
     handlers = {

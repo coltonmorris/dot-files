@@ -1,0 +1,225 @@
+// Add this to your settings.json
+"whichkey.bindings": [
+	{
+		"key": "D",
+		"name": "+Database",
+		"type": "bindings",
+		"bindings": [
+			{
+				"key": "o",
+				"name": "Open dev db",
+				"type": "commands",
+				"commands": [
+					"workbench.action.terminal.new",
+					{
+						"command": "workbench.action.terminal.sendSequence",
+						"args": { "text": "kubectl port-forward $(kubectl get pods -l=app=matrix-db-cloudsql -o jsonpath="{.items[0].metadata.name}") 5432:5432\u000D:DBUI\u000D" }
+					}
+				]
+			}
+		]
+	},
+	{
+		"key": "G",
+		"name": "+Git",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "B", "name": "Toggle blame on current line", "type": "command", "command": "GitBlameToggle" },
+			{ "key": "C", "name": "Checkout commit (current file)", "type": "command", "command": "Telescope git_bcommits" },
+			{ "key": "R", "name": "Reset buffer", "type": "command", "command": "ResetBuffer" },
+			{ "key": "a", "name": "Checkout branch", "type": "command", "command": "Telescope git_branches" },
+			{ "key": "b", "name": "Open blame window", "type": "command", "command": "Git blame" },
+			{ "key": "c", "name": "Checkout commit", "type": "command", "command": "Telescope git_commits" },
+			{ "key": "j", "name": "Next hunk", "type": "command", "command": "NextHunk" },
+			{ "key": "k", "name": "Previous hunk", "type": "command", "command": "PrevHunk" },
+			{ "key": "o", "name": "Open changed file", "type": "command", "command": "Telescope git_status" },
+			{ "key": "p", "name": "Preview hunk", "type": "command", "command": "PreviewHunk" },
+			{ "key": "r", "name": "Reset hunk", "type": "command", "command": "ResetHunk" },
+			{ "key": "s", "name": "Stage hunk", "type": "command", "command": "StageHunk" },
+			{ "key": "u", "name": "Undo stage hunk", "type": "command", "command": "UndoStageHunk" },
+			{ "key": "w", "name": "Open in git browser", "type": "command", "command": "GBrowse" }
+		]
+	},
+	{
+		"key": "H",
+		"name": "Toggle hlsearch",
+		"type": "command",
+		"command": "vim.toggleSearchHighlight"
+	},
+	{
+		"key": "P",
+		"name": "+Packer",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "S", "name": "Status", "type": "command", "command": "PackerStatus" },
+			{ "key": "c", "name": "Compile", "type": "command", "command": "PackerCompile" },
+			{ "key": "i", "name": "Install", "type": "command", "command": "PackerInstall" },
+			{ "key": "r", "name": "Re-compile", "type": "command", "command": "lua require('lvim.plugin-loader').recompile()" },
+			{ "key": "s", "name": "Sync", "type": "command", "command": "PackerSync" },
+			{ "key": "u", "name": "Update", "type": "command", "command": "PackerUpdate" }
+		]
+	},
+	{
+		"key": "S",
+		"name": "+Session",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "l", "name": "Load session", "type": "command", "command": "SessionLoad" },
+			{ "key": "s", "name": "Save session", "type": "command", "command": "SessionSave" }
+		]
+	},
+	{
+		"key": "a",
+		"name": "+AI",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "n", "name": "Open a new chat", "type": "command", "command": "PrtChatNew" },
+			{ "key": "t", "name": "Toggle chat", "type": "command", "command": "PrtChatToggle" },
+			{ "key": "f", "name": "Search chat files", "type": "command", "command": "PrtChatFinder" },
+			{ "key": "r", "name": "Trigger chat respond", "type": "command", "command": "PrtChatRespond" },
+			{ "key": "s", "name": "Interrupt respond", "type": "command", "command": "PrtChatStop" }
+		]
+	},
+	{
+		"key": "b",
+		"name": "+Buffers",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "D", "name": "Sort by directory", "type": "command", "command": "BufferLineSortByDirectory" },
+			{ "key": "L", "name": "Sort by language", "type": "command", "command": "BufferLineSortByExtension" },
+			{ "key": "c", "name": "Close buffer", "type": "command", "command": "BufferClose" },
+			{ "key": "e", "name": "Pick buffer to close", "type": "command", "command": "BufferLinePickClose" },
+			{ "key": "l", "name": "Close buffers to left", "type": "command", "command": "BufferCloseBuffersLeft" },
+			{ "key": "p", "name": "Previous buffer", "type": "command", "command": "BufferLineCyclePrev" },
+			{ "key": "r", "name": "Close buffers to right", "type": "command", "command": "BufferCloseBuffersRight" }
+		]
+	},
+	{
+		"key": "c",
+		"name": "+Copilot",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "o", "name": "Open Copilot panel", "type": "command", "command": "Copilot panel" }
+		]
+	},
+	{
+		"key": "d",
+		"name": "+Diagnostics",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "N", "name": "Previous diagnostic", "type": "command", "command": "lua vim.diagnostic.goto_prev()" },
+			{ "key": "g", "name": "Document diagnostics", "type": "command", "command": "Telescope diagnostics" },
+			{ "key": "h", "name": "Hover diagnostic", "type": "command", "command": "lua vim.diagnostic.open_float()" },
+			{ "key": "n", "name": "Next diagnostic", "type": "command", "command": "lua vim.diagnostic.goto_next()" },
+			{ "key": "q", "name": "Quickfix diagnostics", "type": "command", "command": "lua vim.diagnostic.setqflist()" }
+		]
+	},
+	{
+		"key": "h",
+		"name": "Hover LSP",
+		"type": "command",
+		"command": "lua vim.lsp.buf.hover()"
+	},
+	{
+		"key": "l",
+		"name": "+LSP",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "D", "name": "Go to declaration", "type": "command", "command": "lua vim.lsp.buf.declaration()" },
+			{ "key": "I", "name": "Info", "type": "command", "command": "LspInfo" },
+			{ "key": "R", "name": "References", "type": "command", "command": "lua vim.lsp.buf.references()" },
+			{ "key": "S", "name": "Signature help", "type": "command", "command": "lua vim.lsp.buf.signature_help()" },
+			{ "key": "a", "name": "Code action", "type": "command", "command": "lua vim.lsp.buf.code_action()" },
+			{ "key": "d", "name": "Go to definition", "type": "command", "command": "lua vim.lsp.buf.definition()" },
+			{ "key": "f", "name": "Format", "type": "command", "command": "lua vim.lsp.buf.formatting()" },
+			{ "key": "h", "name": "Hover type info", "type": "command", "command": "lua vim.lsp.buf.hover()" },
+			{ "key": "i", "name": "Implementation", "type": "command", "command": "lua vim.lsp.buf.implementation()" },
+			{ "key": "r", "name": "Rename", "type": "command", "command": "lua vim.lsp.buf.rename()" },
+			{ "key": "s", "name": "Document symbols", "type": "command", "command": "Telescope lsp_document_symbols" },
+			{ "key": "t", "name": "Type definition", "type": "command", "command": "lua vim.lsp.buf.type_definition()" },
+			{ "key": "v", "name": "Load Revive lint", "type": "command", "command": "lua require'lint'.try_lint()" },
+			{
+				"key": "w",
+				"name": "+Workspace",
+				"type": "bindings",
+				"bindings": [
+					{ "key": "W", "name": "Remove workspace folder", "type": "command", "command": "lua vim.lsp.buf.remove_workspace_folders()" },
+					{ "key": "l", "name": "List workspace folders", "type": "command", "command": "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))" },
+					{ "key": "w", "name": "Add workspace folder", "type": "command", "command": "lua vim.lsp.buf.add_workspace_folders()" }
+				]
+			}
+		]
+	},
+	{
+		"key": "q",
+		"name": "+Quickfix",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "c", "name": "Close", "type": "command", "command": "cclose" },
+			{ "key": "n", "name": "Next", "type": "command", "command": "cn" },
+			{ "key": "o", "name": "Open", "type": "command", "command": "copen" },
+			{ "key": "p", "name": "Previous", "type": "command", "command": "cp" },
+			{ "key": "q", "name": "Run @q macro", "type": "command", "command": "cdo g//norm @q" },
+			{ "key": "v", "name": "Open in vertical split", "type": "command", "command": "vopen" }
+		]
+	},
+	{
+		"key": "s",
+		"name": "+Search",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "M", "name": "Man pages", "type": "command", "command": "Telescope man_pages" },
+			{ "key": "R", "name": "Registers", "type": "command", "command": "Telescope registers" },
+			{ "key": "b", "name": "Checkout branch", "type": "command", "command": "Telescope git_branches" },
+			{ "key": "c", "name": "Colorscheme", "type": "command", "command": "Telescope colorscheme" },
+			{ "key": "d", "name": "Document diagnostics", "type": "command", "command": "Telescope diagnostics" },
+			{ "key": "f", "name": "Find file", "type": "command", "command": "Telescope find_files" },
+			{ "key": "m", "name": "Marks", "type": "command", "command": "Telescope marks" },
+			{ "key": "r", "name": "Open recent file", "type": "command", "command": "Telescope oldfiles" },
+			{ "key": "t", "name": "Live grep", "type": "command", "command": "Telescope live_grep" }
+		]
+	},
+	{
+		"key": "t",
+		"name": "+Telescope",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "f", "name": "Find file", "type": "command", "command": "Telescope find_files" },
+			{ "key": "g", "name": "Grep string", "type": "command", "command": "Telescope live_grep" },
+			{
+				"key": "f",
+				"name": "+Find",
+				"type": "bindings",
+				"bindings": [
+					{ "key": "b", "name": "Find buffers", "type": "command", "command": "Telescope buffers" },
+					{ "key": "c", "name": "Command history", "type": "command", "command": "Telescope command_history" },
+					{ "key": "f", "name": "Find file", "type": "command", "command": "Telescope find_files" },
+					{ "key": "g", "name": "Live grep", "type": "command", "command": "Telescope live_grep" },
+					{ "key": "h", "name": "Find help tags", "type": "command", "command": "Telescope help_tags" },
+					{ "key": "q", "name": "Quickfix list", "type": "command", "command": "Telescope quickfix" },
+					{ "key": "s", "name": "Find string under cursor", "type": "command", "command": "Telescope grep_string" }
+				]
+			},
+			{
+				"key": "t",
+				"name": "+Treesitter",
+				"type": "bindings",
+				"bindings": [
+					{ "key": "t", "name": "List Treesitter symbols", "type": "command", "command": "Telescope treesitter" }
+				]
+			}
+		]
+	},
+	{
+		"key": "z",
+		"name": "+Spelling",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "a", "name": "Add word", "type": "command", "command": "zg" },
+			{ "key": "f", "name": "Use 1st correction", "type": "command", "command": "1z=" },
+			{ "key": "l", "name": "List corrections", "type": "command", "command": "Telescope spell_suggest" },
+			{ "key": "n", "name": "Next correction", "type": "command", "command": "]s" },
+			{ "key": "p", "name": "Previous correction", "type": "command", "command": "[s" }
+			]
+	}
+]

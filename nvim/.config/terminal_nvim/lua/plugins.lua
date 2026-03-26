@@ -12,15 +12,38 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
-local use = require('packer').use
-require('packer').startup(function()
+local packer = require("packer")
+local use = packer.use
+packer.init({
+    luarocks = {
+        python = { "python3" },
+    },
+})
+
+packer.startup(function()
     use {"nvim-lua/plenary.nvim"}
 
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
-    -- use {"wbthomason/packer.nvim", event = "VimEnter"}
 
     use "MunifTanjim/nui.nvim"
+
+
+    -- fatih/vim-go was too slow, and this is basically feature parity. failed to get zchee/nvim-go to work
+    use {
+        "ray-x/go.nvim",
+        config = function()
+            require("go").setup()
+        end
+    }
+    use {"ray-x/guihua.lua"}
+
+    use {
+        "OXY2DEV/markview.nvim",
+        config = function() 
+            require("markview").setup({})
+        end
+    }
 
     -- configurations are done in config/lsp/init.lua
     use { "neovim/nvim-lspconfig", }
@@ -38,16 +61,7 @@ require('packer').startup(function()
     -- rust stuff
     use {"simrat39/rust-tools.nvim"}
 
-    -- fatih/vim-go was too slow, and this is basically feature parity. failed to get zchee/nvim-go to work
-    use {
-        "ray-x/go.nvim",
-        config = function()
-            require("go").setup()
-        end
-    }
-    use {"ray-x/guihua.lua"}
-
-    use {"jose-elias-alvarez/null-ls.nvim",
+    use {"nvimtools/none-ls.nvim",
         requires = {
             {'nvim-lua/plenary.nvim'},
             {'nvim-telescope/telescope.nvim'},
@@ -72,18 +86,18 @@ require('packer').startup(function()
         end
     }
 
-    -- A nice project plugin, lets you switch between projects and changes $CWD
-    use {
-        'charludo/projectmgr.nvim',
-        rocks = {'lsqlite3complete'},
-        config = function()
-            require("config.project")
-        end
-    }
+    -- -- A nice project plugin, lets you switch between projects and changes $CWD
+    -- use {
+    --     'charludo/projectmgr.nvim',
+    --     rocks = {'lsqlite3complete'},
+    --     config = function()
+    --         require("config.project")
+    --     end
+    -- }
 
     -- TODO i think this is breaking things
     -- gives the quickfix list a lot of functionality. Initially used to open items in vertical splits
-    -- use { "yssl/QFEnter" }
+    use { "yssl/QFEnter" }
 
     -- TODO use the terminal related commands
     use {'ThePrimeagen/harpoon',
@@ -134,9 +148,16 @@ require('packer').startup(function()
         -- TODO this event line causes the plugin to be optional?
         -- event = "InsertEnter",
     }
-    --
+
     use {"hrsh7th/cmp-nvim-lsp-signature-help"}
-    use {"hrsh7th/cmp-copilot"}
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    }
+
     use {"hrsh7th/cmp-buffer"}
     use {"hrsh7th/cmp-path"}
     use {"hrsh7th/cmp-nvim-lua"}
@@ -172,6 +193,9 @@ require('packer').startup(function()
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     }
+    use {"nvim-treesitter/playground"}
+
+
     -- HTML auto close and auto rename tags
     use {"windwp/nvim-ts-autotag"}
     -- extends the percent sign % to work with more objects
@@ -191,8 +215,14 @@ require('packer').startup(function()
         end
     }
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
+
     -- make matching parens and stuff different colors
-    use {"p00f/nvim-ts-rainbow"}
+    use {
+        "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+            require("config.rainbow-delimiters")
+        end
+    }
     -- makes extra pairs that work with %
     use {"theHamsta/nvim-treesitter-pairs"}
 
@@ -239,13 +269,13 @@ require('packer').startup(function()
         },
     }
 
-    use {
-        'Tsuzat/NeoSolarized.nvim',
-        config = function()
-            -- require("config.solarized")
-        end,
-    }
-    
+--    use {
+--        'Tsuzat/NeoSolarized.nvim',
+--        config = function()
+--            -- require("config.solarized")
+--        end,
+--    }
+
     use { 'norcalli/nvim-colorizer.lua',
         config = function()
             require("config.colorizer")
@@ -296,27 +326,48 @@ require('packer').startup(function()
         end
     }
 
-    
-    use {"github/copilot.vim",
+    use {
+        "codethread/qmk.nvim",
         config = function()
-            vim.g.copilot_node_command = '/Users/colton.morris/.nvm/versions/node/v17.8.0/bin/node' 
+            require("config.qmk")
+        end
+    }
+
     
-            vim.cmd("imap <silent><script><expr> <C-J> copilot#Accept(<CR>")
-            vim.g.copilot_no_tab_map = true
-    
+    use {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("config.copilot")
+        end,
+    }
+
+    use {
+        "frankroeder/parrot.nvim",
+        config = function()
+            require("parrot").setup({
+                providers = {
+                    openai = {
+                        api_key = os.getenv("OPENAI_API_KEY"),
+                        models = {
+                            "o3-mini",
+                        },
+                    },
+                },
+                -- chat_free_cursor = true,
+                command_auto_select_response = false,
+                -- chat_prompt_buf_type = true,
+                -- toggle_target = "popup",
+            })
         end
     }
 
     use {
-      "jackMort/ChatGPT.nvim",
+        "RaafatTurki/hex.nvim",
         config = function()
-            require("config.chat-gpt")
+            require 'hex'.setup()
         end,
-        requires = {
-          "MunifTanjim/nui.nvim",
-          "nvim-lua/plenary.nvim",
-          "nvim-telescope/telescope.nvim"
-        }
     }
 
     -- database plugin, will need an env set:

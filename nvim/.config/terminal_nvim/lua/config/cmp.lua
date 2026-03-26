@@ -29,12 +29,12 @@ cmp.setup({
 
     -- the order you put these in are the ranking you want it shown up
     sources = cmp.config.sources({
-        {name = 'copilot'},
+        {name = "copilot"},
         {name = "rg", keyword_length = 4}, -- make sure `brew install ripgrep`
         {name = "npm", keyword_length = 4}, -- only active for package.json
         {name = "nvim_lua"}, -- nice for nvim development
         {name = "nvim_lsp"}, -- for lsp completions
-        {name = 'nvim_lsp_signature_help'},
+        {name = "nvim_lsp_signature_help"},
         {name = "calc"}, -- nice for math
         {name = "spell", keyword_length = 5}, -- based on vim's spellsuggest
         {name = "emoji"}, -- emoji's are cool
@@ -42,6 +42,7 @@ cmp.setup({
         {name = "path"}, -- local file path completion
         -- {name = 'luasnip'} 
     }),
+
     formatting = {
         format = lspkind.cmp_format {
             with_text = true,
@@ -66,7 +67,12 @@ cmp.setup({
             end,
         }
     },
-    experimental = {native_menu = false, ghost_text = true}
+
+    view = {
+        entries = 'native'
+    },
+
+    experimental = {ghost_text = true}
 })
 
 

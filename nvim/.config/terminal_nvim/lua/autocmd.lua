@@ -12,7 +12,8 @@ function define_augroups(definitions) -- {{{1
         vim.cmd('autocmd!')
 
         for _, def in pairs(definition) do
-            local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
+            -- local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
+            local command = table.concat(vim.iter({'autocmd', def}):flatten():totable(), ' ')
             vim.cmd(command)
         end
 
@@ -28,29 +29,28 @@ local wollemi_autoformat2 = {"BufWritePost", "*.plz", "silent exec '!wollemi --l
 table.insert(auto_formatters, wollemi_autoformat)
 table.insert(auto_formatters, wollemi_autoformat2)
 
-local python_autoformat = {'BufWritePre', '*.py', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
+local python_autoformat = {'BufWritePre', '*.py', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, python_autoformat)
 
-local javascript_autoformat = {'BufWritePre', '*.js', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
-local javascriptreact_autoformat = {'BufWritePre', '*.jsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
-local typescript_autoformat = {'BufWritePre', '*.ts', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
-local typescriptreact_autoformat = {'BufWritePre', '*.tsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
+local javascript_autoformat = {'BufWritePre', '*.js', 'lua vim.lsp.buf.format()'}
+local javascriptreact_autoformat = {'BufWritePre', '*.jsx', 'lua vim.lsp.buf.format()'}
+local typescript_autoformat = {'BufWritePre', '*.ts', 'lua vim.lsp.buf.format()'}
+local typescriptreact_autoformat = {'BufWritePre', '*.tsx', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, javascript_autoformat)
 table.insert(auto_formatters, javascriptreact_autoformat)
 table.insert(auto_formatters, typescript_autoformat)
 table.insert(auto_formatters, typescriptreact_autoformat)
 
--- TODO look here if lua formatting is annoying
-local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
+local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, lua_format)
 
-local json_format = {'BufWritePre', '*.json', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
+local json_format = {'BufWritePre', '*.json', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, json_format)
 
-local ruby_format = {'BufWritePre', '*.rb', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local ruby_format = {'BufWritePre', '*.rb', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, ruby_format)
 
-local go_format = {'BufWritePre', '*.go', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local go_format = {'BufWritePre', '*.go', 'lua vim.lsp.buf.format()'}
 table.insert(auto_formatters, go_format)
 
 define_augroups({
@@ -75,15 +75,12 @@ define_augroups({
         }
     },
     _general_settings = {
-        {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'},
+        {'TextYankPost', '*', 'lua require(\'vim.hl\').on_yank({higroup = \'Search\', timeout = 200})'},
         {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
         {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
         {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'VimLeavePre', '*', 'set title set titleold='}, {'FileType', 'qf', 'set nobuflisted'},
+        {'FileType', 'qf', 'set nobuflisted'},
         {'BufEnter', '*', [[exe 'noremap <F5> :!open -a "Google Chrome" %:p:.<CR>']]}
-
-        -- {'User', 'GoyoLeave', 'lua require(\'galaxyline\').disable_galaxyline()'},
-        -- {'User', 'GoyoEnter', 'lua require(\'galaxyline\').galaxyline_augroup()'},
     },
     _java = {
         {'FileType', 'java', 'luafile ' .. CONFIG_PATH .. '/lua/lsp/java-ls.lua'},

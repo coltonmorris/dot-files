@@ -1,0 +1,12 @@
+// Add this to your settings.json
+"whichkey.bindings": [
+	{
+		"key": "d",
+		"name": "+Diagnostics",
+		"type": "bindings",
+		"bindings": [
+			{ "key": "N", "name": "Previous diagnostic", "type": "command", "command": "lua require('vscode').call(editor.action.marker.prevInFiles)" },
+			{ "key": "n", "name": "Next diagnostic", "type": "command", "command": "lua require('vscode').call(editor.action.marker.nextInFiles)" }
+		]
+	}
+]

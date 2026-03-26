@@ -22,25 +22,14 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     },
 
-    -- rainbow parens and brackets
-    -- must have "p00f/nvim-ts-rainbow" installed
-    rainbow = {
-        enable = true,
-        extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than N lines, int
-    },
-
     -- auto close and auto rename html tags
     -- must have "windwp/nvim-ts-autotag" installed
     autotag = {enable = true},
 
     -- sets the comment string for files with multiple languages
     -- must have "JoosepAlviste/nvim-ts-context-commentstring" installed
-    context_commentstring = {
-        enable = true,
-        -- disabled for nvim-comment
-        enable_autocmd = false,
-    },
+    -- disabled for nvim-comment
+    enable_autocmd = false,
 
     -- same as vim-matchup, extends `%` key
     -- must have "theHamsta/nvim-treesitter-pairs" installed
