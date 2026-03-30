@@ -1,5 +1,6 @@
-require'lspconfig'.terraformls.setup{
-    cmd = {DATA_PATH .. "/lsp_servers/terraform/terraform-ls", "serve"},
-    on_attach = require'config.lsp'.common_on_attach,
-    capabilities = require'config.lsp'.common_capabilities(),
-}
+local lsp = require('config.lsp')
+lsp.setup('terraformls', {
+  cmd = { DATA_PATH .. "/lsp_servers/terraform/terraform-ls", "serve" },
+  on_attach = lsp.common_on_attach,
+  capabilities = lsp.common_capabilities(),
+})

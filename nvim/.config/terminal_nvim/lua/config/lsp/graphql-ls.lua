@@ -1,5 +1,6 @@
 -- npm install -g graphql-language-service-cli
-require'lspconfig'.graphql.setup {
-    on_attach = require'config.lsp'.common_on_attach,
-    capabilities = require'config.lsp'.common_capabilities(),
-}
+local lsp = require('config.lsp')
+lsp.setup('graphql', {
+  on_attach = lsp.common_on_attach,
+  capabilities = lsp.common_capabilities(),
+})

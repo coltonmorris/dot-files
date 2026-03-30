@@ -10,5 +10,12 @@ bazel-*
 
 
 *ignore.md
+*ignore.txt
+*tmp.md
+*tmp.txt
 
 *.pem
+.DS_Store
+
+__pycache__
+.python-version

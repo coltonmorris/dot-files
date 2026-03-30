@@ -1,5 +1,6 @@
-require'lspconfig'.svelte.setup {
-    cmd = {DATA_PATH .. "/lsp_servers/svelte/node_modules/.bin/svelteserver", "--stdio"},
-    on_attach = require'config.lsp'.common_on_attach,
-    capabilities = require'config.lsp'.common_capabilities(),
-}
+local lsp = require('config.lsp')
+lsp.setup('svelte', {
+  cmd = { DATA_PATH .. "/lsp_servers/svelte/node_modules/.bin/svelteserver", "--stdio" },
+  on_attach = lsp.common_on_attach,
+  capabilities = lsp.common_capabilities(),
+})

@@ -23,6 +23,17 @@ export NVM_DIR="$HOME/.nvm"
 
 . $HOME/.cargo/env
 
+export PATH=/usr/local/share/dotnet:$PATH
+
+export PATH=/Users/colton.morris/MPQExtractor/build/bin:$PATH
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+# export M2_HOME="/Users/colton.morris/apache-maven-3.3.9"
+# export PATH="$PATH:${M2_HOME}/bin"
+
+export PATH="$PATH:${GOPATH}/src/tcn/protodep"
+
 # https://github.com/xinntao/Real-ESRGAN tool for upscaling images
 export PATH=$PATH:~/Real-ESRGAN/bin
 
@@ -51,7 +62,8 @@ ticker --show-summary --show-tags --show-fundamentals --show-holdings --show-sep
 export DOCKER_CONFIG=$HOME/.docker
 export CLOUDSDK_CONFIG=$HOME/.config/gcloud
 # needed to let gcloud work
-export CLOUDSDK_PYTHON=python2
+export CLOUDSDK_PYTHON=python
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 #flatc for flatbuffers
 export PATH=/Users/colton.morris/go/src/github.com/google/flatbuffers:$PATH
@@ -70,12 +82,11 @@ export HISTSIZE=1000000
 
 export TERM="xterm-256color"
 
-export SPOTIPY_CLIENT_ID='16b6296999424ba6b4ebeee0039f9382'
-export SPOTIPY_CLIENT_SECRET='a7de9ecc680b4ea2b791472a528f59c6'
-export SPOTIPY_REDIRECT_URI='http://localhost/'
-
 # Bat is a replacement for cat: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended Light"
+
+# Full Neovim config in terminals; unset by default so VS Code Neovim uses ~/.config/nvim
+export NVIM_APPNAME=terminal_nvim
 
 export EDITOR="nvim"
 alias 'vim'=nvim
@@ -104,9 +115,10 @@ export NEO=/Users/colton.morris/go/src/neo/
 export NEo=/Users/colton.morris/go/src/neo/
 export Neo=/Users/colton.morris/go/src/neo/
 export neo=/Users/colton.morris/go/src/neo/
+export tcn=/Users/colton.morris/go/src/tcn/
 export GITLAB_URI=git.tcncloud.net
 export GITLAB_HOST=git.tcncloud.net
-source ~/.secret_zshrc
+alias devclone=/Users/colton.morris/go/src/tcn/devclone/devclone
 
 # for acd testing, can remove
 export ACDCTL=$neo/plz-out/bin/services/acd/acdctl/acdctl
@@ -135,8 +147,15 @@ export MODPATH="${HOME}/gomod"
 export GOPATH="${HOME}/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:${GOPATH}/bin"
+# neo specific mod, maybe break non work repos
+export GONOPROXY="git.tcncloud.net"
+export GONOSUMDB="git.tcncloud.net"
+export GOPRIVATE="git.tcncloud.net"
+
 # export GOROOT="$(brew --prefix golang)/libexec"
 # export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+export PATH="$PATH:${GOPATH}/src/tcn/replicas/replicas.sh"
 
 # protoc to path
 # export LD_LIBRARY_PATH=/usr/local/lib
@@ -292,6 +311,6 @@ if [ -f '/Users/colton.morris/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 # <<< conda initialize <<<
 
 source ~/.tcnrc
-source ~/.secretrc
+source ~/.secret_zshrc
 
 dev

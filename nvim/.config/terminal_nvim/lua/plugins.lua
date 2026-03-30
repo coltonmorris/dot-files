@@ -58,8 +58,8 @@ packer.startup(function()
         end
     }
 
-    -- rust stuff
-    use {"simrat39/rust-tools.nvim"}
+    -- rust: |g:rustaceanvim| is set in config/lsp/rustaceanvim.lua from lsp_config.init()
+    use { "mrcjkb/rustaceanvim" }
 
     use {"nvimtools/none-ls.nvim",
         requires = {
@@ -183,21 +183,25 @@ packer.startup(function()
     }
     use {"saadparwaiz1/cmp_luasnip"}
 
-    -- Treesitter
+    -- nvim-treesitter `main`: Neovim 0.12+. Needs `tree-sitter build` (CLI 0.22+): `brew install tree-sitter-cli`
+    -- (Homebrew `tree-sitter` is library-only; put `/opt/homebrew/bin` before npm's global `tree-sitter` if you use nvm.)
     use {
         "nvim-treesitter/nvim-treesitter",
+        requires = {
+            "windwp/nvim-ts-autotag",
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+        },
         config = function()
             require("config.treesitter")
         end,
         run = function()
-            require('nvim-treesitter.install').update({ with_sync = true })
+            local ok, ts = pcall(require, "nvim-treesitter")
+            if ok and ts.update then
+                ts.update():wait(300000)
+            end
         end,
     }
-    use {"nvim-treesitter/playground"}
-
-
-    -- HTML auto close and auto rename tags
-    use {"windwp/nvim-ts-autotag"}
     -- extends the percent sign % to work with more objects
     use {
         'andymass/vim-matchup',
@@ -205,8 +209,6 @@ packer.startup(function()
             require("config.matchup")
         end
     }
-    -- sets the comment string based on treesitter queries
-    use {'JoosepAlviste/nvim-ts-context-commentstring'}
     -- show you which function you're looking at at the top of the screen
     use {
         'nvim-treesitter/nvim-treesitter-context',
@@ -214,8 +216,6 @@ packer.startup(function()
             require("config.treesitter-context")
         end
     }
-    use {'nvim-treesitter/nvim-treesitter-textobjects'}
-
     -- make matching parens and stuff different colors
     use {
         "HiPhish/rainbow-delimiters.nvim",
@@ -223,11 +223,13 @@ packer.startup(function()
             require("config.rainbow-delimiters")
         end
     }
-    -- makes extra pairs that work with %
-    use {"theHamsta/nvim-treesitter-pairs"}
-
     -- auto highlight the current word
-    use {"RRethy/vim-illuminate"}
+    use {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("config.illuminate")
+        end,
+    }
 
     use {
         "lewis6991/gitsigns.nvim",
@@ -276,9 +278,11 @@ packer.startup(function()
 --        end,
 --    }
 
-    use { 'norcalli/nvim-colorizer.lua',
+    -- norcalli repo stale; NiklasV1 fork fixes vim.tbl_flatten / other 0.11+ deprecations (upstream PR #113)
+    use {
+        'NiklasV1/nvim-colorizer.lua',
         config = function()
-            require("config.colorizer")
+            require('config.colorizer')
         end,
     }
 
@@ -343,25 +347,27 @@ packer.startup(function()
         end,
     }
 
-    use {
-        "frankroeder/parrot.nvim",
-        config = function()
-            require("parrot").setup({
-                providers = {
-                    openai = {
-                        api_key = os.getenv("OPENAI_API_KEY"),
-                        models = {
-                            "o3-mini",
-                        },
-                    },
-                },
-                -- chat_free_cursor = true,
-                command_auto_select_response = false,
-                -- chat_prompt_buf_type = true,
-                -- toggle_target = "popup",
-            })
-        end
-    }
+    -- use {
+    --     "frankroeder/parrot.nvim",
+    --     config = function()
+    --         require("parrot").setup({
+    --             providers = {
+    --                 openai = {
+    --                     name = "openai",
+    --                     endpoint = "https://api.openai.com/v1/chat/completions",
+    --                     api_key = os.getenv("OPENAI_API_KEY"),
+    --                     models = {
+    --                         "o3-mini",
+    --                     },
+    --                 },
+    --             },
+    --             -- chat_free_cursor = true,
+    --             command_auto_select_response = false,
+    --             -- chat_prompt_buf_type = true,
+    --             -- toggle_target = "popup",
+    --         })
+    --     end
+    -- }
 
     use {
         "RaafatTurki/hex.nvim",

@@ -1,6 +1,7 @@
 -- npm install -g yaml-language-server
-require'lspconfig'.yamlls.setup{
-	cmd = {DATA_PATH .. "/lsp_servers/yaml/node_modules/.bin/yaml-language-server", "--stdio"},
-	on_attach = require'config.lsp'.common_on_attach,
-	capabilities = require'config.lsp'.common_capabilities(),
-}
+local lsp = require('config.lsp')
+lsp.setup('yamlls', {
+  cmd = { DATA_PATH .. "/lsp_servers/yaml/node_modules/.bin/yaml-language-server", "--stdio" },
+  on_attach = lsp.common_on_attach,
+  capabilities = lsp.common_capabilities(),
+})

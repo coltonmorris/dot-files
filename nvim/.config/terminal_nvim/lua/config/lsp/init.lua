@@ -1,5 +1,13 @@
 local lsp_config = {}
 
+--- nvim-lspconfig 0.11+: use vim.lsp.config + vim.lsp.enable (not require('lspconfig').x.setup)
+---@param name string config name (e.g. 'pyright', 'clangd')
+---@param opts table merged with nvim-lspconfig defaults from |lspconfig-all|
+function lsp_config.setup(name, opts)
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
+end
+
 function lsp_config.common_on_attach(client, bufnr)
     require'lsp_signature'.on_attach()
 end
@@ -51,7 +59,7 @@ function lsp_config.init()
     require('config.lsp.php-ls')
     require('config.lsp.python-ls')
     require('config.lsp.ruby-ls')
-    require('config.lsp.rust-ls')
+    require('config.lsp.rustaceanvim')
     require('config.lsp.svelte-ls')
     require('config.lsp.terraform-ls')
     -- require('config.lsp.tailwindcss-ls')
@@ -64,6 +72,13 @@ function lsp_config.init()
 end
 
 function lsp_config.make_stuff_pretty()
+    vim.diagnostic.config({
+        virtual_text = { spacing = 0, prefix = '' },
+        signs = true,
+        underline = true,
+        update_in_insert = true,
+    })
+
     -- change the border of the hover window
     local border = {
           {"┏", "FloatBorder"},

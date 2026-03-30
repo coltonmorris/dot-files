@@ -1,12 +1,21 @@
 [user]
-	email = coltonmorris94@gmail.com
+	email = "colton.morris@tcnbroadcasting.com"
 	name = "Colton Morris"
 
 [url "ssh://git@github.com/coltonmorris/"]
   insteadOf = https://github.com/coltonmorris/
 
-[url "git@git.tcncloud.net:"]
-	insteadOf = https://git.tcncloud.net
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[url "ssh://git@gitlab.com/"]
+    insteadOf = https://gitlab.com/
+[url "ssh://git@bitbucket.org/"]
+    insteadOf = https://bitbucket.org/
+[url "ssh://git@git.tcncloud.net"]
+    insteadOf = https://git.tcncloud.net
+; [url "git@git.tcncloud.net:"]
+; 	insteadOf = https://git.tcncloud.net
+
 [core]
 	excludesFile = ~/.gitignore_global
   autocrlf = false

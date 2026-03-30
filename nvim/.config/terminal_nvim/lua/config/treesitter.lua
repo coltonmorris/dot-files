@@ -1,134 +1,106 @@
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"go", "javascript", "typescript", "python"},
-    ignore_install = {"haskell"},
+-- nvim-treesitter `main` (see :h nvim-treesitter-quickstart). Neovim 0.12+ and `tree-sitter` CLI with `build` (e.g. brew `tree-sitter-cli`).
+require('nvim-treesitter').setup({})
 
-    highlight = {
-        -- TODO does this work now
-        -- setting to false makes material.nvim work correctly
-        enable = false,
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        -- additional_vim_regex_highlighting = true,
-    },
+local ensure = { 'go', 'javascript', 'typescript', 'python' }
+require('nvim-treesitter').install(ensure)
 
-    -- extends vim's `=` key
-    indent = {enable = true},
+-- Indent when a parser exists (no global TS highlight — material.nvim)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function(args)
+    local ok, parser = pcall(vim.treesitter.get_parser, args.buf)
+    if not ok or not parser then
+      return
+    end
+    vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
 
-    -- extends vim's `%` key.
-    -- must have "andymass/vim-matchup" installed
-    matchup = {
-        enable = true,
-    },
+require('nvim-ts-autotag').setup({
+  opts = {
+    enable_close = true,
+    enable_rename = true,
+    enable_close_on_slash = false,
+  },
+})
 
-    -- auto close and auto rename html tags
-    -- must have "windwp/nvim-ts-autotag" installed
-    autotag = {enable = true},
+require('nvim-treesitter-textobjects').setup({
+  select = {
+    lookahead = true,
+    include_surrounding_whitespace = true,
+  },
+  move = {
+    set_jumps = true,
+  },
+})
 
-    -- sets the comment string for files with multiple languages
-    -- must have "JoosepAlviste/nvim-ts-context-commentstring" installed
-    -- disabled for nvim-comment
-    enable_autocmd = false,
+local select = require('nvim-treesitter-textobjects.select')
+local move = require('nvim-treesitter-textobjects.move')
+local swap = require('nvim-treesitter-textobjects.swap')
 
-    -- same as vim-matchup, extends `%` key
-    -- must have "theHamsta/nvim-treesitter-pairs" installed
-    pairs = {
-        enable = true,
-    },
+local function map_select(modes, lhs, capture)
+  vim.keymap.set(modes, lhs, function()
+    select.select_textobject(capture, 'textobjects')
+  end)
+end
 
-    -- a built in, select code based off of treesitter nodes
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        -- mappings for incremental selection (visual mappings)
-        init_selection = "gnn", -- maps in normal mode to init the node/scope selection
-        node_incremental = "grn", -- increment to the upper named parent
-        scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
-        node_decremental = "grm", -- decrement to the previous node
-      },
-    },
+map_select({ 'x', 'o' }, 'af', '@function.outer')
+map_select({ 'x', 'o' }, 'if', '@function.inner')
+map_select({ 'x', 'o' }, 'aC', '@class.outer')
+map_select({ 'x', 'o' }, 'iC', '@class.inner')
+map_select({ 'x', 'o' }, 'ac', '@conditional.outer')
+map_select({ 'x', 'o' }, 'ic', '@conditional.inner')
+map_select({ 'x', 'o' }, 'ae', '@block.outer')
+map_select({ 'x', 'o' }, 'ie', '@block.inner')
+map_select({ 'x', 'o' }, 'al', '@loop.outer')
+map_select({ 'x', 'o' }, 'il', '@loop.inner')
+map_select({ 'x', 'o' }, 'is', '@statement.inner')
+map_select({ 'x', 'o' }, 'as', '@statement.outer')
+map_select({ 'x', 'o' }, 'ad', '@comment.outer')
+map_select({ 'x', 'o' }, 'am', '@call.outer')
+map_select({ 'x', 'o' }, 'im', '@call.inner')
 
-    -- syntax-aware textobjects
-    -- must have "nvim-treesitter/nvim-treesitter-textobjects" installed
-    textobjects = {
-        enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true,
-        lsp_interop = {
-            enable = true,
-        },
+vim.keymap.set({ 'x', 'o' }, 'iL', function()
+  if vim.bo.filetype == 'go' then
+    select.select_textobject('@function.inner', 'textobjects')
+  end
+end)
 
-        keymaps = {
-            ["iL"] = {
-                -- you can define your own textobjects directly here
-                go = "(function_definition) @function",
-            },
-            -- or you use the queries from supported languages with textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["aC"] = "@class.outer",
-            ["iC"] = "@class.inner",
-            ["ac"] = "@conditional.outer",
-            ["ic"] = "@conditional.inner",
-            ["ae"] = "@block.outer",
-            ["ie"] = "@block.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["is"] = "@statement.inner",
-            ["as"] = "@statement.outer",
-            ["ad"] = "@comment.outer",
-            ["am"] = "@call.outer",
-            ["im"] = "@call.inner"
-        },
+-- rustaceanvim uses `<Leader>a` for codeAction; swap on `<leader>sa` / `<leader>sA`
+vim.keymap.set('n', '<leader>sa', function()
+  swap.swap_next('@parameter.inner')
+end)
+vim.keymap.set('n', '<leader>sA', function()
+  swap.swap_previous('@parameter.inner')
+end)
 
-        move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer"
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer"
-            },
-            goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer"
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer"
-            }
-        },
+vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
+  move.goto_next_start('@function.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
+  move.goto_next_start('@class.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, ']M', function()
+  move.goto_next_end('@function.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '][', function()
+  move.goto_next_end('@class.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
+  move.goto_previous_start('@function.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
+  move.goto_previous_start('@class.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[M', function()
+  move.goto_previous_end('@function.outer', 'textobjects')
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[]', function()
+  move.goto_previous_end('@class.outer', 'textobjects')
+end)
 
-        select = {
-            enable = true,
-            keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-            },
-            -- If you set this to `true` (default is `false`) then any textobject is
-            -- extended to include preceding xor succeeding whitespace. Succeeding
-            -- whitespace has priority in order to act similarly to eg the built-in
-            -- `ap`.
-            include_surrounding_whitespace = true,
-        },
+-- gnn/grn/grc/grm were from nvim-treesitter `master` incremental_selection; not on `main` (add custom maps if needed).
 
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<leader>a"] = "@parameter.inner"
-            },
-            swap_previous = {
-                ["<leader>A"] = "@parameter.inner"
-            }
-        }
-    },
-}
-
-
+require('ts_context_commentstring').setup({
+  enable_autocmd = false,
+})

@@ -1,8 +1,9 @@
-require'lspconfig'.elixirls.setup{
-    cmd = { DATA_PATH .. "/lsp_servers/elixir/elixir-ls/language_server.sh"};
-    capabilities = require'config.lsp'.common_capabilities(),
-    on_attach = require'config.lsp'.common_on_attach,
-}
+local lsp = require('config.lsp')
+lsp.setup('elixirls', {
+  cmd = { DATA_PATH .. "/lsp_servers/elixir/elixir-ls/language_server.sh" },
+  capabilities = lsp.common_capabilities(),
+  on_attach = lsp.common_on_attach,
+})
 
 -- needed for the LSP to recognize elixir files (alternativly just use elixir-editors/vim-elixir)
 vim.cmd([[
